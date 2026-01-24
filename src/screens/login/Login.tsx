@@ -7,10 +7,10 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import { userLogin } from '@services/auth.service';
+import { COLORS } from '@constants/colors';
+import CustomButton from '@components/button';
 import { styles } from './styles';
-import { userLogin } from '../../services/auth.service';
-import CustomButton from '../../components/button';
-import { COLORS } from '../../constants/colors';
 
 export default function LoginScreen() {
   const [userName, setUserName] = useState('');

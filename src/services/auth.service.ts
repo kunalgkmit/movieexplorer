@@ -1,7 +1,8 @@
-import { CLIENT_ERRORS } from "../constants/constants";
-import { ENDPOINTS } from "../network/URLs"
-import { axiosInstance } from "../network/axiosinstance"
-import { useUserSession } from "../store/userSession";
+import { CLIENT_ERRORS } from "@constants/constants";
+import { axiosInstance } from "@network/axiosinstance";
+import { ENDPOINTS } from "@network/URLs";
+import { useUserSession } from "@store/userSession";
+
 
 export const userLogin = async ({ userName, password }: LoginProps) => {
     try {

@@ -1,9 +1,21 @@
-interface LoginProps{
-    userName: string;
-    password: string
+interface LoginProps {
+  userName: string;
+  password: string;
 }
 
-interface UserSession{
-    sessionId: string;
-    isLoggedIn: boolean;
+interface LoginFormProps {
+  title: string;
+  subtitle?: string;
+  onSubmit: (credentials: LoginProps) => void;
+  isPending?: boolean;
+}
+
+interface UserSession {
+  sessionId: string;
+  isLoggedIn: boolean;
+}
+
+interface ButtonProps {
+  title: string;
+  onPress: () => void;
 }

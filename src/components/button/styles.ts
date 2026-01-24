@@ -1,8 +1,8 @@
-import { COLORS } from "@constants/colors";
-import { StyleSheet } from "react-native";
+import { COLORS } from '@constants/colors';
+import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-    button: {
+  button: {
     width: '100%',
     height: 52,
     backgroundColor: COLORS.BUTTON_COLOR,
@@ -17,4 +17,4 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
-})
+});

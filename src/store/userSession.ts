@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-export const useUserSession = create<UserSession>()(
+export const useUserSession = create<UserSessionStore>()(
   persist(
     set => ({
       sessionId: '',
@@ -11,11 +11,6 @@ export const useUserSession = create<UserSession>()(
     {
       name: 'user-session-storage',
       storage: createJSONStorage(() => AsyncStorage),
-      onRehydrateStorage: () => {
-        return () => {
-          useUserSession.setState({ isLoggedIn: true });
-        };
-      },
     },
   ),
 );

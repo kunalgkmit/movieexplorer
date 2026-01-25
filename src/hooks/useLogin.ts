@@ -1,6 +1,7 @@
-import { userLogin } from '@services/auth.service';
-import { useMutation } from '@tanstack/react-query';
 import { Alert } from 'react-native';
+import { useMutation } from '@tanstack/react-query';
+
+import { userLogin } from '@services/auth.service';
 
 export const useLogin = () =>
   useMutation({
@@ -8,9 +9,5 @@ export const useLogin = () =>
 
     onError: error => {
       Alert.alert('Login Failed', error.message, [{ text: 'OK' }]);
-    },
-
-    onSuccess: () => {
-      Alert.alert('Success', 'Logged in successfully!', [{ text: 'OK' }]);
     },
   });

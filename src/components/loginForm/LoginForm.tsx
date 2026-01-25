@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 
-import { COLORS } from '@constants/colors';
 import CustomButton from '@components/button';
 
 import { styles } from './styles';
 import { useLogin } from 'hooks/useLogin';
+import CustomTextInput from '@components/textInput/TextInput';
 
 export default function LoginForm({ title, subtitle }: LoginFormProps) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({
-    userName: false,
-    password: false,
+    userName: '',
+    password: '',
   });
 
   const { mutate, isPending } = useLogin();
 
   const handleSubmit = () => {
-    const userNameError = userName.trim() === '';
-    const passwordError = password.trim() === '';
+    const userNameError =
+      userName.trim() === '' ? 'Please enter a valid username' : '';
+    const passwordError =
+      password.trim() === '' ? 'Please enter your password' : '';
 
     setErrors({
       userName: userNameError,
@@ -36,35 +38,24 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.subtitle}>{subtitle}</Text>
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={[styles.input, errors.userName && styles.inputError]}
-          placeholder="Username"
-          placeholderTextColor={COLORS.TEXT_TERTIARY}
-          value={userName}
-          onChangeText={setUserName}
-          autoCapitalize="none"
-          editable={!isPending}
-        />
-        {errors.userName && (
-          <Text style={styles.errorText}>Please enter a valid username</Text>
-        )}
-      </View>
+      <CustomTextInput
+        placeholder="Username"
+        value={userName}
+        onChangeText={setUserName}
+        error={errors.userName}
+        autoCapitalize="none"
+        editable={!isPending}
+      />
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={[styles.input, errors.password && styles.inputError]}
-          placeholder="Password"
-          placeholderTextColor={COLORS.TEXT_TERTIARY}
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          editable={!isPending}
-        />
-        {errors.password && (
-          <Text style={styles.errorText}>Please enter your password</Text>
-        )}
-      </View>
+      <CustomTextInput
+        placeholder="Password"
+        value={password}
+        onChangeText={setPassword}
+        error={errors.password}
+        autoCapitalize="none"
+        editable={!isPending}
+        secureTextEntry={true}
+      />
 
       {!isPending ? (
         <CustomButton title="Login" onPress={handleSubmit} />

@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ActivityIndicator, Text, TextInput, View } from 'react-native';
+
 import { COLORS } from '@constants/colors';
 import CustomButton from '@components/button';
+
 import { styles } from './styles';
 
 export default function LoginForm({

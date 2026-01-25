@@ -21,7 +21,11 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
     const userNameError =
       userName.trim() === '' ? 'Please enter a valid username' : '';
     const passwordError =
-      password.trim() === '' ? 'Please enter your password' : '';
+      password.trim() === ''
+        ? 'Please enter your password'
+        : password.length < 8
+        ? 'Password should be 8 characters long'
+        : '';
 
     setErrors({
       userName: userNameError,

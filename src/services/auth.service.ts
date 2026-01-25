@@ -1,4 +1,4 @@
-import { CLIENT_ERRORS } from '@constants/constants';
+import { CLIENT_ERRORS } from '@constants/network';
 import { axiosInstance } from '@network/axiosInstance';
 import { ENDPOINTS } from '@network/URLs';
 import { useUserSession } from '@store/userSession';

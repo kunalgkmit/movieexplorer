@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ActivityIndicator, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import CustomButton from '@components/button';
 
@@ -61,11 +61,11 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         secureTextEntry={true}
       />
 
-      {!isPending ? (
-        <CustomButton title="Login" onPress={handleSubmit} />
-      ) : (
-        <ActivityIndicator size="small" />
-      )}
+      <CustomButton
+        title="Login"
+        onPress={handleSubmit}
+        isPending={isPending}
+      />
     </View>
   );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 import { View } from 'react-native';
+
 import { APP_INFO } from '@constants/constants';
-import { useLogin } from 'hooks/useLogin';
-import { styles } from './styles';
 import LoginForm from '@components/loginForm/LoginForm';
+
+import { styles } from './styles';
 
 export default function LoginScreen() {
   return (

@@ -1,4 +1,3 @@
-import { COLORS } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -11,7 +10,6 @@ export const styles = StyleSheet.create({
     width: 20,
     height: 20,
   },
-  name: { color: COLORS.TITLE },
   button: {
     alignItems: 'center',
     gap: 8,

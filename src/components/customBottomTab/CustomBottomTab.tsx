@@ -1,8 +1,9 @@
-import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { COLORS } from '../../constants/colors';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+
 import { ROUTES } from '@constants/routes';
 import { styles } from './styles';
+import { COLORS } from '@constants/colors';
 
 const homeImg = require('@assets/images/home.png');
 const favouritesImg = require('@assets/images/favourite.png');
@@ -21,23 +22,19 @@ export default function CustomBottomTab({
         flexDirection: 'row',
         height: '10%',
         paddingBottom: 10,
-        backgroundColor: COLORS.PRIMARY,
+        backgroundColor: COLORS.BG_PRIMARY,
       }}
     >
       {state.routes.map((item, index) => {
         const isFocused = state.index === index;
-        const color = isFocused ? COLORS.BUTTON_COLOR : COLORS.TITLE;
+        const color = isFocused ? COLORS.PRIMARY : COLORS.TEXT_SECONDARY;
         return (
           <TouchableOpacity
             key={item.key}
             style={styles.button}
             onPress={() => navigation.navigate(item.name)}
           >
-            <View
-              style={[
-                styles.imageHighlight,
-              ]}
-            >
+            <View style={[styles.imageHighlight]}>
               <Image
                 style={[styles.image, { tintColor: color }]}
                 source={

@@ -6,8 +6,6 @@ interface LoginProps {
 interface LoginFormProps {
   title: string;
   subtitle?: string;
-  onSubmit: (credentials: LoginProps) => void;
-  isPending?: boolean;
 }
 
 interface UserSession {

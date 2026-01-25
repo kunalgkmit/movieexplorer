@@ -5,19 +5,17 @@ import { COLORS } from '@constants/colors';
 import CustomButton from '@components/button';
 
 import { styles } from './styles';
+import { useLogin } from 'hooks/useLogin';
 
-export default function LoginForm({
-  title,
-  subtitle,
-  onSubmit,
-  isPending = false,
-}: LoginFormProps) {
+export default function LoginForm({ title, subtitle }: LoginFormProps) {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({
     userName: false,
     password: false,
   });
+
+  const { mutate, isPending } = useLogin();
 
   const handleSubmit = () => {
     const userNameError = userName.trim() === '';
@@ -29,7 +27,7 @@ export default function LoginForm({
     });
 
     if (!userNameError && !passwordError) {
-      onSubmit({ userName, password });
+      mutate({ userName, password });
     }
   };
 

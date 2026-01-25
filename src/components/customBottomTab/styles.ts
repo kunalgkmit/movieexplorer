@@ -1,10 +1,16 @@
 import { StyleSheet } from 'react-native';
 
+import { COLORS } from '@constants/colors';
+
 export const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    width: '100%',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
+    flexDirection: 'row',
+    height: '10%',
+    paddingBottom: 7,
+    backgroundColor: COLORS.BG_PRIMARY,
   },
   image: {
     width: 20,
@@ -12,13 +18,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    gap: 8,
-  },
-  imageHighlight: {
-    width: 50,
-    alignItems: 'center',
-    borderRadius: 20,
-    padding: 2,
+    gap: '13%',
   },
   title: {
     fontWeight: 'bold',

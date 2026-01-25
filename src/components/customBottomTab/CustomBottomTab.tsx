@@ -15,15 +15,7 @@ export default function CustomBottomTab({
 }: BottomTabBarProps) {
   return (
     <View
-      style={{
-        width: '100%',
-        alignItems: 'center',
-        justifyContent: 'space-around',
-        flexDirection: 'row',
-        height: '10%',
-        paddingBottom: 10,
-        backgroundColor: COLORS.BG_PRIMARY,
-      }}
+      style={styles.container}
     >
       {state.routes.map((item, index) => {
         const isFocused = state.index === index;
@@ -34,7 +26,7 @@ export default function CustomBottomTab({
             style={styles.button}
             onPress={() => navigation.navigate(item.name)}
           >
-            <View style={[styles.imageHighlight]}>
+            <View>
               <Image
                 style={[styles.image, { tintColor: color }]}
                 source={

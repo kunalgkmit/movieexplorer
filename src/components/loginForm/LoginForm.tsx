@@ -17,15 +17,22 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
 
   const { mutate, isPending } = useLogin();
 
+  const validatePassword = (pwd: string) => {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!pwd) {
+      return 'Password is required.';
+    }
+    if (!passwordRegex.test(pwd)) {
+      return 'Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.';
+    }
+    return '';
+  };
+
   const handleSubmit = () => {
     const userNameError =
       userName.trim() === '' ? 'Please enter a valid username' : '';
-    const passwordError =
-      password.trim() === ''
-        ? 'Please enter your password'
-        : password.length < 8
-        ? 'Password should be 8 characters long'
-        : '';
+    const passwordError = validatePassword(password);
 
     setErrors({
       userName: userNameError,
@@ -47,7 +54,6 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         value={userName}
         onChangeText={setUserName}
         error={errors.userName}
-        autoCapitalize="none"
         editable={!isPending}
       />
 
@@ -56,7 +62,6 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         value={password}
         onChangeText={setPassword}
         error={errors.password}
-        autoCapitalize="none"
         editable={!isPending}
         secureTextEntry={true}
       />

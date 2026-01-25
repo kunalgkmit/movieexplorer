@@ -10,7 +10,7 @@ export default function CustomTextInput({
   onChangeText,
   error,
   editable,
-  autoCapitalize,
+  autoCapitalize="none",
   secureTextEntry
 }: CustomTextInputProps) {
   return (

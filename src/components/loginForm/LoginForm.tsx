@@ -54,7 +54,6 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         value={userName}
         onChangeText={setUserName}
         error={errors.userName}
-        autoCapitalize="none"
         editable={!isPending}
       />
 
@@ -63,7 +62,6 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         value={password}
         onChangeText={setPassword}
         error={errors.password}
-        autoCapitalize="none"
         editable={!isPending}
         secureTextEntry={true}
       />

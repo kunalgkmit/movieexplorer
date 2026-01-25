@@ -13,6 +13,7 @@ interface LoginFormProps {
 interface UserSession {
   sessionId: string;
   isLoggedIn: boolean;
+  isSessionHydrated: boolean;
 }
 
 interface ButtonProps {

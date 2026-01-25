@@ -7,13 +7,14 @@ export const useUserSession = create<UserSession>()(
     set => ({
       sessionId: '',
       isLoggedIn: false,
+      isSessionHydrated: false
     }),
     {
       name: 'user-session-storage',
       storage: createJSONStorage(() => AsyncStorage),
       onRehydrateStorage: () => {
         return () => {
-          useUserSession.setState({ isLoggedIn: true });
+          useUserSession.setState({ isSessionHydrated: true });
         };
       },
     },

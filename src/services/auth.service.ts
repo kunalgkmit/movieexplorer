@@ -32,6 +32,7 @@ export const userLogin = async ({ userName, password }: LoginProps) => {
     // Save session ID
     useUserSession.setState({
       sessionId: sessionRes.data.session_id,
+      isLoggedIn: true
     });
   } catch (error: any) {
     if (error.response) {

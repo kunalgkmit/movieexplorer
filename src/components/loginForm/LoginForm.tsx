@@ -40,7 +40,7 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         <TextInput
           style={[styles.input, errors.userName && styles.inputError]}
           placeholder="Username"
-          placeholderTextColor={COLORS.INPUT_PLACEHOLDER}
+          placeholderTextColor={COLORS.TEXT_TERTIARY}
           value={userName}
           onChangeText={setUserName}
           autoCapitalize="none"
@@ -55,7 +55,7 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         <TextInput
           style={[styles.input, errors.password && styles.inputError]}
           placeholder="Password"
-          placeholderTextColor={COLORS.INPUT_PLACEHOLDER}
+          placeholderTextColor={COLORS.TEXT_TERTIARY}
           value={password}
           onChangeText={setPassword}
           secureTextEntry

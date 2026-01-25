@@ -5,7 +5,7 @@ import { COLORS } from '@constants/colors';
 export const styles = StyleSheet.create({
   card: {
     width: '100%',
-    backgroundColor: COLORS.PRIMARY,
+    backgroundColor: COLORS.BG_CARD,
     borderRadius: 20,
     padding: 30,
     shadowColor: COLORS.SHADOW,
@@ -19,13 +19,13 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 28,
     fontWeight: 'bold',
-    color: COLORS.TITLE,
+    color: COLORS.TEXT_PRIMARY,
     marginBottom: 8,
   },
 
   subtitle: {
     fontSize: 16,
-    color: COLORS.SUBTITLE,
+    color: COLORS.TEXT_SECONDARY,
     marginBottom: 30,
   },
 
@@ -36,7 +36,7 @@ export const styles = StyleSheet.create({
 
   input: {
     height: 52,
-    backgroundColor: COLORS.INPUT_BG,
+    backgroundColor: COLORS.BG_SURFACE,
     borderRadius: 12,
     paddingHorizontal: 16,
     fontSize: 16,
@@ -45,12 +45,12 @@ export const styles = StyleSheet.create({
   },
 
   inputError: {
-    borderColor: COLORS.ERROR,
+    borderColor: COLORS.STATUS_ERROR,
     borderWidth: 1.5,
   },
 
   errorText: {
-    color: COLORS.ERROR,
+    color: COLORS.STATUS_ERROR,
     fontSize: 12,
     marginTop: 6,
     paddingLeft: 4,

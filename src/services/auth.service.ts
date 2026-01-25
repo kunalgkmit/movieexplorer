@@ -39,7 +39,7 @@ export const userLogin = async ({ userName, password }: LoginProps) => {
       if (status === CLIENT_ERRORS.UNAUTHORIZED) {
         throw new Error('Invalid username or password. Please try again.');
       }
-    } else if (error.request) {
+    } else {
       throw new Error(
         'Server is not reachable. Please check your internet connection.',
       );

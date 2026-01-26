@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
   },
   button: {
     alignItems: 'center',
-    gap: '13%',
+    gap: '5%',
   },
   title: {
     fontWeight: 'bold',

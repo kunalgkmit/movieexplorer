@@ -14,11 +14,10 @@ export const styles = StyleSheet.create({
   },
 
   listContent: {
-    padding: 16,
+    padding: 12,
   },
 
   columnWrapper: {
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
   },
-
 });

@@ -1,17 +1,35 @@
+import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
+
 import MovieCard from '@components/movieCard';
-import fetchMovies from '@services/movies.service';
-import { useQuery } from '@tanstack/react-query';
-import { ActivityIndicator, FlatList, View } from 'react-native';
 import { styles } from './styles';
+import { useMovies } from 'hooks/useMovies';
 
 export default function Home() {
-  const { data, isLoading } = useQuery({
-    queryKey: ['Movies'],
-    queryFn: fetchMovies,
+  const {
+    data,
+    isLoading,
+    isFetchingNextPage,
+    hasNextPage,
+    fetchNextPage,
+    isError,
+    error,
+  } = useMovies({
+    sortBy: 'popularity.desc',
+    includeVideo: false,
+    language: 'en-US',
   });
 
-  const movies = data?.results;
-  // console.log(movies)
+  const movies = data?.pages.map(page => page.results).flat() ?? [];
+
+  const loadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  };
+
+  if (isError) {
+    Alert.alert('Error while getting movies!', error.message, [{ text: 'OK' }]);
+  }
 
   if (isLoading) {
     return (
@@ -36,6 +54,16 @@ export default function Home() {
             rating={item.vote_average}
           />
         )}
+        keyExtractor={item => item.id.toString()}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={
+          isFetchingNextPage ? (
+            <View>
+              <ActivityIndicator size="small" />
+            </View>
+          ) : null
+        }
       />
     </View>
   );

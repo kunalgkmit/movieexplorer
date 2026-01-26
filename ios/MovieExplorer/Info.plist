@@ -54,8 +54,6 @@
 	<key>UIAppFonts</key>
 	<array>
     	<string>MaterialCommunityIcons.ttf</string>
-    	<string>FontAwesome.ttf</string>
-    	<string>AntDesign.ttf</string>
 	</array>
 </dict>
 </plist>

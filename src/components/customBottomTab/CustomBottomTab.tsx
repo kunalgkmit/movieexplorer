@@ -1,6 +1,7 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import { Ionicons } from '@react-native-vector-icons/ionicons';
 
 import { ROUTES } from '@constants/routes';
 import { styles } from './styles';
@@ -11,13 +12,14 @@ export default function CustomBottomTab({
   state,
   navigation,
 }: BottomTabBarProps) {
-  const getIconName = (routeName: string, isFocused: boolean) => {
+
+  const getIconName = (routeName: string, isFocused: boolean):string => {
     if (routeName === ROUTES.TABS.HOME) {
-      return isFocused ? ICONS.HOME : ICONS.HOME_OUTLINE;
+      return  ICONS.HOME;
     } else if (routeName === ROUTES.TABS.FAVOURITES) {
-      return isFocused ? ICONS.HEART : ICONS.HEART_OUTLINE;
+      return ICONS.HEART_OUTLINE;
     } else {
-      return isFocused ? ICONS.ACCOUNT : ICONS.ACCOUNT_OUTLINE;
+      return ICONS.ACCOUNT_OUTLINE;
     }
   };
 
@@ -37,7 +39,7 @@ export default function CustomBottomTab({
             onPress={() => navigation.navigate(item.name)}
           >
             
-            <Icon name={iconName} size={30} color={color} />
+            <Ionicons name={iconName} size={30} color={color} />
 
             <Text style={[styles.title, { color: color }]}>{item.name}</Text>
           </TouchableOpacity>

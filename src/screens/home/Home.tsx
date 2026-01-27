@@ -54,7 +54,7 @@ export default function Home() {
             rating={item.vote_average}
           />
         )}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => item.id}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         ListFooterComponent={

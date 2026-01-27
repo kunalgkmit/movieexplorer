@@ -9,7 +9,7 @@ export const ICONS = {
   HEART: 'heart',
   HEART_OUTLINE: 'heart-outline',
   ACCOUNT: 'account',
-  ACCOUNT_OUTLINE: 'account-outline',
+  ACCOUNT_OUTLINE: 'person-outline',
 };
 
 export const monthNames = [

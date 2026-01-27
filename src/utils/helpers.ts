@@ -1,6 +1,6 @@
 import { monthNames } from '@constants/constants';
 
-export const formatReleaseDate = (releaseDate: string) => {
+export const formatDateToReadableDate = (releaseDate: string) => {
   const releaseDateParts = releaseDate.split('-');
   const year = releaseDateParts[0];
   const monthIndex = parseInt(releaseDateParts[1]) - 1;

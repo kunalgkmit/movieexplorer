@@ -5,6 +5,7 @@ import { styles } from './styles';
 import { useMovies } from 'hooks/useMovies';
 
 export default function Home() {
+  
   const {
     data,
     isLoading,
@@ -19,7 +20,7 @@ export default function Home() {
     language: 'en-US',
   });
 
-  const movies = data?.pages.map(page => page.results).flat() ?? [];
+  const movies = data?.pages?.map(page => page.results).flat() ?? [];
 
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -59,9 +60,7 @@ export default function Home() {
         onEndReachedThreshold={0.5}
         ListFooterComponent={
           isFetchingNextPage ? (
-            <View>
               <ActivityIndicator size="small" />
-            </View>
           ) : null
         }
       />

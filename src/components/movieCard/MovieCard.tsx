@@ -1,7 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import { IMAGE_BASE_URL } from '@env';
-import { dateFormatter, ratingFormatter } from '@utils/helpers';
+import { formatMovieRating, formatReleaseDate } from '@utils/helpers';
 
 export default function MovieCard({
   posterPath,
@@ -9,9 +9,9 @@ export default function MovieCard({
   releaseDate,
   rating,
 }: MovieCardProps) {
-  const formattedRating = ratingFormatter(rating);
+  const formattedRating = formatMovieRating(rating);
 
-  const formattedReleaseDate = dateFormatter(releaseDate);
+  const formattedReleaseDate = formatReleaseDate(releaseDate);
 
   return (
     <TouchableOpacity
@@ -38,4 +38,3 @@ export default function MovieCard({
     </TouchableOpacity>
   );
 }
-

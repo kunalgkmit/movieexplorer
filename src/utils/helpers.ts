@@ -1,6 +1,6 @@
 import { monthNames } from '@constants/constants';
 
-export const dateFormatter = (releaseDate: string) => {
+export const formatReleaseDate = (releaseDate: string) => {
   const releaseDateParts = releaseDate.split('-');
   const year = releaseDateParts[0];
   const monthIndex = parseInt(releaseDateParts[1]) - 1;
@@ -9,7 +9,7 @@ export const dateFormatter = (releaseDate: string) => {
   return formattedDate;
 };
 
-export const ratingFormatter = (rating: number) => {
+export const formatMovieRating = (rating: number) => {
   return parseFloat(rating.toFixed(1));
 };
 

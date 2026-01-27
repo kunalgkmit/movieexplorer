@@ -1,7 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import { IMAGE_BASE_URL } from '@env';
-import { monthNames } from '@constants/constants';
+import { dateFormatter, ratingFormatter } from '@utils/helpers';
 
 export default function MovieCard({
   posterPath,
@@ -9,16 +9,9 @@ export default function MovieCard({
   releaseDate,
   rating,
 }: MovieCardProps) {
-  rating = parseFloat(rating.toFixed(1));
+  rating = ratingFormatter(rating);
 
-  const dateFormatter = () => {
-    const releaseDateParts = releaseDate.split('-');
-    const year = releaseDateParts[0];
-    const monthIndex = parseInt(releaseDateParts[1]) - 1;
-    const day = releaseDateParts[2];
-    return `${monthNames[monthIndex]} ${day}, ${year}`;
-  };
-  releaseDate = dateFormatter();
+  releaseDate = dateFormatter(releaseDate);
 
   return (
     <TouchableOpacity
@@ -45,3 +38,4 @@ export default function MovieCard({
     </TouchableOpacity>
   );
 }
+

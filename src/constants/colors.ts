@@ -17,5 +17,5 @@ export const COLORS = {
 
   BORDER: '#E5E5E5',
   SHADOW: '#000',
-  RATING: '#FFD700'
+  ACCENT_YELLOW: '#FFD700'
 };

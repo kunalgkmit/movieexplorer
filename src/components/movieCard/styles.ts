@@ -1,5 +1,6 @@
-import { COLORS } from "@constants/colors";
 import { StyleSheet } from "react-native";
+
+import { COLORS } from "@constants/colors";
 
 export const styles = StyleSheet.create({
   card: {
@@ -47,6 +48,6 @@ export const styles = StyleSheet.create({
   rating: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: COLORS.RATING,
+    color: COLORS.ACCENT_YELLOW,
   },
 });

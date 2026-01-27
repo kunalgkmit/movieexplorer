@@ -12,14 +12,13 @@ export default function CustomBottomTab({
   state,
   navigation,
 }: BottomTabBarProps) {
-
-  const getIconName = (routeName: string, isFocused: boolean):string => {
+  const getIconName = (routeName: string, isFocused: boolean): string => {
     if (routeName === ROUTES.TABS.HOME) {
-      return  ICONS.HOME;
+      return isFocused ? ICONS.HOME : ICONS.HOME_OUTLINE;
     } else if (routeName === ROUTES.TABS.FAVOURITES) {
-      return ICONS.HEART_OUTLINE;
+      return isFocused ? ICONS.HEART : ICONS.HEART_OUTLINE;
     } else {
-      return ICONS.ACCOUNT_OUTLINE;
+      return isFocused ? ICONS.ACCOUNT : ICONS.ACCOUNT_OUTLINE;
     }
   };
 
@@ -38,8 +37,7 @@ export default function CustomBottomTab({
             style={styles.button}
             onPress={() => navigation.navigate(item.name)}
           >
-            
-            <Ionicons name={iconName} size={30} color={color} />
+            <Ionicons name={iconName} size={25} color={color} />
 
             <Text style={[styles.title, { color: color }]}>{item.name}</Text>
           </TouchableOpacity>

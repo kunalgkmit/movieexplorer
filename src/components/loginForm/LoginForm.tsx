@@ -4,8 +4,8 @@ import { Text, View } from 'react-native';
 import CustomButton from '@components/button';
 
 import { styles } from './styles';
-import { useLogin } from 'hooks/useLogin';
 import CustomTextInput from '@components/textInput/TextInput';
+import { useLogin } from '@hooks/useLogin';
 
 export default function LoginForm({ title, subtitle }: LoginFormProps) {
   const [userName, setUserName] = useState('');

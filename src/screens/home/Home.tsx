@@ -2,7 +2,7 @@ import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import { styles } from './styles';
-import { useMovies } from 'hooks/useMovies';
+import { useMovies } from '@hooks/useMovies';
 
 export default function Home() {
   

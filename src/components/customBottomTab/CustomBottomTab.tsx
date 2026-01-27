@@ -37,7 +37,7 @@ export default function CustomBottomTab({
             style={styles.button}
             onPress={() => navigation.navigate(item.name)}
           >
-            <Ionicons name={iconName} size={30} color={color} />
+            <Ionicons name={iconName} size={25} color={color} />
 
             <Text style={[styles.title, { color: color }]}>{item.name}</Text>
           </TouchableOpacity>

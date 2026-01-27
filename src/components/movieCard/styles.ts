@@ -47,6 +47,6 @@ export const styles = StyleSheet.create({
   rating: {
     fontSize: 14,
     fontWeight: 'bold',
-    color: COLORS.RATING,
+    color: COLORS.ACCENT_YELLOW,
   },
 });

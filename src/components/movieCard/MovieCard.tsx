@@ -1,6 +1,7 @@
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
 import { IMAGE_BASE_URL } from '@env';
+import { monthNames } from '@constants/constants';
 
 export default function MovieCard({
   posterPath,
@@ -12,8 +13,10 @@ export default function MovieCard({
 
   const dateFormatter = () => {
     const releaseDateParts = releaseDate.split('-');
-    const reversedParts = releaseDateParts.reverse();
-    return reversedParts.join('-');
+    const year = releaseDateParts[0];
+    const monthIndex = parseInt(releaseDateParts[1]) - 1;
+    const day = releaseDateParts[2];
+    return `${monthNames[monthIndex]} ${day}, ${year}`;
   };
   releaseDate = dateFormatter();
 

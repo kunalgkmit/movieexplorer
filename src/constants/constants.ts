@@ -9,5 +9,20 @@ export const ICONS = {
   HEART: 'heart',
   HEART_OUTLINE: 'heart-outline',
   ACCOUNT: 'account',
-  ACCOUNT_OUTLINE: 'account-outline'
-}
+  ACCOUNT_OUTLINE: 'account-outline',
+};
+
+export const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];

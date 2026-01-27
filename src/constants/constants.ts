@@ -8,6 +8,21 @@ export const ICONS = {
   HOME_OUTLINE: 'home-outline',
   HEART: 'heart',
   HEART_OUTLINE: 'heart-outline',
-  ACCOUNT: 'account',
-  ACCOUNT_OUTLINE: 'account-outline'
-}
+  ACCOUNT: 'person',
+  ACCOUNT_OUTLINE: 'person-outline',
+};
+
+export const monthNames = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+];

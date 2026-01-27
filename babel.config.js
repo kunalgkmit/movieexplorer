@@ -23,6 +23,7 @@ module.exports = {
           '@services': './src/services',
           '@network': './src/network',
           '@assets': './src/assets',
+          '@hooks': './src/hooks',
         },
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       },

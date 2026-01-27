@@ -18,3 +18,10 @@ interface CustomTextInputProps {
   autoCapitalize?: 'none';
   secureTextEntry?: boolean;
 }
+
+interface MovieCardProps {
+  posterPath: string;
+  title: string;
+  releaseDate: string;
+  rating: number;
+}

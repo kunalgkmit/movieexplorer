@@ -8,7 +8,7 @@ export const ICONS = {
   HOME_OUTLINE: 'home-outline',
   HEART: 'heart',
   HEART_OUTLINE: 'heart-outline',
-  ACCOUNT: 'account',
+  ACCOUNT: 'person',
   ACCOUNT_OUTLINE: 'person-outline',
 };
 

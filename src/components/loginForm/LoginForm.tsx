@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 
-import { styles } from './styles';
 import { useLogin } from '@hooks/useLogin';
-import CustomTextInput from '@components/textInput/TextInput';
 import { validatePassword } from '@utils/helpers';
 import CustomButton from '@components/button';
+import CustomTextInput from '@components/textInput/TextInput';
+import { styles } from './styles';
 
 export default function LoginForm({ title, subtitle }: LoginFormProps) {
   const [userName, setUserName] = useState('');

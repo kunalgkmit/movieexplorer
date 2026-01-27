@@ -8,6 +8,15 @@ export default function MovieCard({
   releaseDate,
   rating,
 }: MovieCardProps) {
+  rating = parseFloat(rating.toFixed(1));
+
+  const dateFormatter = () => {
+    const releaseDateParts = releaseDate.split('-');
+    const reversedParts = releaseDateParts.reverse();
+    return reversedParts.join('-');
+  };
+  releaseDate = dateFormatter();
+
   return (
     <TouchableOpacity
       style={styles.card}

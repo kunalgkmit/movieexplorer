@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 
-import CustomButton from '@components/button';
-
-import { styles } from './styles';
-import CustomTextInput from '@components/textInput/TextInput';
 import { useLogin } from '@hooks/useLogin';
+import { validatePassword } from '@utils/helpers';
+import CustomButton from '@components/button';
+import CustomTextInput from '@components/textInput/TextInput';
+import { styles } from './styles';
 
 export default function LoginForm({ title, subtitle }: LoginFormProps) {
   const [userName, setUserName] = useState('');
@@ -16,18 +16,6 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
   });
 
   const { mutate, isPending } = useLogin();
-
-  const validatePassword = (pwd: string) => {
-    const passwordRegex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!pwd) {
-      return 'Password is required.';
-    }
-    if (!passwordRegex.test(pwd)) {
-      return 'Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.';
-    }
-    return '';
-  };
 
   const handleSubmit = () => {
     const userNameError =

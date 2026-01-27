@@ -5,7 +5,8 @@ export const dateFormatter = (releaseDate: string) => {
   const year = releaseDateParts[0];
   const monthIndex = parseInt(releaseDateParts[1]) - 1;
   const day = releaseDateParts[2];
-  return `${monthNames[monthIndex]} ${day}, ${year}`;
+  const formattedDate = `${monthNames[monthIndex]} ${day}, ${year}`;
+  return formattedDate;
 };
 
 export const ratingFormatter = (rating: number) => {

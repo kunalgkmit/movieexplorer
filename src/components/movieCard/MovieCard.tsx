@@ -9,9 +9,9 @@ export default function MovieCard({
   releaseDate,
   rating,
 }: MovieCardProps) {
-  rating = ratingFormatter(rating);
+  const formattedRating = ratingFormatter(rating);
 
-  releaseDate = dateFormatter(releaseDate);
+  const formattedReleaseDate = dateFormatter(releaseDate);
 
   return (
     <TouchableOpacity
@@ -31,8 +31,8 @@ export default function MovieCard({
         </Text>
 
         <View style={styles.metaRow}>
-          <Text style={styles.releaseDate}>{releaseDate}</Text>
-          <Text style={styles.rating}>★ {rating}</Text>
+          <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
+          <Text style={styles.rating}>★ {formattedRating}</Text>
         </View>
       </View>
     </TouchableOpacity>

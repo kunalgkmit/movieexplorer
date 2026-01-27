@@ -12,7 +12,8 @@
       "@navigation/*": ["navigation/*"],
       "@services/*": ["services/*"],
       "@network/*": ["network/*"],
-      "@assets/*": ["assets/*"]
+      "@assets/*": ["assets/*"],
+      "@hooks/*": ["hooks/*"],
     }
   },
   "include": ["**/*.ts", "**/*.tsx"],

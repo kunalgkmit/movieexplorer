@@ -9,6 +9,7 @@ import { styles } from './styles';
 
 export default function Home() {
   const favMoviesIds = useFavMoviesStore(state => state.favMoviesIds);
+  const isFavourite = useFavMoviesStore(state=>state.isFavourite);
 
   const {
     data,
@@ -28,15 +29,14 @@ export default function Home() {
     const flattedData = data?.pages?.map(page => page.results).flat();
 
     return flattedData?.map(movieItem => {
-      const findFavouriteMovie = favMoviesIds.find(fav => movieItem.id === fav);
 
       return {
-        id: movieItem.id,
+        movieId: movieItem.id,
         posterPath: movieItem.poster_path,
         title: movieItem.title,
         releaseDate: movieItem.release_date,
         rating: movieItem.vote_average,
-        isFav: findFavouriteMovie ? true : false,
+        isFavourite: isFavourite(movieItem.id),
       };
     });
   }, [favMoviesIds, data]);
@@ -67,16 +67,9 @@ export default function Home() {
         contentContainerStyle={styles.listContent}
         columnWrapperStyle={styles.columnWrapper}
         renderItem={({ item }) => (
-          <MovieCard
-            movieId={item.id}
-            posterPath={item.posterPath}
-            title={item.title}
-            releaseDate={item.releaseDate}
-            rating={item.rating}
-            isFavourite={item.isFav}
-          />
+          <MovieCard movieDetails={item}/>
         )}
-        keyExtractor={item => item.id}
+        keyExtractor={item => item.movieId}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         ListFooterComponent={

@@ -4,14 +4,17 @@ import { useMutation } from '@tanstack/react-query';
 
 const fetchFavs = async () => {
   const data = await getFavourites();
-  
-  const favMovies = data.results.map((movie: any) => ({
-    id: movie.id,
-    title: movie.title,
-    poster_path: movie.poster_path,
-    release_date: movie.release_date,
-    rating: movie.vote_average,
-  }));
+
+  const favMovies = data.results.map((movie: any) => {
+    const { id, title, poster_path, release_date, vote_average } = movie;
+    return {
+      id,
+      title,
+      poster_path,
+      release_date,
+      rating: vote_average,
+    };
+  });
 
   useFavMovies.setState({
     favourites: favMovies,

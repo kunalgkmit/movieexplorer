@@ -25,5 +25,5 @@ interface MovieCardProps {
     title: string;
     releaseDate: string;
     rating: number;
-    checkFav?: boolean;
+    isFavourite?: boolean;
   };

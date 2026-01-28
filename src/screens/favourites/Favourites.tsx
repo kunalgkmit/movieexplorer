@@ -21,7 +21,7 @@ export default function Favourites() {
             title={item.title}
             releaseDate={item.release_date}
             rating={item.rating}
-            checkFav={isFavourite(item.id)}
+            isFavourite={isFavourite(item.id)}
           />
         )}
         keyExtractor={item => item.id.toString()}

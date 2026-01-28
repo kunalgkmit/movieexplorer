@@ -22,7 +22,7 @@ export default function MovieCard({
   title,
   releaseDate,
   rating,
-  checkFav,
+  isFavourite,
 }: MovieCardProps) {
 
   const addFavourite = useFavMoviesStore(state => state.addFavourite);
@@ -34,9 +34,10 @@ export default function MovieCard({
 
   const { mutate, isSuccess, isPending } = useFavourites();
 
+  // Add/ remove favourites when mutation of favourites is success
   useEffect(() => {
     if (isSuccess) {
-      if (checkFav) {
+      if (isFavourite) {
         removeFavourite(movieId);
       } else {
         addFavourite(movie);
@@ -53,7 +54,7 @@ export default function MovieCard({
   };
 
   const handleFavourite = () => {
-    mutate({ movieId, isFavourite: !checkFav });
+    mutate({ movieId, isFavourite: !isFavourite });
   };
 
   return (
@@ -74,7 +75,7 @@ export default function MovieCard({
         ) : (
           <TouchableOpacity onPress={handleFavourite}>
             <Ionicons
-              name={checkFav ? 'heart' : 'heart-outline'}
+              name={isFavourite ? 'heart' : 'heart-outline'}
               size={22}
               color={COLORS.RED}
             />

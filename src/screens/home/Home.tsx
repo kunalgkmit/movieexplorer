@@ -73,7 +73,7 @@ export default function Home() {
             title={item.title}
             releaseDate={item.releaseDate}
             rating={item.rating}
-            checkFav={item.isFav}
+            isFavourite={item.isFav}
           />
         )}
         keyExtractor={item => item.id}

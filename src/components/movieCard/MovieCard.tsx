@@ -24,6 +24,7 @@ export default function MovieCard({
   rating,
   checkFav,
 }: MovieCardProps) {
+
   const addFavourite = useFavMovies(state => state.addFavourite);
   const removeFavourite = useFavMovies(state => state.removeFavourite);
 
@@ -45,10 +46,10 @@ export default function MovieCard({
 
   const movie = {
     id: movieId,
-    poster_path: posterPath,
-    title: title,
-    release_date: releaseDate,
-    rating: rating,
+    posterPath,
+    title,
+    releaseDate,
+    rating,
   };
 
   const handleFavourite = () => {

@@ -6,8 +6,8 @@ interface UserSessionStore {
 
 interface FavMovie {
   id: number;
-  poster_path: string;
+  posterPath: string;
   title: string;
-  release_date: string;
+  releaseDate: string;
   rating: number;
 }

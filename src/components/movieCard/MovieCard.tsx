@@ -32,7 +32,7 @@ export default function MovieCard({
 
   const formattedReleaseDate = formatDateToReadableDate(releaseDate);
 
-  const { mutate, isSuccess, isPending } = useFavourites();
+  const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
 
   // Add/ remove favourites when mutation of favourites is success
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function MovieCard({
   };
 
   const handleFavourite = () => {
-    mutate({ movieId, isFavourite: !isFavourite });
+    toggleFavourite({ movieId, isFavourite: !isFavourite });
   };
 
   return (

@@ -16,14 +16,8 @@ import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
 
-export default function MovieCard({
-  movieId,
-  posterPath,
-  title,
-  releaseDate,
-  rating,
-  isFavourite,
-}: MovieCardProps) {
+export default function MovieCard({ movieDetails }: MovieCardProps) {
+  const { movieId, title, rating, posterPath, releaseDate, isFavourite } = movieDetails;
 
   const addFavourite = useFavMoviesStore(state => state.addFavourite);
   const removeFavourite = useFavMoviesStore(state => state.removeFavourite);
@@ -40,18 +34,10 @@ export default function MovieCard({
       if (isFavourite) {
         removeFavourite(movieId);
       } else {
-        addFavourite(movie);
+        addFavourite({ ...movieDetails, isFavourite: true });
       }
     }
   }, [isSuccess]);
-
-  const movie = {
-    id: movieId,
-    poster_path: posterPath,
-    title: title,
-    release_date: releaseDate,
-    rating: rating,
-  };
 
   const handleFavourite = () => {
     toggleFavourite({ movieId, isFavourite: !isFavourite });
@@ -82,7 +68,7 @@ export default function MovieCard({
           </TouchableOpacity>
         )}
       </View>
-      
+
       <View style={styles.infoContainer}>
         <Text style={styles.title} numberOfLines={2}>
           {title}
@@ -96,7 +82,3 @@ export default function MovieCard({
     </TouchableOpacity>
   );
 }
-function useFavMovies(arg0: (state: any) => any) {
-  throw new Error('Function not implemented.');
-}
-

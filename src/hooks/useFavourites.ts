@@ -1,6 +1,7 @@
+import { useMutation } from '@tanstack/react-query';
+
 import { getFavourites, updateFavourites } from '@services/favourites.service';
 import { useFavMoviesStore } from '@store/favourites';
-import { useMutation } from '@tanstack/react-query';
 
 export const fetchFavourites = async () => {
   const data = await getFavourites();

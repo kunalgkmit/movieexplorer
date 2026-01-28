@@ -1,10 +1,12 @@
 import { useFavMoviesStore } from '@store/favourites';
 import { FlatList, View } from 'react-native';
-import { styles } from './styles';
+
 import MovieCard from '@components/movieCard';
+import { styles } from './styles';
 
 export default function Favourites() {
   const favourites = useFavMoviesStore(state => state.favourites);
+
   return (
     <View style={styles.container}>
       <FlatList

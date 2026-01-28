@@ -19,12 +19,12 @@ export const styles = StyleSheet.create({
   },
 
   inputError: {
-    borderColor: COLORS.STATUS_ERROR,
+    borderColor: COLORS.RED,
     borderWidth: 1.5,
   },
 
   errorText: {
-    color: COLORS.STATUS_ERROR,
+    color: COLORS.RED,
     fontSize: 12,
     marginTop: 6,
     paddingLeft: 4,

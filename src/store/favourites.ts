@@ -12,7 +12,7 @@ interface FavouritesState {
   isFavourite: (movieId: number) => boolean;
 }
 
-export const useFavMovies = create<FavouritesState>()(
+export const useFavMoviesStore = create<FavouritesState>()(
   persist(
     (set, get) => ({
       favourites: [],

@@ -3,12 +3,12 @@ import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import { useMovies } from '@hooks/useMovies';
-import { useFavMovies } from '@store/favourites';
+import { useFavMoviesStore } from '@store/favourites';
 
 import { styles } from './styles';
 
 export default function Home() {
-  const favMoviesIds = useFavMovies(state => state.favMoviesIds);
+  const favMoviesIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const {
     data,

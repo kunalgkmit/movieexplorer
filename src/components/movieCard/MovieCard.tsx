@@ -10,8 +10,8 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 
 import { IMAGE_BASE_URL } from '@env';
 import { formatMovieRating, formatDateToReadableDate } from '@utils/helpers';
-import { useFavMovies } from '@store/favourites';
 import { useFavourites } from '@hooks/useFavourites';
+import { useFavMoviesStore } from '@store/favourites';
 import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
@@ -25,8 +25,8 @@ export default function MovieCard({
   checkFav,
 }: MovieCardProps) {
 
-  const addFavourite = useFavMovies(state => state.addFavourite);
-  const removeFavourite = useFavMovies(state => state.removeFavourite);
+  const addFavourite = useFavMoviesStore(state => state.addFavourite);
+  const removeFavourite = useFavMoviesStore(state => state.removeFavourite);
 
   const formattedRating = formatMovieRating(rating);
 
@@ -95,3 +95,7 @@ export default function MovieCard({
     </TouchableOpacity>
   );
 }
+function useFavMovies(arg0: (state: any) => any) {
+  throw new Error('Function not implemented.');
+}
+

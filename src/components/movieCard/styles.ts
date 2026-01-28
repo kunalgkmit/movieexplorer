@@ -7,11 +7,10 @@ export const styles = StyleSheet.create({
     width: '45%',
     marginBottom: 20,
     borderRadius: 12,
-    overflow: 'hidden',
     backgroundColor: COLORS.BG_CARD,
     shadowColor: COLORS.SHADOW,
     shadowOffset: { width: 5, height: 4 },
-    shadowOpacity: 0.9,
+    shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,
   },
@@ -54,10 +53,11 @@ export const styles = StyleSheet.create({
   favouriteWrapper: {
     position: 'absolute',
     backgroundColor: COLORS.BG_SURFACE,
-    right: -2,
+    right: -0.3,
     padding: 8,
     borderBottomStartRadius: 20,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    borderTopEndRadius: 12,
   },
 });

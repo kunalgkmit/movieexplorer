@@ -1,3 +1,4 @@
+import { fetchFavourites } from '@hooks/useFavourites';
 import { axiosInstance } from '@network/axiosInstance';
 import { ENDPOINTS } from '@network/URLs';
 import { useUserSession } from '@store/userSession';
@@ -32,4 +33,5 @@ export const userLogin = async ({ userName, password }: LoginProps) => {
     sessionId: sessionRes.data.session_id,
     isLoggedIn: true,
   });
+  fetchFavourites();
 };

@@ -56,7 +56,7 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.BG_SURFACE,
     right: -2,
     padding: 8,
-    borderEndStartRadius: 20,
+    borderBottomStartRadius: 20,
     justifyContent: 'center',
     alignItems: 'center'
   },

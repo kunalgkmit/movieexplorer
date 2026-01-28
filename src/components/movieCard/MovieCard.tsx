@@ -46,10 +46,10 @@ export default function MovieCard({
 
   const movie = {
     id: movieId,
-    posterPath,
-    title,
-    releaseDate,
-    rating,
+    poster_path: posterPath,
+    title: title,
+    release_date: releaseDate,
+    rating: rating,
   };
 
   const handleFavourite = () => {

@@ -53,16 +53,11 @@ export const styles = StyleSheet.create({
 
   favouriteWrapper: {
     position: 'absolute',
-    backgroundColor: 'white',
-    bottom: 285,
-    left: 135,
-    padding: 20,
+    backgroundColor: COLORS.BG_SURFACE,
+    right: -2,
+    padding: 8,
     borderEndStartRadius: 20,
-  },
-
-  favouriteStyle: {
-    position: 'relative',
-    right: 10,
-    top: 10,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 });

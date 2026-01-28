@@ -12,6 +12,7 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 import { useFavMovies } from '@store/favourites';
 import { useFavourites } from '@hooks/useFavourites';
 import { useEffect } from 'react';
+import { COLORS } from '@constants/colors';
 
 export default function MovieCard({
   movieId,
@@ -66,14 +67,13 @@ export default function MovieCard({
 
       <View style={styles.favouriteWrapper}>
         {isPending ? (
-          <ActivityIndicator color={'red'} style={styles.favouriteStyle} />
+          <ActivityIndicator color={COLORS.RED} />
         ) : (
           <TouchableOpacity onPress={handleFavourite}>
             <Ionicons
               name={checkFav ? 'heart' : 'heart-outline'}
               size={22}
-              color={'red'}
-              style={styles.favouriteStyle}
+              color={COLORS.RED}
             />
           </TouchableOpacity>
         )}

@@ -1,30 +1,36 @@
 import { getFavourites, updateFavourites } from '@services/favourites.service';
-import { useFavMovies } from '@store/favourites';
+import { useFavMoviesStore } from '@store/favourites';
 import { useMutation } from '@tanstack/react-query';
 
-const fetchFavs = async () => {
+export const fetchFavourites = async () => {
   const data = await getFavourites();
+  const {setFavourites} = useFavMoviesStore.getState();
 
   const favMovies = data.results.map((movie: any) => {
-    const { id, title, poster_path, release_date, vote_average } = movie;
-    return {
-      id,
+    const {
+      id: movieId,
       title,
-      poster_path,
-      release_date,
-      rating: vote_average,
+      poster_path: posterPath,
+      release_date: releaseDate,
+      vote_average: rating,
+    } = movie;
+    return {
+      movieId,
+      title,
+      posterPath,
+      releaseDate,
+      rating,
+      isFavourite: true,
     };
   });
 
-  useFavMovies.setState({
-    favourites: favMovies,
-  });
+  setFavourites(favMovies);
 };
 
 export const useFavourites = () =>
   useMutation({
     mutationFn: updateFavourites,
     onSuccess: data => {
-      fetchFavs();
+      fetchFavourites();
     },
   });

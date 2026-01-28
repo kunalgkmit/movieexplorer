@@ -1,10 +1,11 @@
+import { useMemo } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
-import { styles } from './styles';
 import { useMovies } from '@hooks/useMovies';
 import { useFavMovies } from '@store/favourites';
-import { useMemo } from 'react';
+
+import { styles } from './styles';
 
 export default function Home() {
   const favMoviesIds = useFavMovies(state => state.favMoviesIds);

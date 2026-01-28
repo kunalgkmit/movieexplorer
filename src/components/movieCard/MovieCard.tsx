@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -5,14 +6,15 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import { styles } from './styles';
+import Ionicons from '@react-native-vector-icons/ionicons';
+
 import { IMAGE_BASE_URL } from '@env';
 import { formatMovieRating, formatDateToReadableDate } from '@utils/helpers';
-import Ionicons from '@react-native-vector-icons/ionicons';
 import { useFavMovies } from '@store/favourites';
 import { useFavourites } from '@hooks/useFavourites';
-import { useEffect } from 'react';
 import { COLORS } from '@constants/colors';
+
+import { styles } from './styles';
 
 export default function MovieCard({
   movieId,
@@ -78,6 +80,7 @@ export default function MovieCard({
           </TouchableOpacity>
         )}
       </View>
+      
       <View style={styles.infoContainer}>
         <Text style={styles.title} numberOfLines={2}>
           {title}

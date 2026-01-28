@@ -20,8 +20,10 @@ interface CustomTextInputProps {
 }
 
 interface MovieCardProps {
-  posterPath: string;
-  title: string;
-  releaseDate: string;
-  rating: number;
-}
+    movieId: number;
+    posterPath: string;
+    title: string;
+    releaseDate: string;
+    rating: number;
+    checkFav?: boolean;
+  };

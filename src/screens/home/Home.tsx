@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
@@ -8,8 +7,7 @@ import { useFavMoviesStore } from '@store/favourites';
 import { styles } from './styles';
 
 export default function Home() {
-  const favMoviesIds = useFavMoviesStore(state => state.favMoviesIds);
-  const isFavourite = useFavMoviesStore(state=>state.isFavourite);
+  const isFavourite = useFavMoviesStore(state => state.isFavourite);
 
   const {
     data,
@@ -25,21 +23,18 @@ export default function Home() {
     language: 'en-US',
   });
 
-  const movies = useMemo(() => {
-    const flattedData = data?.pages?.map(page => page.results).flat();
+  const flattedData = data?.pages?.map(page => page.results).flat();
 
-    return flattedData?.map(movieItem => {
-
-      return {
-        movieId: movieItem.id,
-        posterPath: movieItem.poster_path,
-        title: movieItem.title,
-        releaseDate: movieItem.release_date,
-        rating: movieItem.vote_average,
-        isFavourite: isFavourite(movieItem.id),
-      };
-    });
-  }, [favMoviesIds, data]);
+  const movies = flattedData?.map(movieItem => {
+    return {
+      movieId: movieItem.id,
+      posterPath: movieItem.poster_path,
+      title: movieItem.title,
+      releaseDate: movieItem.release_date,
+      rating: movieItem.vote_average,
+      isFavourite: isFavourite(movieItem.id),
+    };
+  });
 
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -66,9 +61,7 @@ export default function Home() {
         numColumns={2}
         contentContainerStyle={styles.listContent}
         columnWrapperStyle={styles.columnWrapper}
-        renderItem={({ item }) => (
-          <MovieCard movieDetails={item}/>
-        )}
+        renderItem={({ item }) => <MovieCard movieDetails={item} />}
         keyExtractor={item => item.movieId}
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}

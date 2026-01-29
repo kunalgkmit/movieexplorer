@@ -1,13 +1,15 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { styles } from './styles';
-import Ionicons from '@react-native-vector-icons/ionicons';
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from '@react-native-vector-icons/ionicons';
+
+import { styles } from './styles';
 
 export default function CustomAppBar({
   title,
   isMovieDetailsScreen,
   isHomeScreen,
+  setSort,
 }: CustomAppBarProps) {
   const navigation = useNavigation<StackNavProp>();
 
@@ -26,7 +28,7 @@ export default function CustomAppBar({
       </View>
       {isHomeScreen && (
         <View style={styles.sortFilterWrapper}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={setSort}>
             <Ionicons name="filter-outline" size={24} />
           </TouchableOpacity>
           <TouchableOpacity>

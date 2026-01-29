@@ -1,5 +1,10 @@
-import { useEffect, useMemo } from 'react';
-import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
+import { useEffect, useMemo, useState } from 'react';
+import {
+  ActivityIndicator,
+  Alert,
+  FlatList,
+  View,
+} from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import { useMovies } from '@hooks/useMovies';
@@ -9,10 +14,15 @@ import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
+import SortByOptions from '@components/sortByOptions';
 
 export default function Home() {
+  const [isSortOpen, setIsSortOpen] = useState(false);
+
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
+
+  const [sortBy, setSortBy] = useState('popularity.desc');
 
   useEffect(() => {
     fetchFavourites();
@@ -27,17 +37,16 @@ export default function Home() {
     isError,
     error,
   } = useMovies({
-    sortBy: 'popularity.desc',
+    sortBy: sortBy,
     includeVideo: false,
     language: 'en-US',
   });
 
-  const favIds = useFavMoviesStore(state => state.favMoviesIds);
-
-  const movies = useMemo(
-    () => formatMovieData(data ?? [], isFavourite),
-    [data, favMovieIds],
-  );
+  const movies = useMemo(() => {
+    if (data?.length === 0) return [];
+    return formatMovieData(data ?? [], isFavourite);
+  }, [data, favMovieIds]);
+  console.log(sortBy, movies);
 
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -56,10 +65,14 @@ export default function Home() {
       </View>
     );
   }
+  const toggleSort = ()=>{
+    setIsSortOpen(prev=>!prev);
+  }
 
   return (
     <>
-      <CustomAppBar title='Home' isHomeScreen={true}/>
+      <CustomAppBar title="Home" isHomeScreen={true} setSort={toggleSort}/>
+        {isSortOpen && <SortByOptions setSortBy={setSortBy} toggleSort={toggleSort}/>}
       <FlatList
         data={movies}
         numColumns={2}

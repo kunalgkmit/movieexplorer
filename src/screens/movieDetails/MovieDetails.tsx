@@ -27,7 +27,6 @@ import RecommendedMovieCard from '@components/recommendedMovieCard';
 import { styles } from './styles';
 
 export default function TaskDetailsScreen() {
-
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
@@ -40,23 +39,12 @@ export default function TaskDetailsScreen() {
 
   const { data, isLoading } = useMovieDetails(movieId);
 
-  const {
-    data: recommenddMovies,
-    hasNextPage,
-    isFetchingNextPage,
-    fetchNextPage,
-  } = useRecommendedMovies(movieId);
+  const { data: recommenddMovies } = useRecommendedMovies(movieId);
 
   const movies = useMemo(
-    () => formatMovieData(recommenddMovies ?? [], isFavourite),
+    () => formatMovieData(recommenddMovies ?? [], isFavourite).slice(0, 10),
     [data, favMovieIds],
   );
-
-  const loadMore = () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
-  };
 
   if (isLoading) {
     return <ActivityIndicator style={styles.indicator} />;
@@ -73,7 +61,6 @@ export default function TaskDetailsScreen() {
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
-
       <View style={styles.container}>
         <Image
           source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
@@ -104,10 +91,7 @@ export default function TaskDetailsScreen() {
         </View>
 
         <View style={styles.detailsWrapper}>
-
-          <View
-            style={styles.titleWrapper}
-          >
+          <View style={styles.titleWrapper}>
             <Text style={styles.title}>{data.title}</Text>
             <Text style={styles.rating}>★ {formattedRating}</Text>
           </View>
@@ -118,7 +102,7 @@ export default function TaskDetailsScreen() {
             <Text style={styles.overview}>{data.overview}</Text>
             <Text style={styles.subtitle}>Recommended Movies</Text>
           </View>
-          
+
           <FlatList
             ListEmptyComponent={<Text>Recommended Movies not found</Text>}
             data={movies}
@@ -129,11 +113,6 @@ export default function TaskDetailsScreen() {
               <RecommendedMovieCard movieDetails={item} />
             )}
             keyExtractor={item => item.movieId}
-            onEndReached={loadMore}
-            onEndReachedThreshold={0.5}
-            ListFooterComponent={
-              isFetchingNextPage ? <ActivityIndicator size="small" /> : null
-            }
           />
         </View>
       </View>

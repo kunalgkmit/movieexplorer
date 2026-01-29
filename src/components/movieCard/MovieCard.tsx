@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { IMAGE_BASE_URL } from '@env';
 import FavouriteButton from '@components/favouriteButton/FavouriteButton';
 import { formatMovieRating, formatDateToReadableDate } from '@utils/helpers';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
+import { ROUTES } from '@constants/routes';
 
 import { styles } from './styles';
-import { useNavigation } from '@react-navigation/native';
-import { ROUTES } from '@constants/routes';
 
 export default function MovieCard({ movieDetails }: MovieCardProps) {
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } =
@@ -19,7 +19,6 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
   const removeFavourite = useFavMoviesStore(
     state => state.removeFavouriteFromStore,
   );
-
 
   const formattedRating = formatMovieRating(rating);
 
@@ -47,7 +46,9 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => {navigation.push(ROUTES.STACK.MOVIE_DETAILS, {movieId})}}
+      onPress={() => {
+        navigation.push(ROUTES.STACK.MOVIE_DETAILS, { movieId });
+      }}
       activeOpacity={0.85}
     >
       <Image

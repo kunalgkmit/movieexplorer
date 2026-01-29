@@ -11,6 +11,14 @@ export default function SortByOptions({ setSortBy, toggleSort }: SortByProps) {
     <View style={styles.container}>
       <TouchableOpacity
         onPress={() => {
+          setSortBy('popularity.desc');
+          toggleSort();
+        }}
+      >
+        <Text style={styles.text}>Highly Popular</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
           setSortBy('vote_count.desc');
           toggleSort();
         }}

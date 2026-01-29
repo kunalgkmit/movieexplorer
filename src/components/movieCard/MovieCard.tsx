@@ -15,6 +15,8 @@ import { useFavMoviesStore } from '@store/favourites';
 import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
+import { useNavigation } from '@react-navigation/native';
+import { ROUTES } from '@constants/routes';
 
 export default function MovieCard({ movieDetails }: MovieCardProps) {
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } = movieDetails;
@@ -22,11 +24,14 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
   const addFavourite = useFavMoviesStore(state => state.addFavourite);
   const removeFavourite = useFavMoviesStore(state => state.removeFavourite);
 
+
   const formattedRating = formatMovieRating(rating);
 
   const formattedReleaseDate = formatDateToReadableDate(releaseDate);
 
   const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
+
+  const navigation = useNavigation<StackNavProp>();
 
   // Add/ remove favourites when mutation of favourites is success
   useEffect(() => {
@@ -46,7 +51,7 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => {}}
+      onPress={() => {navigation.push(ROUTES.STACK.MOVIE_DETAILS, {movieId})}}
       activeOpacity={0.85}
     >
       <Image

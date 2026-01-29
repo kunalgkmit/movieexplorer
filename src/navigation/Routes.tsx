@@ -1,10 +1,10 @@
 import { ActivityIndicator, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import { MyTabs } from './BottomTabs';
 import { useUserSession } from '@store/userSession';
 import LoginScreen from '@screens/login/Login';
 import { styles } from './styles';
+import StackNavigator from './StackNavigation';
 
 export default function Routes() {
 
@@ -21,7 +21,7 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <MyTabs /> : <LoginScreen />}
+      {isLoggedIn ? <StackNavigator/> : <LoginScreen />}
     </NavigationContainer>
   );
 }

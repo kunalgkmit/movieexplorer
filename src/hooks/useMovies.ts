@@ -7,7 +7,7 @@ export const useMovies = (params: DefaultMovieParams) => {
     queryKey: ['Movies', params],
     queryFn: ({ pageParam }) => fetchMovies({ pageParam, ...params }),
     initialPageParam: 1,
-    select: data => data.pages,
+    select: data => data?.pages?.map(page => page.results).flat(),
     getNextPageParam: lastPage => {
       if (lastPage.page < lastPage.total_pages) {
         return lastPage.page + 1;

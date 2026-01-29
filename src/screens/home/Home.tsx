@@ -26,11 +26,9 @@ export default function Home() {
     language: 'en-US',
   });
 
-  const flattedData = data?.map(page => page.results).flat() ?? [];
-
   const movies = useMemo(
-    () => formatMovieData(flattedData, isFavourite),
-    [flattedData, favMovieIds],
+    () => formatMovieData(data ?? [], isFavourite),
+    [data, favMovieIds],
   );
 
   const loadMore = () => {

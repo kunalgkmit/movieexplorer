@@ -1,23 +1,17 @@
 import { useEffect } from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import Ionicons from '@react-native-vector-icons/ionicons';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import { IMAGE_BASE_URL } from '@env';
 import { formatMovieRating, formatDateToReadableDate } from '@utils/helpers';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
-import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
+import FavouriteButton from '@components/favouriteButton/FavouriteButton';
 
 export default function MovieCard({ movieDetails }: MovieCardProps) {
-  const { movieId, title, rating, posterPath, releaseDate, isFavourite } = movieDetails;
+  const { movieId, title, rating, posterPath, releaseDate, isFavourite } =
+    movieDetails;
 
   const addFavourite = useFavMoviesStore(state => state.addFavourite);
   const removeFavourite = useFavMoviesStore(state => state.removeFavourite);
@@ -55,19 +49,11 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
         resizeMode="cover"
       />
 
-      <View style={styles.favouriteWrapper}>
-        {isPending ? (
-          <ActivityIndicator color={COLORS.RED} />
-        ) : (
-          <TouchableOpacity onPress={handleFavourite}>
-            <Ionicons
-              name={isFavourite ? 'heart' : 'heart-outline'}
-              size={22}
-              color={COLORS.RED}
-            />
-          </TouchableOpacity>
-        )}
-      </View>
+      <FavouriteButton
+        isPending={isPending}
+        isFavourite={isFavourite}
+        handleFavourite={handleFavourite}
+      />
 
       <View style={styles.infoContainer}>
         <Text style={styles.title} numberOfLines={2}>

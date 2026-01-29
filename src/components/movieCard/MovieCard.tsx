@@ -14,7 +14,9 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
     movieDetails;
 
   const addFavourite = useFavMoviesStore(state => state.addFavouriteToStore);
-  const removeFavourite = useFavMoviesStore(state => state.removeFavouriteFromStore);
+  const removeFavourite = useFavMoviesStore(
+    state => state.removeFavouriteFromStore,
+  );
 
   const formattedRating = formatMovieRating(rating);
 
@@ -49,11 +51,7 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
         resizeMode="cover"
       />
 
-      <FavouriteButton
-        isPending={isPending}
-        isFavourite={isFavourite}
-        handleFavourite={handleFavourite}
-      />
+      <FavouriteButton {...{ isPending, isFavourite, handleFavourite }} />
 
       <View style={styles.infoContainer}>
         <Text style={styles.title} numberOfLines={2}>

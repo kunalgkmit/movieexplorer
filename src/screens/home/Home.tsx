@@ -1,12 +1,12 @@
+import { useMemo } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import { useMovies } from '@hooks/useMovies';
 import { useFavMoviesStore } from '@store/favourites';
+import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
-import { useMemo } from 'react';
-import { formatMovieData } from '@utils/helpers';
 
 export default function Home() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
@@ -32,7 +32,6 @@ export default function Home() {
     () => formatMovieData(flattedData, isFavourite),
     [flattedData, favMovieIds],
   );
-  console.log('MOVIES>>>', movies);
 
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {

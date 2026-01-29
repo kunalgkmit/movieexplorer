@@ -1,6 +1,6 @@
-import { useFavMoviesStore } from '@store/favourites';
 import { FlatList, View } from 'react-native';
 
+import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import { styles } from './styles';
 

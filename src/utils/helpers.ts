@@ -1,5 +1,4 @@
 import { monthNames } from '@constants/constants';
-import { useFavMoviesStore } from '@store/favourites';
 
 export const formatDateToReadableDate = (releaseDate: string) => {
   const releaseDateParts = releaseDate.split('-');

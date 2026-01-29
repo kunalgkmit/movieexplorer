@@ -1,4 +1,5 @@
 import { monthNames } from '@constants/constants';
+import { useFavMoviesStore } from '@store/favourites';
 
 export const formatDateToReadableDate = (releaseDate: string) => {
   const releaseDateParts = releaseDate.split('-');
@@ -23,4 +24,18 @@ export const validatePassword = (pwd: string) => {
     return 'Password must be at least 8 characters long, include one uppercase letter, one lowercase letter, one number, and one special character.';
   }
   return '';
+};
+
+export const formatMovieData = (
+  flattedData: any[],
+  isFavourite: (id: number) => boolean,
+) => {
+  return flattedData?.map(movieItem => ({
+    movieId: movieItem.id,
+    posterPath: movieItem.poster_path,
+    title: movieItem.title,
+    releaseDate: movieItem.release_date,
+    rating: movieItem.vote_average,
+    isFavourite: isFavourite(movieItem.id),
+  }));
 };

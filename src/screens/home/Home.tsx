@@ -5,9 +5,12 @@ import { useMovies } from '@hooks/useMovies';
 import { useFavMoviesStore } from '@store/favourites';
 
 import { styles } from './styles';
+import { useMemo } from 'react';
+import { formatMovieData } from '@utils/helpers';
 
 export default function Home() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
+  const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const {
     data,
@@ -23,18 +26,13 @@ export default function Home() {
     language: 'en-US',
   });
 
-  const flattedData = data?.pages?.map(page => page.results).flat();
+  const flattedData = data?.map(page => page.results).flat() ?? [];
 
-  const movies = flattedData?.map(movieItem => {
-    return {
-      movieId: movieItem.id,
-      posterPath: movieItem.poster_path,
-      title: movieItem.title,
-      releaseDate: movieItem.release_date,
-      rating: movieItem.vote_average,
-      isFavourite: isFavourite(movieItem.id),
-    };
-  });
+  const movies = useMemo(
+    () => formatMovieData(flattedData, isFavourite),
+    [flattedData, favMovieIds],
+  );
+  console.log('MOVIES>>>', movies);
 
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {

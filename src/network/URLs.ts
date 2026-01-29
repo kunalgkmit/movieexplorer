@@ -1,3 +1,5 @@
+import { ACCOUNT_ID } from "@env";
+
 export const ENDPOINTS = {
   AUTH: {
     REQUEST_TOKEN: '/authentication/token/new',
@@ -8,4 +10,9 @@ export const ENDPOINTS = {
   MOVIES: {
     DISCOVER: '/discover/movie',
   },
+
+  FAVOURITES: {
+    GET_FAVOURITES: `/account/${ACCOUNT_ID}/favorite/movies`,
+    MODIFY_FAVOURITES: `/account/${ACCOUNT_ID}/favorite`
+  }
 };

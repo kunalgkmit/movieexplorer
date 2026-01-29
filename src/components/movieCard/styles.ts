@@ -1,17 +1,16 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet } from 'react-native';
 
-import { COLORS } from "@constants/colors";
+import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   card: {
     width: '45%',
     marginBottom: 20,
     borderRadius: 12,
-    overflow: 'hidden',
     backgroundColor: COLORS.BG_CARD,
     shadowColor: COLORS.SHADOW,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.1,
+    shadowOffset: { width: 5, height: 4 },
+    shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,
   },
@@ -49,5 +48,16 @@ export const styles = StyleSheet.create({
     fontSize: 14,
     fontWeight: 'bold',
     color: COLORS.ACCENT_YELLOW,
+  },
+
+  favouriteWrapper: {
+    position: 'absolute',
+    backgroundColor: COLORS.BG_SURFACE,
+    right: -0.3,
+    padding: 8,
+    borderBottomStartRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderTopEndRadius: 12,
   },
 });

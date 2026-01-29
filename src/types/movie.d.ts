@@ -4,3 +4,12 @@ interface DefaultMovieParams {
   includeVideo?: boolean;
   language?: string;
 }
+
+interface Movie{
+  movieId: number;
+  title: string;
+  posterPath: string;
+  releaseDate: string;
+  rating: number;
+  isFavourite: boolean;
+}

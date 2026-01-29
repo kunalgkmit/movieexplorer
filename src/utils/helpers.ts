@@ -24,3 +24,17 @@ export const validatePassword = (pwd: string) => {
   }
   return '';
 };
+
+export const formatMovieData = (
+  flattedData: any[],
+  isFavourite: (id: number) => boolean,
+) => {
+  return flattedData?.map(movieItem => ({
+    movieId: movieItem.id,
+    posterPath: movieItem.poster_path,
+    title: movieItem.title,
+    releaseDate: movieItem.release_date,
+    rating: movieItem.vote_average,
+    isFavourite: isFavourite(movieItem.id),
+  }));
+};

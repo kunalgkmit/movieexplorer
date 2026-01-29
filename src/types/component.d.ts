@@ -20,8 +20,11 @@ interface CustomTextInputProps {
 }
 
 interface MovieCardProps {
-  posterPath: string;
-  title: string;
-  releaseDate: string;
-  rating: number;
+  movieDetails: Movie;
+}
+
+interface FavButtonProps {
+  isPending: boolean;
+  isFavourite: boolean;
+  handleFavourite: () => void;
 }

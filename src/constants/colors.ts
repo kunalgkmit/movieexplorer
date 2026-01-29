@@ -13,7 +13,7 @@ export const COLORS = {
   BG_CARD: '#FFFFFF',
   BG_SURFACE: '#F9F9F9',
 
-  STATUS_ERROR: '#FF3B30',
+  RED: '#FF3B30',
 
   BORDER: '#E5E5E5',
   SHADOW: '#000',

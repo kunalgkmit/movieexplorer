@@ -18,3 +18,23 @@ export default async function fetchMovies({
   });
   return response.data;
 }
+
+export const fetchMovieDetails = async (movieId: number | undefined) => {
+  const response = await axiosInstance.get(`/movie/${movieId}`, {
+    params: { language: 'en-US' },
+  });
+  console.log(response.data);
+  return response.data;
+};
+
+export const fetchRecommendedMovies = async (
+  movieId: number | undefined,
+  pageParam: number,
+) => {
+  const response = await axiosInstance.get(
+    `/movie/${movieId}/recommendations`,
+    { params: { language: 'en-US', page: pageParam } },
+  );
+  console.log(response.data);
+  return response.data;
+};

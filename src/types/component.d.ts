@@ -22,3 +22,9 @@ interface CustomTextInputProps {
 interface MovieCardProps {
   movieDetails: Movie;
 }
+
+interface FavButtonProps {
+  isPending: boolean;
+  isFavourite: boolean;
+  handleFavourite: () => void;
+}

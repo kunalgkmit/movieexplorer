@@ -6,8 +6,8 @@ interface FavouritesState {
   favourites: Movie[];
   favMoviesIds: number[];
 
-  addFavourite: (movie: Movie) => void;
-  removeFavourite: (movieId: number) => void;
+  addFavouriteToStore: (movie: Movie) => void;
+  removeFavouriteFromStore: (movieId: number) => void;
   setFavourites: (movies: Movie[]) => void;
   isFavourite: (movieId: number) => boolean;
 }
@@ -18,7 +18,7 @@ export const useFavMoviesStore = create<FavouritesState>()(
       favourites: [],
       favMoviesIds: [],
 
-      addFavourite: movie =>
+      addFavouriteToStore: movie =>
         set(state => {
           if (state.favMoviesIds.includes(movie.movieId)) {
             return state;
@@ -30,9 +30,11 @@ export const useFavMoviesStore = create<FavouritesState>()(
           };
         }),
 
-      removeFavourite: movieId =>
+      removeFavouriteFromStore: movieId =>
         set(state => ({
-          favourites: state.favourites.filter(movie => movie.movieId !== movieId),
+          favourites: state.favourites.filter(
+            movie => movie.movieId !== movieId,
+          ),
           favMoviesIds: state.favMoviesIds.filter(id => id !== movieId),
         })),
 

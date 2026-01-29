@@ -1,14 +1,21 @@
+import { useEffect, useMemo } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import { useMovies } from '@hooks/useMovies';
+import { fetchFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
+import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
-import { useMemo } from 'react';
 
 export default function Home() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
+  const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
+
+  useEffect(() => {
+    fetchFavourites();
+  }, []);
 
   const {
     data,
@@ -26,21 +33,9 @@ export default function Home() {
 
   const favIds = useFavMoviesStore(state => state.favMoviesIds);
 
-  const flattedData = data?.pages?.map(page => page.results).flat();
-
   const movies = useMemo(
-    () =>
-      flattedData?.map(movieItem => {
-        return {
-          movieId: movieItem.id,
-          posterPath: movieItem.poster_path,
-          title: movieItem.title,
-          releaseDate: movieItem.release_date,
-          rating: movieItem.vote_average,
-          isFavourite: isFavourite(movieItem.id),
-        };
-      }),
-    [flattedData, favIds],
+    () => formatMovieData(data ?? [], isFavourite),
+    [data, favMovieIds],
   );
 
   const loadMore = () => {
@@ -62,20 +57,18 @@ export default function Home() {
   }
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={movies}
-        numColumns={2}
-        contentContainerStyle={styles.listContent}
-        columnWrapperStyle={styles.columnWrapper}
-        renderItem={({ item }) => <MovieCard movieDetails={item} />}
-        keyExtractor={item => item.movieId}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={
-          isFetchingNextPage ? <ActivityIndicator size="small" /> : null
-        }
-      />
-    </View>
+    <FlatList
+      data={movies}
+      numColumns={2}
+      contentContainerStyle={styles.listContent}
+      columnWrapperStyle={styles.columnWrapper}
+      renderItem={({ item }) => <MovieCard movieDetails={item} />}
+      keyExtractor={item => item.movieId}
+      onEndReached={loadMore}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={
+        isFetchingNextPage ? <ActivityIndicator size="small" /> : null
+      }
+    />
   );
 }

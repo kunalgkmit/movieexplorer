@@ -13,8 +13,8 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } =
     movieDetails;
 
-  const addFavourite = useFavMoviesStore(state => state.addFavourite);
-  const removeFavourite = useFavMoviesStore(state => state.removeFavourite);
+  const addFavourite = useFavMoviesStore(state => state.addFavouriteToStore);
+  const removeFavourite = useFavMoviesStore(state => state.removeFavouriteFromStore);
 
   const formattedRating = formatMovieRating(rating);
 

@@ -10,12 +10,12 @@ import { formatMovieData } from '@utils/helpers';
 import { styles } from './styles';
 
 export default function Home() {
+  const isFavourite = useFavMoviesStore(state => state.isFavourite);
+  const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
+
   useEffect(() => {
     fetchFavourites();
   }, []);
-  
-  const isFavourite = useFavMoviesStore(state => state.isFavourite);
-  const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const {
     data,
@@ -55,20 +55,18 @@ export default function Home() {
   }
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={movies}
-        numColumns={2}
-        contentContainerStyle={styles.listContent}
-        columnWrapperStyle={styles.columnWrapper}
-        renderItem={({ item }) => <MovieCard movieDetails={item} />}
-        keyExtractor={item => item.movieId}
-        onEndReached={loadMore}
-        onEndReachedThreshold={0.5}
-        ListFooterComponent={
-          isFetchingNextPage ? <ActivityIndicator size="small" /> : null
-        }
-      />
-    </View>
+    <FlatList
+      data={movies}
+      numColumns={2}
+      contentContainerStyle={styles.listContent}
+      columnWrapperStyle={styles.columnWrapper}
+      renderItem={({ item }) => <MovieCard movieDetails={item} />}
+      keyExtractor={item => item.movieId}
+      onEndReached={loadMore}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={
+        isFetchingNextPage ? <ActivityIndicator size="small" /> : null
+      }
+    />
   );
 }

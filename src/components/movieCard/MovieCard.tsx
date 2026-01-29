@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 
 import { IMAGE_BASE_URL } from '@env';
+import FavouriteButton from '@components/favouriteButton/FavouriteButton';
 import { formatMovieRating, formatDateToReadableDate } from '@utils/helpers';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 
 import { styles } from './styles';
-import FavouriteButton from '@components/favouriteButton/FavouriteButton';
 
 export default function MovieCard({ movieDetails }: MovieCardProps) {
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } =

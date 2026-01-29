@@ -1,5 +1,4 @@
-import { useMovieDetails } from '@hooks/useMovieDetails';
-import { useRoute } from '@react-navigation/native';
+import { useMemo } from 'react';
 import {
   ActivityIndicator,
   Image,
@@ -7,49 +6,48 @@ import {
   View,
   FlatList,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
-import { styles } from './styles';
+import Ionicons from '@react-native-vector-icons/ionicons';
+import { useRoute } from '@react-navigation/native';
+
 import { IMAGE_BASE_URL } from '@env';
-import { formatDateToReadableDate, formatMovieRating } from '@utils/helpers';
+import {
+  formatDateToReadableDate,
+  formatMovieData,
+  formatMovieRating,
+} from '@utils/helpers';
 import { useRecommendedMovies } from '@hooks/useRecommendedMovies';
+import { useMovieDetails } from '@hooks/useMovieDetails';
 import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import { useFavourites } from '@hooks/useFavourites';
 import { COLORS } from '@constants/colors';
-import Ionicons from '@react-native-vector-icons/ionicons';
-import { useMemo } from 'react';
+
+import { styles } from './styles';
 
 export default function TaskDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
-  const favIds = useFavMoviesStore(state=>state.favMoviesIds);
+  const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
 
   const route = useRoute<TaskDetailsProps>();
-  console.log(route.params?.movieId);
   const movieId = route.params?.movieId;
 
   const { data, isLoading } = useMovieDetails(movieId);
 
   const {
-    data: recommendedMovies,
+    data: recommenddMovies,
     hasNextPage,
     isFetchingNextPage,
     fetchNextPage,
   } = useRecommendedMovies(movieId);
-  const flattedData = recommendedMovies?.pages
-    ?.map(page => page.results)
-    .flat();
-  const movies = flattedData?.map(movieItem => {
-    return {
-      movieId: movieItem.id,
-      posterPath: movieItem.poster_path,
-      title: movieItem.title,
-      releaseDate: movieItem.release_date,
-      rating: movieItem.vote_average,
-      isFavourite: isFavourite(movieItem.id),
-    };
-  });
+
+  const movies = useMemo(
+    () => formatMovieData(recommenddMovies ?? [], isFavourite),
+    [data, favMovieIds],
+  );
 
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -69,59 +67,61 @@ export default function TaskDetailsScreen() {
 
   const formattedReleaseDate = formatDateToReadableDate(data.release_date);
 
-  const handleFavourite = ()=>{
-    toggleFavourite({ movieId, isFavourite: !isFavourite(movieId) });
-  }
+  const handleFavourite = () => {
+    if (movieId)
+      toggleFavourite({ movieId, isFavourite: !isFavourite(movieId) });
+  };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
-        style={styles.backDrop}
-        resizeMode="cover"
-      />
-      <View style={styles.favouriteWrapper}>
-        {isPending ? (
-          <ActivityIndicator color={COLORS.RED} />
-        ) : (
-          <TouchableOpacity onPress={handleFavourite}>
-            <Ionicons
-              name={isFavourite(movieId) ? 'heart' : 'heart-outline'}
-              size={22}
-              color={COLORS.RED}
-            />
-          </TouchableOpacity>
-        )}
-      </View>
-      <View style={styles.posterWrapper}>
+    <ScrollView>
+      <View style={styles.container}>
         <Image
-          source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
-          style={styles.poster}
-          resizeMode="contain"
+          source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
+          style={styles.backDrop}
+          resizeMode="cover"
         />
-        <Text style={styles.title}>{data.title}</Text>
-      </View>
+        <View style={styles.favouriteWrapper}>
+          {isPending ? (
+            <ActivityIndicator color={COLORS.RED} />
+          ) : (
+            <TouchableOpacity onPress={handleFavourite}>
+              <Ionicons
+                name={isFavourite(movieId) ? 'heart' : 'heart-outline'}
+                size={22}
+                color={COLORS.RED}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
+        <View style={styles.posterWrapper}>
+          <Image
+            source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
+            style={styles.poster}
+            resizeMode="contain"
+          />
+        </View>
 
-      <View style={styles.detailsWrapper}>
-        <Text style={styles.subtitle}>Overview</Text>
-        <Text>{data.overview}</Text>
-        <Text style={styles.rating}>★ {formattedRating}</Text>
-        <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
-      </View>
-      <View style={{ padding: 10 }}>
-        <Text style={styles.subtitle}>Recommended Movies</Text>
-        <FlatList
-          data={movies}
-          horizontal={true}
-          renderItem={({ item }) => <MovieCard movieDetails={item} />}
-          keyExtractor={item => item.movieId}
-          onEndReached={loadMore}
-          onEndReachedThreshold={0.5}
-          ListFooterComponent={
-            isFetchingNextPage ? <ActivityIndicator size="small" /> : null
-          }
-        />
-      </View>
-    </View>
+        <View style={styles.detailsWrapper}>
+          <Text style={styles.title}>{data.title}</Text>
+          <Text>{data.overview}</Text>
+          <Text style={styles.rating}>★ {formattedRating}</Text>
+          <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
+        </View>
+          <Text style={styles.subtitle}>Recommended Movies</Text>
+          <FlatList
+            data={movies}
+            numColumns={2}
+            contentContainerStyle={{paddingTop:10}}
+            columnWrapperStyle={{justifyContent:'space-around'}}
+            renderItem={({ item }) => <MovieCard movieDetails={item} />}
+            keyExtractor={item => item.movieId}
+            onEndReached={loadMore}
+            onEndReachedThreshold={0.5}
+            ListFooterComponent={
+              isFetchingNextPage ? <ActivityIndicator size="small" /> : null
+            }
+          />
+        </View>
+      </ScrollView>
   );
 }

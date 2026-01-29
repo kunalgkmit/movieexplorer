@@ -28,3 +28,9 @@ interface FavButtonProps {
   isFavourite: boolean;
   handleFavourite: () => void;
 }
+
+interface CustomAppBarProps {
+  title: string;
+  isMovieDetailsScreen?: boolean;
+  isHomeScreen?: boolean;
+}

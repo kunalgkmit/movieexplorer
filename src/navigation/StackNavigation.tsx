@@ -8,11 +8,10 @@ const Stack = createNativeStackNavigator<StackNavTypes>();
 
 export default function StackNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: true }}>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen
         name={ROUTES.STACK.BOTTOM_TABS}
         component={MyTabs}
-        options={{ headerShown: false }}
       />
       <Stack.Screen
         name={ROUTES.STACK.MOVIE_DETAILS}

@@ -8,6 +8,7 @@ import { useFavMoviesStore } from '@store/favourites';
 import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
+import CustomAppBar from '@components/customAppBar/CustomAppBar';
 
 export default function Home() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
@@ -57,18 +58,21 @@ export default function Home() {
   }
 
   return (
-    <FlatList
-      data={movies}
-      numColumns={2}
-      contentContainerStyle={styles.listContent}
-      columnWrapperStyle={styles.columnWrapper}
-      renderItem={({ item }) => <MovieCard movieDetails={item} />}
-      keyExtractor={item => item.movieId}
-      onEndReached={loadMore}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        isFetchingNextPage ? <ActivityIndicator size="small" /> : null
-      }
-    />
+    <>
+      <CustomAppBar title='Home' isHomeScreen={true}/>
+      <FlatList
+        data={movies}
+        numColumns={2}
+        contentContainerStyle={styles.listContent}
+        columnWrapperStyle={styles.columnWrapper}
+        renderItem={({ item }) => <MovieCard movieDetails={item} />}
+        keyExtractor={item => item.movieId}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={
+          isFetchingNextPage ? <ActivityIndicator size="small" /> : null
+        }
+      />
+    </>
   );
 }

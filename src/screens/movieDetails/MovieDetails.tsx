@@ -25,6 +25,7 @@ import { COLORS } from '@constants/colors';
 import RecommendedMovieCard from '@components/recommendedMovieCard';
 
 import { styles } from './styles';
+import CustomAppBar from '@components/customAppBar/CustomAppBar';
 
 export default function TaskDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
@@ -60,62 +61,65 @@ export default function TaskDetailsScreen() {
   };
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <Image
-          source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
-          style={styles.backDrop}
-          resizeMode="cover"
-        />
-
-        <View style={styles.favouriteWrapper}>
-          {isPending ? (
-            <ActivityIndicator color={COLORS.RED} size={25} />
-          ) : (
-            <TouchableOpacity onPress={handleFavourite}>
-              <Ionicons
-                name={isMovieFavourited ? 'heart' : 'heart-outline'}
-                size={25}
-                color={COLORS.RED}
-              />
-            </TouchableOpacity>
-          )}
-        </View>
-
-        <View style={styles.posterWrapper}>
+    <>
+      <CustomAppBar title='Movie Details' isMovieDetailsScreen={true}/>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={styles.container}>
           <Image
-            source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
-            style={styles.poster}
-            resizeMode="contain"
+            source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
+            style={styles.backDrop}
+            resizeMode="cover"
           />
-        </View>
 
-        <View style={styles.detailsWrapper}>
-          <View style={styles.titleWrapper}>
-            <Text style={styles.title}>{data.title}</Text>
-            <Text style={styles.rating}>★ {formattedRating}</Text>
-          </View>
-
-          <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
-
-          <View style={styles.overviewWrapper}>
-            <Text style={styles.overview}>{data.overview}</Text>
-            <Text style={styles.subtitle}>Recommended Movies</Text>
-          </View>
-
-          <FlatList
-            ListEmptyComponent={<Text>Recommended Movies not found</Text>}
-            data={movies}
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingTop: 15 }}
-            renderItem={({ item }) => (
-              <RecommendedMovieCard movieDetails={item} />
+          <View style={styles.favouriteWrapper}>
+            {isPending ? (
+              <ActivityIndicator color={COLORS.RED} size={25} />
+            ) : (
+              <TouchableOpacity onPress={handleFavourite}>
+                <Ionicons
+                  name={isMovieFavourited ? 'heart' : 'heart-outline'}
+                  size={25}
+                  color={COLORS.RED}
+                />
+              </TouchableOpacity>
             )}
-            keyExtractor={item => item.movieId}
-          />
+          </View>
+
+          <View style={styles.posterWrapper}>
+            <Image
+              source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
+              style={styles.poster}
+              resizeMode="contain"
+            />
+          </View>
+
+          <View style={styles.detailsWrapper}>
+            <View style={styles.titleWrapper}>
+              <Text style={styles.title}>{data.title}</Text>
+              <Text style={styles.rating}>★ {formattedRating}</Text>
+            </View>
+
+            <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
+
+            <View style={styles.overviewWrapper}>
+              <Text style={styles.overview}>{data.overview}</Text>
+              <Text style={styles.subtitle}>Recommended Movies</Text>
+            </View>
+
+            <FlatList
+              ListEmptyComponent={<Text>Recommended Movies not found</Text>}
+              data={movies}
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ paddingTop: 15 }}
+              renderItem={({ item }) => (
+                <RecommendedMovieCard movieDetails={item} />
+              )}
+              keyExtractor={item => item.movieId}
+            />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }

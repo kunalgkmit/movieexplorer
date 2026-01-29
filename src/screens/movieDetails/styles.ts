@@ -5,10 +5,12 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent:'center',
   },
   backDrop: {
     width: '100%',
-    height: '40%',
+    height: 300,
+    opacity: 0.8,
   },
   poster: {
     width: 200,
@@ -16,9 +18,12 @@ export const styles = StyleSheet.create({
     borderRadius: 25,
   },
   posterWrapper: {
-    alignItems: 'center',
-    justifyContent: 'center',
     marginTop: '-50%',
+    shadowColor: COLORS.SHADOW,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    elevation: 5,
   },
   rating: {
     fontSize: 25,
@@ -30,13 +35,16 @@ export const styles = StyleSheet.create({
     color: COLORS.TEXT_SECONDARY,
   },
   title: { fontWeight: 'bold', fontSize: 40 },
+
   subtitle: { fontWeight: 'bold', fontSize: 30 },
-  detailsWrapper: { padding: 10 },
+  
+  detailsWrapper: { padding: 15 },
+
   favouriteWrapper: {
     position: 'absolute',
     backgroundColor: COLORS.BG_SURFACE,
     right: 20,
-    top:40,
+    top: 40,
     padding: 8,
     borderRadius: 20,
     justifyContent: 'center',

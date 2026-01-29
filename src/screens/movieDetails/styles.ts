@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent:'center',
+    justifyContent: 'center',
   },
   backDrop: {
     width: '100%',
@@ -19,6 +19,7 @@ export const styles = StyleSheet.create({
   },
   posterWrapper: {
     marginTop: '-50%',
+    paddingBottom: 10,
     shadowColor: COLORS.SHADOW,
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.5,
@@ -30,24 +31,42 @@ export const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: COLORS.ACCENT_YELLOW,
   },
+
   releaseDate: {
     fontSize: 20,
     color: COLORS.TEXT_SECONDARY,
   },
-  title: { fontWeight: 'bold', fontSize: 40 },
 
-  subtitle: { fontWeight: 'bold', fontSize: 30 },
-  
-  detailsWrapper: { padding: 15 },
+  overview: {
+    fontSize: 18,
+    color: COLORS.TEXT_PRIMARY,
+    fontStyle: 'italic',
+  },
+
+  title: { fontWeight: 'bold', fontSize: 24, lineHeight: 25, flexShrink: 1 },
+
+  subtitle: { fontWeight: 'bold', fontSize: 24 },
+
+  detailsWrapper: { padding: 13, width: '100%' },
 
   favouriteWrapper: {
     position: 'absolute',
     backgroundColor: COLORS.BG_SURFACE,
-    right: 20,
-    top: 40,
+    right: 10,
+    top: 10,
     padding: 8,
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  overviewWrapper: { justifyContent: 'flex-start', paddingTop: 10, gap: 10 },
+
+  indicator: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+
+  titleWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
   },
 });

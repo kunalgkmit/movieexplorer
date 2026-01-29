@@ -19,21 +19,24 @@ import {
 } from '@utils/helpers';
 import { useRecommendedMovies } from '@hooks/useRecommendedMovies';
 import { useMovieDetails } from '@hooks/useMovieDetails';
-import { useFavMoviesStore } from '@store/favourites';
-import MovieCard from '@components/movieCard';
 import { useFavourites } from '@hooks/useFavourites';
+import { useFavMoviesStore } from '@store/favourites';
 import { COLORS } from '@constants/colors';
+import RecommendedMovieCard from '@components/recommendedMovieCard';
 
 import { styles } from './styles';
 
 export default function TaskDetailsScreen() {
+
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
-  const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
+  const { mutate: toggleFavourite, isPending } = useFavourites();
 
   const route = useRoute<TaskDetailsProps>();
   const movieId = route.params?.movieId;
+
+  const isMovieFavourited = movieId && isFavourite(movieId);
 
   const { data, isLoading } = useMovieDetails(movieId);
 
@@ -56,11 +59,7 @@ export default function TaskDetailsScreen() {
   };
 
   if (isLoading) {
-    return (
-      <ActivityIndicator
-        style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      />
-    );
+    return <ActivityIndicator style={styles.indicator} />;
   }
 
   const formattedRating = formatMovieRating(data.vote_average);
@@ -73,26 +72,29 @@ export default function TaskDetailsScreen() {
   };
 
   return (
-    <ScrollView>
+    <ScrollView showsVerticalScrollIndicator={false}>
+
       <View style={styles.container}>
         <Image
           source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
           style={styles.backDrop}
           resizeMode="cover"
         />
+
         <View style={styles.favouriteWrapper}>
           {isPending ? (
-            <ActivityIndicator color={COLORS.RED} />
+            <ActivityIndicator color={COLORS.RED} size={25} />
           ) : (
             <TouchableOpacity onPress={handleFavourite}>
               <Ionicons
-                name={isFavourite(movieId) ? 'heart' : 'heart-outline'}
-                size={22}
+                name={isMovieFavourited ? 'heart' : 'heart-outline'}
+                size={25}
                 color={COLORS.RED}
               />
             </TouchableOpacity>
           )}
         </View>
+
         <View style={styles.posterWrapper}>
           <Image
             source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
@@ -102,18 +104,30 @@ export default function TaskDetailsScreen() {
         </View>
 
         <View style={styles.detailsWrapper}>
-          <Text style={styles.title}>{data.title}</Text>
-          <Text>{data.overview}</Text>
-          <Text style={styles.rating}>★ {formattedRating}</Text>
+
+          <View
+            style={styles.titleWrapper}
+          >
+            <Text style={styles.title}>{data.title}</Text>
+            <Text style={styles.rating}>★ {formattedRating}</Text>
+          </View>
+
           <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
-        </View>
-          <Text style={styles.subtitle}>Recommended Movies</Text>
+
+          <View style={styles.overviewWrapper}>
+            <Text style={styles.overview}>{data.overview}</Text>
+            <Text style={styles.subtitle}>Recommended Movies</Text>
+          </View>
+          
           <FlatList
+            ListEmptyComponent={<Text>Recommended Movies not found</Text>}
             data={movies}
-            numColumns={2}
-            contentContainerStyle={{paddingTop:10}}
-            columnWrapperStyle={{justifyContent:'space-around'}}
-            renderItem={({ item }) => <MovieCard movieDetails={item} />}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ paddingTop: 15 }}
+            renderItem={({ item }) => (
+              <RecommendedMovieCard movieDetails={item} />
+            )}
             keyExtractor={item => item.movieId}
             onEndReached={loadMore}
             onEndReachedThreshold={0.5}
@@ -122,6 +136,7 @@ export default function TaskDetailsScreen() {
             }
           />
         </View>
-      </ScrollView>
+      </View>
+    </ScrollView>
   );
 }

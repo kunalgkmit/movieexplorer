@@ -42,7 +42,7 @@ export default function TaskDetailsScreen() {
   const { data: recommenddMovies } = useRecommendedMovies(movieId);
 
   const movies = useMemo(
-    () => formatMovieData(recommenddMovies ?? [], isFavourite).slice(0, 10),
+    () => formatMovieData(recommenddMovies ?? [], isFavourite),
     [data, favMovieIds],
   );
 

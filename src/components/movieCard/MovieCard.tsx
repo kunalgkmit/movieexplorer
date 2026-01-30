@@ -11,7 +11,11 @@ import { ROUTES } from '@constants/routes';
 
 import { styles } from './styles';
 
-export default function MovieCard({ movieDetails }: MovieCardProps) {
+export default function MovieCard({
+  movieDetails,
+  width,
+  height,
+}: MovieCardProps) {
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } =
     movieDetails;
 
@@ -45,7 +49,15 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
 
   return (
     <TouchableOpacity
-      style={styles.card}
+      style={[
+        styles.card,
+        width
+          ? {
+              width: width,
+              height: height,
+            }
+          : null,
+      ]}
       onPress={() => {
         navigation.push(ROUTES.STACK.MOVIE_DETAILS, { movieId });
       }}

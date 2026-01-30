@@ -69,4 +69,6 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+
+  movieCardWrapper: { flex: 1, padding: 10 },
 });

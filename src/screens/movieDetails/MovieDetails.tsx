@@ -22,9 +22,9 @@ import { useMovieDetails } from '@hooks/useMovieDetails';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 import { COLORS } from '@constants/colors';
-import RecommendedMovieCard from '@components/recommendedMovieCard';
 
 import { styles } from './styles';
+import MovieCard from '@components/movieCard';
 
 export default function TaskDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
@@ -110,7 +110,9 @@ export default function TaskDetailsScreen() {
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={{ paddingTop: 15 }}
             renderItem={({ item }) => (
-              <RecommendedMovieCard movieDetails={item} />
+              <View style={styles.movieCardWrapper}>
+                <MovieCard movieDetails={item} height={340} width={150} />
+              </View>
             )}
             keyExtractor={item => item.movieId}
           />

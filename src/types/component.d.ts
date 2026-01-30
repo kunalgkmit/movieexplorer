@@ -21,6 +21,8 @@ interface CustomTextInputProps {
 
 interface MovieCardProps {
   movieDetails: Movie;
+  height?: number;
+  width?: number;
 }
 
 interface FavButtonProps {

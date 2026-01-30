@@ -62,7 +62,7 @@ export default function TaskDetailsScreen() {
 
   return (
     <>
-      <CustomAppBar title='Movie Details' isMovieDetailsScreen={true}/>
+      <CustomAppBar title={data.title} isMovieDetailsScreen={true}/>
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Image

@@ -27,6 +27,7 @@ interface MovieCardProps {
 
 interface FavButtonProps {
   isPending: boolean;
-  isFavourite: boolean;
+  isFavourite: boolean | undefined;
   handleFavourite: () => void;
+  customStyle: any;
 }

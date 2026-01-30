@@ -5,10 +5,8 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import Ionicons from '@react-native-vector-icons/ionicons';
 import { useRoute } from '@react-navigation/native';
 
 import { IMAGE_BASE_URL } from '@env';
@@ -21,10 +19,10 @@ import { useRecommendedMovies } from '@hooks/useRecommendedMovies';
 import { useMovieDetails } from '@hooks/useMovieDetails';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
-import { COLORS } from '@constants/colors';
+import MovieCard from '@components/movieCard';
+import FavouriteButton from '@components/favouriteButton';
 
 import { styles } from './styles';
-import MovieCard from '@components/movieCard';
 
 export default function MovieDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
@@ -35,16 +33,21 @@ export default function MovieDetailsScreen() {
   const route = useRoute<MovieDetailsProps>();
   const movieId = route.params?.movieId;
 
-  const isMovieFavourited = movieId && isFavourite(movieId);
+  const isMovieFavourited = movieId ? isFavourite(movieId) : false;
 
   const { data, isLoading } = useMovieDetails(movieId);
 
-  const { data: recommenddMovies } = useRecommendedMovies(movieId);
+  const { data: recommendedMovies } = useRecommendedMovies(movieId);
 
   const movies = useMemo(
-    () => formatMovieData(recommenddMovies ?? [], isFavourite),
+    () => formatMovieData(recommendedMovies ?? [], isFavourite),
     [data, favMovieIds],
   );
+
+  const handleFavourite = () => {
+    if (movieId)
+      toggleFavourite({ movieId, isFavourite: !isFavourite(movieId) });
+  };
 
   if (isLoading) {
     return <ActivityIndicator style={styles.indicator} />;
@@ -53,11 +56,6 @@ export default function MovieDetailsScreen() {
   const formattedRating = formatMovieRating(data.vote_average);
 
   const formattedReleaseDate = formatDateToReadableDate(data.release_date);
-
-  const handleFavourite = () => {
-    if (movieId)
-      toggleFavourite({ movieId, isFavourite: !isFavourite(movieId) });
-  };
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -68,19 +66,12 @@ export default function MovieDetailsScreen() {
           resizeMode="cover"
         />
 
-        <View style={styles.favouriteWrapper}>
-          {isPending ? (
-            <ActivityIndicator color={COLORS.RED} size={25} />
-          ) : (
-            <TouchableOpacity onPress={handleFavourite}>
-              <Ionicons
-                name={isMovieFavourited ? 'heart' : 'heart-outline'}
-                size={25}
-                color={COLORS.RED}
-              />
-            </TouchableOpacity>
-          )}
-        </View>
+        <FavouriteButton
+          isPending={isPending}
+          isFavourite={isMovieFavourited}
+          handleFavourite={handleFavourite}
+          customStyle={styles.favouriteWrapper}
+        />
 
         <View style={styles.posterWrapper}>
           <Image

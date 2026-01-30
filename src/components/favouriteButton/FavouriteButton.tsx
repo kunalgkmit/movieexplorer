@@ -8,9 +8,10 @@ export default function FavouriteButton({
   isPending,
   isFavourite,
   handleFavourite,
+  customStyle,
 }: FavButtonProps) {
   return (
-    <View style={styles.favouriteWrapper}>
+    <View style={!customStyle ? styles.favouriteWrapper : customStyle}>
       {isPending ? (
         <ActivityIndicator color={COLORS.RED} />
       ) : (

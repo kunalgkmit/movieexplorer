@@ -50,7 +50,7 @@ export default function MovieDetailsScreen() {
   };
 
   if (isLoading) {
-    return <ActivityIndicator style={styles.indicator} />;
+    return <ActivityIndicator style={styles.activityIndicator} />;
   }
 
   const formattedRating = formatMovieRating(data.vote_average);

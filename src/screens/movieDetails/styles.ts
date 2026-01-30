@@ -62,7 +62,7 @@ export const styles = StyleSheet.create({
 
   overviewWrapper: { justifyContent: 'flex-start', paddingTop: 10, gap: 10 },
 
-  indicator: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  activityIndicator: { flex: 1, alignItems: 'center', justifyContent: 'center' },
 
   titleWrapper: {
     flexDirection: 'row',

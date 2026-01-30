@@ -30,7 +30,7 @@ interface FavButtonProps {
   isPending: boolean;
   isFavourite: boolean | undefined;
   handleFavourite: () => void;
-  customStyle: any;
+  customStyle?: any;
 }
 
 interface CustomAppBarProps {

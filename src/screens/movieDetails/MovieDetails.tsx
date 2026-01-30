@@ -98,8 +98,8 @@ export default function MovieDetailsScreen() {
             ListEmptyComponent={<Text>Recommended Movies not found</Text>}
             data={movies}
             horizontal={true}
+            contentContainerStyle={styles.contentContainer}
             showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ paddingTop: 15 }}
             renderItem={({ item }) => (
               <View style={styles.movieCardWrapper}>
                 <MovieCard movieDetails={item} height={340} width={150} />

@@ -38,7 +38,7 @@ export const styles = StyleSheet.create({
   },
 
   overview: {
-    fontSize: 18,
+    fontSize: 16,
     color: COLORS.TEXT_PRIMARY,
     fontStyle: 'italic',
   },
@@ -70,5 +70,9 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  movieCardWrapper: { flex: 1, padding: 10 },
+  movieCardWrapper: { flex: 1, padding: 7 },
+
+  contentContainer: {
+    paddingTop: 4
+  }
 });

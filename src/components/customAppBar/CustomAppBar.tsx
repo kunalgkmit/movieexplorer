@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@react-native-vector-icons/ionicons';
@@ -18,6 +18,7 @@ export default function CustomAppBar({
 
   return (
     <View style={[styles.container, { paddingTop: insets.top }]}>
+      <StatusBar barStyle={'dark-content'} />
       <View style={styles.titleWrapper}>
         {isMovieDetailsScreen && (
           <TouchableOpacity onPress={() => navigation.pop()}>

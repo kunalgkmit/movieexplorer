@@ -9,46 +9,45 @@ interface SortByProps {
 export default function SortByOptions({ setSortBy, toggleSort }: SortByProps) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity
-        onPress={() => {
-          setSortBy('popularity.desc');
-          toggleSort();
-        }}
-      >
-        <Text style={styles.text}>Highly Popular</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setSortBy('vote_count.desc');
-          toggleSort();
-        }}
-      >
-        <Text style={styles.text}>High Rated</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setSortBy('vote_count.asc');
-          toggleSort();
-        }}
-      >
-        <Text style={styles.text}>Low Rated</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setSortBy('primary_release_date.desc');
-          toggleSort();
-        }}
-      >
-        <Text style={styles.text}>Upcoming Movies</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setSortBy('primary_release_date.asc');
-          toggleSort();
-        }}
-      >
-        <Text style={styles.text}>Old Movies</Text>
-      </TouchableOpacity>
+      <Text style={styles.title}>Sort Movies By:</Text>
+      <View style={styles.buttonWrapper}>
+        <TouchableOpacity
+          style={styles.sortButton}
+          onPress={() => {
+            setSortBy('popularity.desc');
+            toggleSort();
+          }}
+        >
+          <Text style={styles.text}>Highly Popular</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.sortButton}
+          onPress={() => {
+            setSortBy('vote_count.desc');
+            toggleSort();
+          }}
+        >
+          <Text style={styles.text}>High Rated</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.sortButton}
+          onPress={() => {
+            setSortBy('primary_release_date.desc');
+            toggleSort();
+          }}
+        >
+          <Text style={styles.text}>Upcoming Movies</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.sortButton}
+          onPress={() => {
+            setSortBy('primary_release_date.asc');
+            toggleSort();
+          }}
+        >
+          <Text style={styles.text}>Old Movies</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

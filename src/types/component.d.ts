@@ -7,6 +7,7 @@ interface ButtonProps {
   title: string;
   onPress: () => void;
   isPending?: boolean;
+  isLogout?: boolean;
 }
 
 interface CustomTextInputProps {

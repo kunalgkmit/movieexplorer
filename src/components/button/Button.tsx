@@ -7,10 +7,11 @@ export default function CustomButton({
   title,
   onPress,
   isPending,
+  isLogout,
 }: ButtonProps) {
   return (
     <TouchableOpacity
-      style={styles.button}
+      style={[styles.button, isLogout && { backgroundColor: COLORS.RED }]}
       onPress={onPress}
       disabled={isPending}
     >

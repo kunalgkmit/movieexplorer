@@ -14,5 +14,7 @@ export const ENDPOINTS = {
   FAVOURITES: {
     GET_FAVOURITES: `/account/${ACCOUNT_ID}/favorite/movies`,
     MODIFY_FAVOURITES: `/account/${ACCOUNT_ID}/favorite`
-  }
+  },
+
+  USER_DETAILS: `/account/${ACCOUNT_ID}`
 };

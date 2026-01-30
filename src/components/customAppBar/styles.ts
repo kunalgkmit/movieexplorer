@@ -1,18 +1,26 @@
+import { COLORS } from '@constants/colors';
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
     height: '12%',
-    paddingHorizontal: 10,
-    justifyContent:'space-between',
-    flexDirection:'row'
+    paddingHorizontal: 20,
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    shadowColor: COLORS.SHADOW,
+    shadowOffset: { width: 5, height: 9 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    elevation: 5,
+    backgroundColor:COLORS.BG_PRIMARY
   },
 
   titleWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 12,
+    gap: 15,
+    justifyContent:'flex-start',
   },
 
   title: {
@@ -20,10 +28,10 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
-  sortFilterWrapper:{
-    flexDirection:'row',
-    alignItems:'center',
-    width:'25%',
-    justifyContent:'space-around'
+  sortFilterWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    width: '25%',
+    justifyContent: 'space-around',
   },
 });

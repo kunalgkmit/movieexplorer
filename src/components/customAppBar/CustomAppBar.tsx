@@ -10,6 +10,7 @@ export default function CustomAppBar({
   isMovieDetailsScreen,
   isHomeScreen,
   setSort,
+  setFilter,
 }: CustomAppBarProps) {
   const navigation = useNavigation<StackNavProp>();
 
@@ -31,7 +32,7 @@ export default function CustomAppBar({
           <TouchableOpacity onPress={setSort}>
             <Ionicons name="filter-outline" size={24} />
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={setFilter}>
             <Ionicons name="funnel-outline" size={24} />
           </TouchableOpacity>
         </View>

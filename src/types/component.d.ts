@@ -40,3 +40,8 @@ interface CustomAppBarProps {
   setSort?: () => void;
   setFilter?: () => void;
 }
+
+interface CustomModalProps {
+  visible: boolean;
+  children: ReactNode;
+}

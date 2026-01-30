@@ -17,10 +17,8 @@ export default function Profile() {
     });
   };
 
-  if(isLoading){
-    return(
-      <ActivityIndicator style={styles.activityIndicator} size={20}/>
-    )
+  if (isLoading) {
+    return <ActivityIndicator style={styles.activityIndicator} size={20} />;
   }
 
   return (

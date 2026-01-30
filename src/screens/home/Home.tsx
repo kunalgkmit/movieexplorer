@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  FlatList,
-  View,
-} from 'react-native';
+import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import { useMovies } from '@hooks/useMovies';
@@ -15,9 +10,15 @@ import { formatMovieData } from '@utils/helpers';
 import { styles } from './styles';
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
 import SortByOptions from '@components/sortByOptions';
+import FilterByOptions from '@components/filterByOptions/FilterByOptions';
 
 export default function Home() {
   const [isSortOpen, setIsSortOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const [votes, setVotes] = useState(0);
+  const [releaseYear, setReleaseYear] = useState(0);
+  const [movieGenre, setMovieGenre] = useState('');
 
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
@@ -40,7 +41,11 @@ export default function Home() {
     sortBy: sortBy,
     includeVideo: false,
     language: 'en-US',
+    votesGreaterThan: votes,
+    releaseYear: releaseYear,
+    withGenres: movieGenre,
   });
+  console.log("WITH GENRE>>", movieGenre)
 
   const movies = useMemo(() => {
     if (data?.length === 0) return [];
@@ -65,14 +70,35 @@ export default function Home() {
       </View>
     );
   }
-  const toggleSort = ()=>{
-    setIsSortOpen(prev=>!prev);
-  }
+  const toggleSort = () => {
+    setIsSortOpen(prev => !prev);
+    setIsFilterOpen(false);
+  };
+
+  const toggleFilter = () => {
+    setIsFilterOpen(prev => !prev);
+    setIsSortOpen(false);
+  };
 
   return (
     <>
-      <CustomAppBar title="Home" isHomeScreen={true} setSort={toggleSort}/>
-        {isSortOpen && <SortByOptions setSortBy={setSortBy} toggleSort={toggleSort}/>}
+      <CustomAppBar
+        title="Home"
+        isHomeScreen={true}
+        setSort={toggleSort}
+        setFilter={toggleFilter}
+      />
+      {isSortOpen && (
+        <SortByOptions setSortBy={setSortBy} toggleSort={toggleSort} />
+      )}
+      {isFilterOpen && (
+        <FilterByOptions
+          setVotes={setVotes}
+          setReleaseYear={setReleaseYear}
+          setMovieGenre={setMovieGenre}
+          toggleFilter={toggleFilter}
+        />
+      )}
       <FlatList
         data={movies}
         numColumns={2}

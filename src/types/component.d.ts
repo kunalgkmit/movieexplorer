@@ -34,4 +34,5 @@ interface CustomAppBarProps {
   isMovieDetailsScreen?: boolean;
   isHomeScreen?: boolean;
   setSort?: () => void;
+  setFilter?: () => void;
 }

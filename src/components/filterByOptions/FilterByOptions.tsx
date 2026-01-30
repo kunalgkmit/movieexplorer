@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { View, TextInput, Button, TouchableOpacity, Text } from 'react-native';
 import { styles } from './styles';
+import CustomTextInput from '@components/textInput';
+import CustomButton from '@components/button';
 
 interface FilterOptionsProps {
   setVotes: (votes: number) => void;
@@ -13,7 +15,7 @@ export default function FilterByOptions({
   setVotes,
   setReleaseYear,
   toggleFilter,
-  setMovieGenre
+  setMovieGenre,
 }: FilterOptionsProps) {
   const [voteGreaterThan, setVoteGreaterThan] = useState('');
   const [movieReleaseYear, setMovieReleaseYear] = useState('');
@@ -30,31 +32,39 @@ export default function FilterByOptions({
 
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Rating greater than:"
-        value={voteGreaterThan}
+      <Text style={styles.title}>Filter Movies By:</Text>
+
+      <CustomTextInput
         onChangeText={setVoteGreaterThan}
+        value={voteGreaterThan}
+        placeholder="Rating greater than:"
       />
-      <TextInput
-        placeholder="Enter Release Year:"
-        value={movieReleaseYear}
+      <CustomTextInput
         onChangeText={setMovieReleaseYear}
+        value={movieReleaseYear}
+        placeholder="Enter Release Year:"
       />
-      <TouchableOpacity
-        onPress={() => {
-          setMovieFilterByGenre('28');
-        }}
-      >
-        <Text>Action</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
-          setMovieFilterByGenre('27');
-        }}
-      >
-        <Text>Horror</Text>
-      </TouchableOpacity>
-      <Button title="Filter" onPress={handleFilterSubmit} />
+      <View style={styles.genreWrapper}>
+        <TouchableOpacity
+          style={styles.genreButton}
+          onPress={() => {
+            setMovieFilterByGenre('28');
+          }}
+        >
+          <Text>Action</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.genreButton}
+          onPress={() => {
+            setMovieFilterByGenre('27');
+          }}
+        >
+          <Text>Horror</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.filterButton}>
+        <CustomButton title="Filter" onPress={handleFilterSubmit} />
+      </View>
     </View>
   );
 }

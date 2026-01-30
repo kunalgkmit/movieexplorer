@@ -29,4 +29,9 @@ export const styles = StyleSheet.create({
   },
 
   buttonStyle: { width: '25%' },
+
+  activityIndicator: {
+    alignItems:'center',
+    justifyContent:'center'
+  }
 });

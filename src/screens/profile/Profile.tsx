@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { ActivityIndicator, Text, View } from 'react-native';
 
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
 import CustomButton from '@components/button';
@@ -8,7 +8,7 @@ import { useUserSession } from '@store/userSession';
 import { styles } from './styles';
 
 export default function Profile() {
-  const { data } = useUserDetails();
+  const { data, isLoading } = useUserDetails();
 
   const handleLogout = () => {
     useUserSession.persist.clearStorage();
@@ -16,6 +16,13 @@ export default function Profile() {
       isLoggedIn: false,
     });
   };
+
+  if(isLoading){
+    return(
+      <ActivityIndicator style={styles.activityIndicator} size={20}/>
+    )
+  }
+
   return (
     <>
       <CustomAppBar title="Profile" />

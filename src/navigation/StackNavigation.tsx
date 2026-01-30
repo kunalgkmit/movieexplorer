@@ -1,8 +1,9 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
 import { ROUTES } from '@constants/routes';
 import { MyTabs } from './BottomTabs';
-import TaskDetailsScreen from '@screens/movieDetails/MovieDetails';
+import MovieDetailsScreen from '@screens/movieDetails/MovieDetails';
 
 const Stack = createNativeStackNavigator<StackNavTypes>();
 
@@ -15,7 +16,7 @@ export default function StackNavigator() {
       />
       <Stack.Screen
         name={ROUTES.STACK.MOVIE_DETAILS}
-        component={TaskDetailsScreen}
+        component={MovieDetailsScreen}
       />
     </Stack.Navigator>
   );

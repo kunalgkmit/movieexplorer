@@ -29,7 +29,6 @@ export const fetchMovieDetails = async (movieId: number | undefined) => {
   const response = await axiosInstance.get(`/movie/${movieId}`, {
     params: { language: 'en-US' },
   });
-  console.log(response.data);
   return response.data;
 };
 
@@ -41,6 +40,5 @@ export const fetchRecommendedMovies = async (
     `/movie/${movieId}/recommendations`,
     { params: { language: 'en-US', page: pageParam } },
   );
-  console.log(response.data);
   return response.data;
 };

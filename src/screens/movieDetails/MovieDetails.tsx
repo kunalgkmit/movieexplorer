@@ -5,10 +5,8 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
   ScrollView,
 } from 'react-native';
-import Ionicons from '@react-native-vector-icons/ionicons';
 import { useRoute } from '@react-navigation/native';
 
 import { IMAGE_BASE_URL } from '@env';
@@ -21,44 +19,44 @@ import { useRecommendedMovies } from '@hooks/useRecommendedMovies';
 import { useMovieDetails } from '@hooks/useMovieDetails';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
-import { COLORS } from '@constants/colors';
-import RecommendedMovieCard from '@components/recommendedMovieCard';
+import MovieCard from '@components/movieCard';
+import FavouriteButton from '@components/favouriteButton';
 
 import { styles } from './styles';
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
 
-export default function TaskDetailsScreen() {
+export default function MovieDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const { mutate: toggleFavourite, isPending } = useFavourites();
 
-  const route = useRoute<TaskDetailsProps>();
+  const route = useRoute<MovieDetailsProps>();
   const movieId = route.params?.movieId;
 
-  const isMovieFavourited = movieId && isFavourite(movieId);
+  const isMovieFavourited = movieId ? isFavourite(movieId) : false;
 
   const { data, isLoading } = useMovieDetails(movieId);
 
-  const { data: recommenddMovies } = useRecommendedMovies(movieId);
+  const { data: recommendedMovies } = useRecommendedMovies(movieId);
 
   const movies = useMemo(
-    () => formatMovieData(recommenddMovies ?? [], isFavourite).slice(0, 10),
+    () => formatMovieData(recommendedMovies ?? [], isFavourite),
     [data, favMovieIds],
   );
-
-  if (isLoading) {
-    return <ActivityIndicator style={styles.indicator} />;
-  }
-
-  const formattedRating = formatMovieRating(data.vote_average);
-
-  const formattedReleaseDate = formatDateToReadableDate(data.release_date);
 
   const handleFavourite = () => {
     if (movieId)
       toggleFavourite({ movieId, isFavourite: !isFavourite(movieId) });
   };
+
+  if (isLoading) {
+    return <ActivityIndicator style={styles.activityIndicator} />;
+  }
+
+  const formattedRating = formatMovieRating(data.vote_average);
+
+  const formattedReleaseDate = formatDateToReadableDate(data.release_date);
 
   return (
     <>
@@ -71,19 +69,12 @@ export default function TaskDetailsScreen() {
             resizeMode="cover"
           />
 
-          <View style={styles.favouriteWrapper}>
-            {isPending ? (
-              <ActivityIndicator color={COLORS.RED} size={25} />
-            ) : (
-              <TouchableOpacity onPress={handleFavourite}>
-                <Ionicons
-                  name={isMovieFavourited ? 'heart' : 'heart-outline'}
-                  size={25}
-                  color={COLORS.RED}
-                />
-              </TouchableOpacity>
-            )}
-          </View>
+        <FavouriteButton
+          isPending={isPending}
+          isFavourite={isMovieFavourited}
+          handleFavourite={handleFavourite}
+          customStyle={styles.favouriteWrapper}
+        />
 
           <View style={styles.posterWrapper}>
             <Image
@@ -106,20 +97,22 @@ export default function TaskDetailsScreen() {
               <Text style={styles.subtitle}>Recommended Movies</Text>
             </View>
 
-            <FlatList
-              ListEmptyComponent={<Text>Recommended Movies not found</Text>}
-              data={movies}
-              horizontal={true}
-              showsHorizontalScrollIndicator={false}
-              contentContainerStyle={{ paddingTop: 15 }}
-              renderItem={({ item }) => (
-                <RecommendedMovieCard movieDetails={item} />
-              )}
-              keyExtractor={item => item.movieId}
-            />
-          </View>
+          <FlatList
+            ListEmptyComponent={<Text>Recommended Movies not found</Text>}
+            data={movies}
+            horizontal={true}
+            contentContainerStyle={styles.contentContainer}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <View style={styles.movieCardWrapper}>
+                <MovieCard movieDetails={item} height={340} width={150} />
+              </View>
+            )}
+            keyExtractor={item => item.movieId}
+          />
         </View>
-      </ScrollView>
+      </View>
+    </ScrollView>
     </>
   );
 }

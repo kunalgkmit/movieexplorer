@@ -17,5 +17,5 @@ declare global {
   type TabNavigationProp = BottomTabNavigationProp<BottomTabNavTypes>;
   type StackNavProp = NativeStackNavigationProp<StackNavTypes>;
 
-  type TaskDetailsProps = RouteProp<StackNavTypes, ROUTES.STACK.MOVIE_DETAILS>;
+  type MovieDetailsProps = RouteProp<StackNavTypes, ROUTES.STACK.MOVIE_DETAILS>;
 }

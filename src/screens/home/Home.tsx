@@ -31,8 +31,6 @@ export default function Home() {
     language: 'en-US',
   });
 
-  const favIds = useFavMoviesStore(state => state.favMoviesIds);
-
   const movies = useMemo(
     () => formatMovieData(data ?? [], isFavourite),
     [data, favMovieIds],

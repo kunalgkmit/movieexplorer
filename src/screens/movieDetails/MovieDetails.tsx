@@ -26,13 +26,13 @@ import { COLORS } from '@constants/colors';
 import { styles } from './styles';
 import MovieCard from '@components/movieCard';
 
-export default function TaskDetailsScreen() {
+export default function MovieDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const { mutate: toggleFavourite, isPending } = useFavourites();
 
-  const route = useRoute<TaskDetailsProps>();
+  const route = useRoute<MovieDetailsProps>();
   const movieId = route.params?.movieId;
 
   const isMovieFavourited = movieId && isFavourite(movieId);

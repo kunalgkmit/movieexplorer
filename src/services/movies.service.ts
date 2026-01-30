@@ -6,6 +6,9 @@ export default async function fetchMovies({
   sortBy,
   includeVideo,
   language,
+  votesGreaterThan,
+  releaseYear,
+  withGenres
 }: DefaultMovieParams) {
   const response = await axiosInstance.get(ENDPOINTS.MOVIES.DISCOVER, {
     params: {
@@ -14,6 +17,9 @@ export default async function fetchMovies({
       include_adult: false,
       include_video: includeVideo,
       language: language,
+      'vote_average.gte' : votesGreaterThan,
+      primary_release_year: releaseYear,
+      with_genres: withGenres
     },
   });
   return response.data;

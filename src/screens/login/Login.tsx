@@ -9,8 +9,8 @@ import { styles } from './styles';
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
-            <StatusBar barStyle={'dark-content'} />
-      
+      <StatusBar barStyle={'dark-content'} />
+
       <LoginForm title={APP_INFO.TITLE} subtitle={APP_INFO.LOGIN_SUBTITLE} />
     </View>
   );

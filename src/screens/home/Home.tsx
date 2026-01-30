@@ -11,6 +11,7 @@ import { styles } from './styles';
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
 import SortByOptions from '@components/sortByOptions';
 import FilterByOptions from '@components/filterByOptions/FilterByOptions';
+import CustomModal from '@components/customModal/CustomModal';
 
 export default function Home() {
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function Home() {
     releaseYear: releaseYear,
     withGenres: movieGenre,
   });
-  console.log("WITH GENRE>>", movieGenre)
+  console.log('WITH GENRE>>', movieGenre);
 
   const movies = useMemo(() => {
     if (data?.length === 0) return [];
@@ -88,17 +89,17 @@ export default function Home() {
         setSort={toggleSort}
         setFilter={toggleFilter}
       />
-      {isSortOpen && (
+      <CustomModal visible={isSortOpen}>
         <SortByOptions setSortBy={setSortBy} toggleSort={toggleSort} />
-      )}
-      {isFilterOpen && (
+      </CustomModal>
+      <CustomModal visible={isFilterOpen}>
         <FilterByOptions
           setVotes={setVotes}
           setReleaseYear={setReleaseYear}
           setMovieGenre={setMovieGenre}
           toggleFilter={toggleFilter}
         />
-      )}
+      </CustomModal>
       <FlatList
         data={movies}
         numColumns={2}

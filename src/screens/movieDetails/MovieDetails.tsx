@@ -42,7 +42,7 @@ export default function MovieDetailsScreen() {
 
   const movies = useMemo(
     () => formatMovieData(recommendedMovies ?? [], isFavourite),
-    [data, favMovieIds],
+    [recommendedMovies, favMovieIds],
   );
 
   const handleFavourite = () => {

@@ -52,6 +52,7 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
         error={errors.password}
         editable={!isPending}
         secureTextEntry={true}
+        isPassword={true}
       />
 
       <CustomButton

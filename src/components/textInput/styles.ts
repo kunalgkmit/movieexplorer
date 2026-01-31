@@ -3,6 +3,10 @@ import { StyleSheet } from 'react-native';
 import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
+  container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   inputContainer: {
     width: '100%',
     marginBottom: 20,
@@ -29,4 +33,6 @@ export const styles = StyleSheet.create({
     marginTop: 6,
     paddingLeft: 4,
   },
+
+  eyeIcon: { position: 'absolute', right: 10, top: 15 },
 });

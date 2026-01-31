@@ -8,8 +8,18 @@ export default async function fetchMovies({
   language,
   votesGreaterThan,
   releaseYear,
-  withGenres
+  withGenres,
 }: DefaultMovieParams) {
+  console.log('MOVIES RESPONSE>>>>>>', {
+    pageParam,
+    sortBy,
+    includeVideo,
+    language,
+    votesGreaterThan,
+    releaseYear,
+    withGenres,
+  });
+
   const response = await axiosInstance.get(ENDPOINTS.MOVIES.DISCOVER, {
     params: {
       page: pageParam,
@@ -17,11 +27,12 @@ export default async function fetchMovies({
       include_adult: false,
       include_video: includeVideo,
       language: language,
-      'vote_average.gte' : votesGreaterThan,
+      'vote_average.gte': votesGreaterThan,
       primary_release_year: releaseYear,
-      with_genres: withGenres
+      with_genres: withGenres,
     },
   });
+  // console.log("MOVIES RESPONSE>>>>>>", response)
   return response.data;
 }
 

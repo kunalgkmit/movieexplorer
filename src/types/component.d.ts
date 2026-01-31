@@ -18,6 +18,7 @@ interface CustomTextInputProps {
   editable?: boolean;
   autoCapitalize?: 'none';
   secureTextEntry?: boolean;
+  isPassword?: boolean;
 }
 
 interface MovieCardProps {

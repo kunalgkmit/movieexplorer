@@ -1,6 +1,7 @@
 import { Modal, Text, TouchableOpacity, View } from 'react-native';
-import { styles } from './styles';
 import Ionicons from '@react-native-vector-icons/ionicons';
+
+import { styles } from './styles';
 
 export default function CustomModal({
   modalName,
@@ -8,9 +9,11 @@ export default function CustomModal({
   children,
   isVisible,
 }: CustomModalProps) {
+
   const handleModalClose = () => {
     visible();
   };
+  
   return (
     <Modal transparent={true} visible={isVisible} animationType="fade">
       <View style={styles.blurBackground}></View>

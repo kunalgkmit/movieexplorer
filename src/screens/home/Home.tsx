@@ -2,16 +2,17 @@ import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
+import CustomAppBar from '@components/customAppBar/CustomAppBar';
+import SortByOptions from '@components/sortByOptions';
+import FilterByOptions from '@components/filterByOptions/FilterByOptions';
+import CustomModal from '@components/customModal';
+import { SORT_OPTIONS } from '@constants/constants';
 import { useMovies } from '@hooks/useMovies';
 import { fetchFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
-import CustomAppBar from '@components/customAppBar/CustomAppBar';
-import SortByOptions from '@components/sortByOptions';
-import FilterByOptions from '@components/filterByOptions/FilterByOptions';
-import CustomModal from '@components/customModal/CustomModal';
 
 export default function Home() {
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -24,7 +25,7 @@ export default function Home() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
-  const [sortBy, setSortBy] = useState('popularity.desc');
+  const [sortBy, setSortBy] = useState(SORT_OPTIONS.POPULARITY_DESC);
 
   useEffect(() => {
     fetchFavourites();
@@ -89,10 +90,22 @@ export default function Home() {
         setSort={toggleSort}
         setFilter={toggleFilter}
       />
-      <CustomModal modalName={"Sort "} visible={toggleSort} isVisible={isSortOpen}>
-        <SortByOptions setSortBy={setSortBy} toggleSort={toggleSort} />
+      <CustomModal
+        modalName={'Sort '}
+        visible={toggleSort}
+        isVisible={isSortOpen}
+      >
+        <SortByOptions
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          toggleSort={toggleSort}
+        />
       </CustomModal>
-      <CustomModal modalName={"Filter: "} visible={toggleFilter} isVisible={isFilterOpen}>
+      <CustomModal
+        modalName={'Filter: '}
+        visible={toggleFilter}
+        isVisible={isFilterOpen}
+      >
         <FilterByOptions
           setVotes={setVotes}
           setReleaseYear={setReleaseYear}

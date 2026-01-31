@@ -7,9 +7,10 @@ export const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'center',
     backgroundColor: COLORS.BG_CARD,
     borderRadius: 30,
+    gap: 10,
   },
 
   closeButton: { position: 'absolute', top: 20, right: 20 },
@@ -20,7 +21,6 @@ export const styles = StyleSheet.create({
   },
 
   modalWrapper: {
-    width: '100%',
     height: height / 2,
     marginTop: height / 4,
     paddingRight: 20,

@@ -16,6 +16,7 @@ export default function SortByOptions({
   };
 
   const handleClose = () => {
+    toggleSort();
     setSortBy(SORT_OPTIONS.POPULARITY_DESC);
   };
 

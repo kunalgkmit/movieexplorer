@@ -1,11 +1,11 @@
-import { monthNames } from '@constants/constants';
+import { MONTH_NAMES } from "@constants/constants";
 
 export const formatDateToReadableDate = (releaseDate: string) => {
   const releaseDateParts = releaseDate.split('-');
   const year = releaseDateParts[0];
   const monthIndex = parseInt(releaseDateParts[1]) - 1;
   const day = releaseDateParts[2];
-  const formattedDate = `${monthNames[monthIndex]} ${day}, ${year}`;
+  const formattedDate = `${MONTH_NAMES[monthIndex]} ${day}, ${year}`;
   return formattedDate;
 };
 

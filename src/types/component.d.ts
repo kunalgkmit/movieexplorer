@@ -43,8 +43,19 @@ interface CustomAppBarProps {
 }
 
 interface CustomModalProps {
-  modalName,
+  modalName;
   isVisible: boolean;
-  visible: ()=>void;
+  visible: () => void;
   children: ReactNode;
+}
+
+interface SortByProps {
+  sortBy: string,
+  setSortBy: (params: string) => void;
+  toggleSort: () => void;
+}
+
+interface SortType {
+  sortName: string;
+  sortOption: string;
 }

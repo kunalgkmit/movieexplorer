@@ -1,52 +1,53 @@
 import { Text, TouchableOpacity, View } from 'react-native';
+import Ionicons from '@react-native-vector-icons/ionicons';
+
+import { SORT_OPTIONS, SORT_SELECTION_ARRAY } from '@constants/constants';
+import { COLORS } from '@constants/colors';
 import { styles } from './styles';
 
-interface SortByProps {
-  setSortBy: (params: string) => void;
-  toggleSort: () => void;
-}
+export default function SortByOptions({
+  sortBy,
+  setSortBy,
+  toggleSort,
+}: SortByProps) {
+  
+  const handleSortSelection = (sortOption: string) => {
+    setSortBy(sortOption);
+    toggleSort();
+  };
 
-export default function SortByOptions({ setSortBy, toggleSort }: SortByProps) {
+  const handleClose = () => {
+    setSortBy(SORT_OPTIONS.POPULARITY_DESC);
+  };
+
   return (
     <View style={styles.container}>
-      <View style={styles.buttonWrapper}>
+      {SORT_SELECTION_ARRAY.map((item, index) => (
         <TouchableOpacity
-          style={styles.sortButton}
-          onPress={() => {
-            setSortBy('popularity.desc');
-            toggleSort();
-          }}
+          key={index}
+          style={
+            sortBy === item.sortOption
+              ? styles.selectedSortButton
+              : styles.sortButton
+          }
+          onPress={() => handleSortSelection(item.sortOption)}
         >
-          <Text style={styles.text}>Highly Popular</Text>
+          <Text
+            style={
+              sortBy === item.sortOption
+                ? styles.selectedOptionText
+                : styles.text
+            }
+          >
+            {item.sortName}
+          </Text>
+          {sortBy === item.sortOption ? (
+            <TouchableOpacity onPress={handleClose}>
+              <Ionicons name="close-outline" size={20} color={COLORS.BG_SURFACE}/>
+            </TouchableOpacity>
+          ) : null}
         </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sortButton}
-          onPress={() => {
-            setSortBy('vote_count.desc');
-            toggleSort();
-          }}
-        >
-          <Text style={styles.text}>High Rated</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sortButton}
-          onPress={() => {
-            setSortBy('primary_release_date.desc');
-            toggleSort();
-          }}
-        >
-          <Text style={styles.text}>Upcoming Movies</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.sortButton}
-          onPress={() => {
-            setSortBy('primary_release_date.asc');
-            toggleSort();
-          }}
-        >
-          <Text style={styles.text}>Old Movies</Text>
-        </TouchableOpacity>
-      </View>
+      ))}
     </View>
   );
 }

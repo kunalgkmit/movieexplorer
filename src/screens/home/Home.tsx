@@ -107,6 +107,9 @@ export default function Home() {
         isVisible={isFilterOpen}
       >
         <FilterByOptions
+          votes={votes}
+          releaseYear={releaseYear}
+          genre={movieGenre}
           setVotes={setVotes}
           setReleaseYear={setReleaseYear}
           setMovieGenre={setMovieGenre}

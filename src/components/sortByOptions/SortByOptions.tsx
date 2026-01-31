@@ -10,7 +10,6 @@ export default function SortByOptions({
   setSortBy,
   toggleSort,
 }: SortByProps) {
-  
   const handleSortSelection = (sortOption: string) => {
     setSortBy(sortOption);
     toggleSort();
@@ -22,32 +21,33 @@ export default function SortByOptions({
 
   return (
     <View style={styles.container}>
-      {SORT_SELECTION_ARRAY.map((item, index) => (
-        <TouchableOpacity
-          key={index}
-          style={
-            sortBy === item.sortOption
-              ? styles.selectedSortButton
-              : styles.sortButton
-          }
-          onPress={() => handleSortSelection(item.sortOption)}
-        >
-          <Text
+      {SORT_SELECTION_ARRAY.map((item, index) => {
+        const isSortSelected = sortBy === item.sortOption;
+        return (
+          <TouchableOpacity
+            key={index}
             style={
-              sortBy === item.sortOption
-                ? styles.selectedOptionText
-                : styles.text
+              isSortSelected ? styles.selectedSortButton : styles.sortButton
             }
+            onPress={() => handleSortSelection(item.sortOption)}
           >
-            {item.sortName}
-          </Text>
-          {sortBy === item.sortOption ? (
-            <TouchableOpacity onPress={handleClose}>
-              <Ionicons name="close-outline" size={20} color={COLORS.BG_SURFACE}/>
-            </TouchableOpacity>
-          ) : null}
-        </TouchableOpacity>
-      ))}
+            <Text
+              style={isSortSelected ? styles.selectedOptionText : styles.text}
+            >
+              {item.sortName}
+            </Text>
+            {isSortSelected ? (
+              <TouchableOpacity onPress={handleClose}>
+                <Ionicons
+                  name="close-outline"
+                  size={20}
+                  color={COLORS.BG_SURFACE}
+                />
+              </TouchableOpacity>
+            ) : null}
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 }

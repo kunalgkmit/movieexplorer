@@ -1,4 +1,4 @@
-import { MONTH_NAMES } from "@constants/constants";
+import { MONTH_NAMES } from '@constants/constants';
 
 export const formatDateToReadableDate = (releaseDate: string) => {
   const releaseDateParts = releaseDate.split('-');
@@ -37,4 +37,26 @@ export const formatMovieData = (
     rating: movieItem.vote_average,
     isFavourite: isFavourite(movieItem.id),
   }));
+};
+
+export const movieRatingValidator = (rating: string) => {
+  if (rating.length === 0) {
+    return '';
+  }
+  const ratingInNum = parseFloat(rating);
+  if (ratingInNum <= 0 || ratingInNum > 10 || isNaN(ratingInNum)) {
+    return 'Please Enter Valid Rating';
+  }
+  return '';
+};
+
+export const movieReleaseYearValidator = (releaseYear: string) => {
+  if (releaseYear.length === 0) {
+    return '';
+  }
+  const releaseYearInNum = parseInt(releaseYear);
+  if (isNaN(releaseYearInNum) || releaseYear.length > 4) {
+    return 'Please Enter Valid Release Year';
+  }
+  return '';
 };

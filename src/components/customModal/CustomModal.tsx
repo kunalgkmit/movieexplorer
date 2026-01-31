@@ -9,16 +9,16 @@ export default function CustomModal({
   children,
   isVisible,
 }: CustomModalProps) {
-
   const handleModalClose = () => {
     visible();
   };
-  
+
   return (
     <Modal transparent={true} visible={isVisible} animationType="fade">
       <View style={styles.blurBackground}></View>
       <View style={styles.modalWrapper}>
         <View style={styles.modalContainer}>
+          <View style={styles.contentWrapper} />
           <Text style={styles.modalTitle}>{modalName}</Text>
           <TouchableOpacity
             onPress={handleModalClose}

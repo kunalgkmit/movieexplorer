@@ -7,7 +7,6 @@ export const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: COLORS.BG_CARD,
     borderRadius: 30,
     gap: 10,
@@ -21,10 +20,8 @@ export const styles = StyleSheet.create({
   },
 
   modalWrapper: {
-    height: height / 2,
+    height: height,
     marginTop: height / 4,
-    paddingRight: 20,
-    paddingLeft: 20,
   },
 
   blurBackground: {
@@ -37,4 +34,6 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
+
+  contentWrapper: { height: '5%' },
 });

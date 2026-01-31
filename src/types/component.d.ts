@@ -50,7 +50,7 @@ interface CustomModalProps {
 }
 
 interface SortByProps {
-  sortBy: string,
+  sortBy: string;
   setSortBy: (params: string) => void;
   toggleSort: () => void;
 }
@@ -58,4 +58,19 @@ interface SortByProps {
 interface SortType {
   sortName: string;
   sortOption: string;
+}
+
+interface GenreType {
+  genreId: string;
+  genreName: string;
+}
+
+interface FilterOptionsProps {
+  votes: number;
+  releaseYear: number;
+  genre: string;
+  setVotes: (votes: number) => void;
+  setReleaseYear: (releaseYear: number) => void;
+  setMovieGenre: (genreId: string) => void;
+  toggleFilter: () => void;
 }

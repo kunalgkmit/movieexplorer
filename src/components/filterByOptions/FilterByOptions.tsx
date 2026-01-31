@@ -32,8 +32,6 @@ export default function FilterByOptions({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Filter Movies By:</Text>
-
       <CustomTextInput
         onChangeText={setVoteGreaterThan}
         value={voteGreaterThan}

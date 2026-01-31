@@ -43,6 +43,8 @@ interface CustomAppBarProps {
 }
 
 interface CustomModalProps {
-  visible: boolean;
+  modalName,
+  isVisible: boolean;
+  visible: ()=>void;
   children: ReactNode;
 }

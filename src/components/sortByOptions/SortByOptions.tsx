@@ -9,7 +9,6 @@ interface SortByProps {
 export default function SortByOptions({ setSortBy, toggleSort }: SortByProps) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sort Movies By:</Text>
       <View style={styles.buttonWrapper}>
         <TouchableOpacity
           style={styles.sortButton}

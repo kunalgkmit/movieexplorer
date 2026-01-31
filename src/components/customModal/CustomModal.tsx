@@ -1,10 +1,31 @@
-import { Modal, View } from 'react-native';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
 import { styles } from './styles';
+import Ionicons from '@react-native-vector-icons/ionicons';
 
-export default function CustomModal({ visible, children }: CustomModalProps) {
+export default function CustomModal({
+  modalName,
+  visible,
+  children,
+  isVisible,
+}: CustomModalProps) {
+  const handleModalClose = () => {
+    visible();
+  };
   return (
-    <Modal transparent={true} visible={visible} animationType="slide">
-      <View style={styles.modalContainer}>{children}</View>
+    <Modal transparent={true} visible={isVisible} animationType="fade">
+      <View style={styles.blurBackground}></View>
+      <View style={styles.modalWrapper}>
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>{modalName}</Text>
+          <TouchableOpacity
+            onPress={handleModalClose}
+            style={styles.closeButton}
+          >
+            <Ionicons name="close-outline" size={30} />
+          </TouchableOpacity>
+          {children}
+        </View>
+      </View>
     </Modal>
   );
 }

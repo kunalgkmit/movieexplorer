@@ -89,10 +89,10 @@ export default function Home() {
         setSort={toggleSort}
         setFilter={toggleFilter}
       />
-      <CustomModal visible={isSortOpen}>
+      <CustomModal modalName={"Sort "} visible={toggleSort} isVisible={isSortOpen}>
         <SortByOptions setSortBy={setSortBy} toggleSort={toggleSort} />
       </CustomModal>
-      <CustomModal visible={isFilterOpen}>
+      <CustomModal modalName={"Filter: "} visible={toggleFilter} isVisible={isFilterOpen}>
         <FilterByOptions
           setVotes={setVotes}
           setReleaseYear={setReleaseYear}

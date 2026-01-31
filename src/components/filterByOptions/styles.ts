@@ -4,8 +4,7 @@ import { StyleSheet } from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width:'100%',
-    padding:90,
+    width: '70%',
   },
 
   genreButton: {
@@ -20,5 +19,5 @@ export const styles = StyleSheet.create({
     fontSize: 25,
   },
 
-  genreWrapper: {flexDirection:'row', gap:10, marginBottom:20}
+  genreWrapper: { flexDirection: 'row', gap: 10, marginBottom: 20 },
 });

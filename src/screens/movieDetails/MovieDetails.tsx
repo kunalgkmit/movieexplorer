@@ -22,8 +22,8 @@ import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import FavouriteButton from '@components/favouriteButton';
 
-import { styles } from './styles';
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
+import { styles } from './styles';
 
 export default function MovieDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);

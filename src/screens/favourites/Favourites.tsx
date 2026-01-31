@@ -2,8 +2,8 @@ import { FlatList } from 'react-native';
 
 import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
-import { styles } from './styles';
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
+import { styles } from './styles';
 
 export default function Favourites() {
   const favourites = useFavMoviesStore(state => state.favourites);

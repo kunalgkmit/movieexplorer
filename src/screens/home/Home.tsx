@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
-import CustomAppBar from '@components/customAppBar/CustomAppBar';
+import CustomAppBar from '@components/customAppBar';
 import SortByOptions from '@components/sortByOptions';
 import FilterByOptions from '@components/filterByOptions/FilterByOptions';
 import CustomModal from '@components/customModal';

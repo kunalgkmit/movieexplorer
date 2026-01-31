@@ -1,12 +1,12 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-
 import { Ionicons } from '@react-native-vector-icons/ionicons';
 
 import { ROUTES } from '@constants/routes';
-import { styles } from './styles';
 import { COLORS } from '@constants/colors';
 import { ICONS } from '@constants/constants';
+
+import { styles } from './styles';
 
 export default function CustomBottomTab({
   state,

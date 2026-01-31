@@ -1,4 +1,3 @@
-import React from 'react';
 import { StatusBar, View } from 'react-native';
 
 import { APP_INFO } from '@constants/constants';

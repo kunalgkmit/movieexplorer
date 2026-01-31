@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import { COLORS } from '@constants/colors';
-import { styles } from './styles';
 import Ionicons from '@react-native-vector-icons/ionicons';
+import { styles } from './styles';
 
 export default function CustomTextInput({
   placeholder,

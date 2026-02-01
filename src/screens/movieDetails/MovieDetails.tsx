@@ -24,6 +24,7 @@ import MovieCard from '@components/movieCard';
 import FavouriteButton from '@components/favouriteButton';
 import CustomActivityIndicator from '@components/customActivityIndicator';
 import { COLORS } from '@constants/colors';
+import { sampleBackdrop, sampleImgUrl } from '@constants/constants';
 
 import { styles } from './styles';
 
@@ -60,14 +61,24 @@ export default function MovieDetailsScreen() {
 
   const formattedRating = formatMovieRating(data.vote_average);
 
-  const formattedReleaseDate = formatDateToReadableDate(data.release_date);
+  const formattedReleaseDate = data.release_date
+    ? formatDateToReadableDate(data.release_date)
+    : 'Date not found';
+
+  const backDropUrl = data.backdrop_path
+    ? `${IMAGE_BASE_URL}${data.backdrop_path}`
+    : sampleBackdrop;
+
+  const posterUrl = data.poster_path
+    ? `${IMAGE_BASE_URL}${data.poster_path}`
+    : sampleImgUrl;
 
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <View style={styles.container}>
           <Image
-            source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
+            source={{ uri: backDropUrl }}
             style={styles.backDrop}
             resizeMode="cover"
           />
@@ -90,7 +101,7 @@ export default function MovieDetailsScreen() {
 
           <View style={styles.posterWrapper}>
             <Image
-              source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
+              source={{ uri: posterUrl }}
               style={styles.poster}
               resizeMode="contain"
             />
@@ -120,7 +131,9 @@ export default function MovieDetailsScreen() {
                 isLoading ? (
                   <CustomActivityIndicator color={COLORS.SHADOW} />
                 ) : (
-                  <Text>No Recommended Movies</Text>
+                  <View style={styles.recommendedText}>
+                    <Text>No Recommended Movies</Text>
+                  </View>
                 )
               }
               data={movies}

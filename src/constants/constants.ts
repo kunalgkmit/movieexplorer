@@ -63,3 +63,8 @@ export const GENRE_SELECTION_ARRAY: GenreType[] = [
     genreName: 'Drama',
   },
 ];
+
+export const sampleImgUrl =
+  'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Chromium_T-Rex-error-offline.svg/2560px-Chromium_T-Rex-error-offline.svg.png?20210319220015';
+
+export const sampleBackdrop = 'https://wallpapercave.com/wp/wp5248939.png';

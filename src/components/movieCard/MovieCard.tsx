@@ -10,6 +10,7 @@ import { useFavMoviesStore } from '@store/favourites';
 import { ROUTES } from '@constants/routes';
 
 import { styles } from './styles';
+import { sampleImgUrl } from '@constants/constants';
 
 export default function MovieCard({
   movieDetails,
@@ -30,6 +31,8 @@ export default function MovieCard({
   const formattedReleaseDate = releaseDate
     ? formatDateToReadableDate(releaseDate)
     : 'Date not found';
+
+  const imgUrl = posterPath ? `${IMAGE_BASE_URL}${posterPath}` : sampleImgUrl;
 
   const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
 
@@ -67,7 +70,7 @@ export default function MovieCard({
       activeOpacity={0.85}
     >
       <Image
-        source={{ uri: `${IMAGE_BASE_URL}${posterPath}` }}
+        source={{ uri: imgUrl }}
         style={[styles.poster, posterHeight ? { height: posterHeight } : null]}
         resizeMode="cover"
       />

@@ -5,18 +5,18 @@ import CustomAppBar from '@components/customAppBar/CustomAppBar';
 import CustomButton from '@components/button';
 import CustomActivityIndicator from '@components/customActivityIndicator';
 import { useUserDetails } from '@hooks/useUserDetails';
+import { useLogout } from '@hooks/useLogin';
 import { useUserSession } from '@store/userSession';
 
 import { styles } from './styles';
 
 export default function Profile() {
+  const sessionId = useUserSession(state => state.sessionId);
   const { data, isLoading } = useUserDetails();
+  const { mutate: logout, isPending } = useLogout();
 
   const handleLogout = () => {
-    useUserSession.persist.clearStorage();
-    useUserSession.setState({
-      isLoggedIn: false,
-    });
+    logout(sessionId);
   };
 
   return (
@@ -35,6 +35,7 @@ export default function Profile() {
               title="Logout"
               onPress={handleLogout}
               isLogout={true}
+              isPending={isPending}
             />
           </View>
         </View>

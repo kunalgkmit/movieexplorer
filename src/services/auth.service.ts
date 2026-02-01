@@ -33,3 +33,10 @@ export const userLogin = async ({ userName, password }: LoginProps) => {
     isLoggedIn: true,
   });
 };
+
+export const userLogout = async (sessionId: string) => {
+  const response = await axiosInstance.delete(ENDPOINTS.AUTH.DELETE_SESSION, {
+    data: { session_id: sessionId },
+  });
+  return response.data;
+};

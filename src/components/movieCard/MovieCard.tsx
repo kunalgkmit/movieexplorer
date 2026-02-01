@@ -15,6 +15,7 @@ export default function MovieCard({
   movieDetails,
   width,
   height,
+  posterHeight,
 }: MovieCardProps) {
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } =
     movieDetails;
@@ -26,7 +27,9 @@ export default function MovieCard({
 
   const formattedRating = formatMovieRating(rating);
 
-  const formattedReleaseDate = formatDateToReadableDate(releaseDate);
+  const formattedReleaseDate = releaseDate
+    ? formatDateToReadableDate(releaseDate)
+    : 'Date not found';
 
   const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
 
@@ -65,7 +68,7 @@ export default function MovieCard({
     >
       <Image
         source={{ uri: `${IMAGE_BASE_URL}${posterPath}` }}
-        style={styles.poster}
+        style={[styles.poster, posterHeight ? { height: posterHeight } : null]}
         resizeMode="cover"
       />
 
@@ -78,7 +81,10 @@ export default function MovieCard({
 
         <View style={styles.metaRow}>
           <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
-          <Text style={styles.rating}>★ {formattedRating}</Text>
+          <View style={styles.ratingWrapper}>
+            <Text style={styles.star}>★ </Text>
+            <Text style={styles.rating}>{formattedRating}</Text>
+          </View>
         </View>
       </View>
     </TouchableOpacity>

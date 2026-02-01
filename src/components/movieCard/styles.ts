@@ -44,7 +44,7 @@ export const styles = StyleSheet.create({
     color: COLORS.TEXT_SECONDARY,
   },
 
-  rating: {
+  star: {
     fontSize: 14,
     fontWeight: 'bold',
     color: COLORS.ACCENT_YELLOW,
@@ -59,5 +59,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderTopEndRadius: 12,
+  },
+
+  ratingWrapper: { flexDirection: 'row' },
+
+  rating: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: COLORS.TEXT_PRIMARY,
   },
 });

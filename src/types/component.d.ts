@@ -25,6 +25,7 @@ interface MovieCardProps {
   movieDetails: Movie;
   height?: number;
   width?: number;
+  posterHeight?: number;
 }
 
 interface FavButtonProps {

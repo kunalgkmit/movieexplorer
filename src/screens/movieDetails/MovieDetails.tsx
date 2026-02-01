@@ -5,8 +5,10 @@ import {
   View,
   FlatList,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import Ionicons from '@react-native-vector-icons/ionicons';
 
 import { IMAGE_BASE_URL } from '@env';
 import {
@@ -21,16 +23,17 @@ import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import FavouriteButton from '@components/favouriteButton';
 import CustomActivityIndicator from '@components/customActivityIndicator';
-
-import CustomAppBar from '@components/customAppBar/CustomAppBar';
-import { styles } from './styles';
 import { COLORS } from '@constants/colors';
+
+import { styles } from './styles';
 
 export default function MovieDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const { mutate: toggleFavourite, isPending } = useFavourites();
+
+  const navigation = useNavigation<StackNavProp>();
 
   const route = useRoute<MovieDetailsProps>();
   const movieId = route.params?.movieId;
@@ -61,21 +64,29 @@ export default function MovieDetailsScreen() {
 
   return (
     <>
-      <CustomAppBar title={data.title} isMovieDetailsScreen={true} />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
         <View style={styles.container}>
           <Image
             source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
             style={styles.backDrop}
             resizeMode="cover"
           />
+          <View style={styles.buttonWrapper}>
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <Ionicons
+                name="arrow-back-outline"
+                size={25}
+                color={COLORS.BG_SURFACE}
+              />
+            </TouchableOpacity>
 
-          <FavouriteButton
-            isPending={isPending}
-            isFavourite={isMovieFavourited}
-            handleFavourite={handleFavourite}
-            customStyle={styles.favouriteWrapper}
-          />
+            <FavouriteButton
+              isPending={isPending}
+              isFavourite={isMovieFavourited}
+              handleFavourite={handleFavourite}
+              customStyle={styles.favouriteWrapper}
+            />
+          </View>
 
           <View style={styles.posterWrapper}>
             <Image
@@ -88,16 +99,22 @@ export default function MovieDetailsScreen() {
           <View style={styles.detailsWrapper}>
             <View style={styles.titleWrapper}>
               <Text style={styles.title}>{data.title}</Text>
-              <Text style={styles.rating}>★ {formattedRating}</Text>
+              <View style={styles.ratingWrapper}>
+                <Text style={styles.star}>★ </Text>
+                <Text style={styles.rating}>{formattedRating}</Text>
+              </View>
             </View>
 
             <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
 
             <View style={styles.overviewWrapper}>
               <Text style={styles.overview}>{data.overview}</Text>
+            </View>
+          </View>
+          <View style={styles.listWrapper}>
+            <View style={styles.recommendedText}>
               <Text style={styles.subtitle}>Recommended Movies</Text>
             </View>
-
             <FlatList
               ListEmptyComponent={
                 isLoading ? (
@@ -112,7 +129,12 @@ export default function MovieDetailsScreen() {
               showsHorizontalScrollIndicator={false}
               renderItem={({ item }) => (
                 <View style={styles.movieCardWrapper}>
-                  <MovieCard movieDetails={item} height={340} width={150} />
+                  <MovieCard
+                    movieDetails={item}
+                    height={320}
+                    width={150}
+                    posterHeight={230}
+                  />
                 </View>
               )}
               keyExtractor={item => item.movieId}

@@ -6,6 +6,7 @@ import CustomAppBar from '@components/customAppBar';
 import SortByOptions from '@components/sortByOptions';
 import FilterByOptions from '@components/filterByOptions/FilterByOptions';
 import CustomModal from '@components/customModal';
+import EmptyContainer from '@components/emptyContainer';
 import { SORT_OPTIONS } from '@constants/constants';
 import { useMovies } from '@hooks/useMovies';
 import { fetchFavourites } from '@hooks/useFavourites';
@@ -117,6 +118,7 @@ export default function Home() {
         />
       </CustomModal>
       <FlatList
+        ListEmptyComponent={<EmptyContainer />}
         data={movies}
         numColumns={2}
         contentContainerStyle={styles.listContent}

@@ -3,6 +3,8 @@ import { FlatList } from 'react-native';
 import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
+import EmptyContainer from '@components/emptyContainer';
+
 import { styles } from './styles';
 
 export default function Favourites() {
@@ -10,10 +12,10 @@ export default function Favourites() {
 
   return (
     <>
-      <CustomAppBar title='Favourites'/>
-
+      <CustomAppBar title="Favourites" />
       <FlatList
         data={favourites}
+        ListEmptyComponent={<EmptyContainer />}
         numColumns={2}
         contentContainerStyle={styles.listContent}
         columnWrapperStyle={styles.columnWrapper}

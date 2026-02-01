@@ -37,7 +37,6 @@ interface FavButtonProps {
 
 interface CustomAppBarProps {
   title: string;
-  isMovieDetailsScreen?: boolean;
   isHomeScreen?: boolean;
   setSort?: () => void;
   setFilter?: () => void;

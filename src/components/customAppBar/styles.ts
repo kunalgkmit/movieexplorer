@@ -4,7 +4,6 @@ import { COLORS } from '@constants/colors';
 export const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '12%',
     paddingHorizontal: 20,
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -13,14 +12,8 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 5,
-    backgroundColor:COLORS.BG_PRIMARY
-  },
-
-  titleWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 15,
-    justifyContent:'flex-start',
+    backgroundColor: COLORS.BG_PRIMARY,
+    paddingVertical: 15,
   },
 
   title: {

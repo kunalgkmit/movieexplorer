@@ -7,7 +7,6 @@ import { styles } from './styles';
 
 export default function CustomAppBar({
   title,
-  isMovieDetailsScreen,
   isHomeScreen,
   setSort,
   setFilter,
@@ -16,28 +15,33 @@ export default function CustomAppBar({
 
   const insets = useSafeAreaInsets();
 
-  return (
-    <View style={[styles.container, { paddingTop: insets.top }]}>
-      <StatusBar barStyle={'dark-content'} />
-      <View style={styles.titleWrapper}>
-        {isMovieDetailsScreen && (
-          <TouchableOpacity onPress={() => navigation.pop()}>
-            <Ionicons name="arrow-back-outline" size={24} />
-          </TouchableOpacity>
-        )}
+  const getSafeAreaPadding = () => ({
+    paddingTop: insets.top,
+  });
 
+  return (
+    <View style={[styles.container, getSafeAreaPadding()]}>
+      <StatusBar barStyle={'dark-content'} />
+      <View
+        style={{
+          width: '100%',
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
+      >
         <Text style={styles.title}>{title}</Text>
+        {isHomeScreen && (
+          <View style={styles.sortFilterWrapper}>
+            <TouchableOpacity onPress={setSort}>
+              <Ionicons name="filter-outline" size={24} />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={setFilter}>
+              <Ionicons name="funnel-outline" size={24} />
+            </TouchableOpacity>
+          </View>
+        )}
       </View>
-      {isHomeScreen && (
-        <View style={styles.sortFilterWrapper}>
-          <TouchableOpacity onPress={setSort}>
-            <Ionicons name="filter-outline" size={24} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={setFilter}>
-            <Ionicons name="funnel-outline" size={24} />
-          </TouchableOpacity>
-        </View>
-      )}
     </View>
   );
 }

@@ -7,6 +7,7 @@ declare global {
     [ROUTES.TABS.HOME]: undefined;
     [ROUTES.TABS.FAVOURITES]: undefined;
     [ROUTES.TABS.PROFILE]: undefined;
+    [ROUTES.TABS.SEARCH]: undefined;
   };
 
   type StackNavTypes = {

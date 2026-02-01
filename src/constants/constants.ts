@@ -10,6 +10,8 @@ export const ICONS = {
   HEART_OUTLINE: 'heart-outline',
   ACCOUNT: 'person',
   ACCOUNT_OUTLINE: 'person-outline',
+  SEARCH: 'search',
+  SEARCH_OUTLINE: 'search-outline',
 };
 
 export const MONTH_NAMES = [

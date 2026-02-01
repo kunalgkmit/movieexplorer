@@ -4,6 +4,7 @@ export const ROUTES = {
     HOME: 'Home',
     FAVOURITES: 'Favourites',
     PROFILE: 'Profile',
+    SEARCH: 'Search',
   },
 
   //Stack Navigation

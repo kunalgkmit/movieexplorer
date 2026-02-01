@@ -15,7 +15,12 @@ export default function CustomBottomTab({
   const getIconName = (routeName: string, isFocused: boolean): string => {
     if (routeName === ROUTES.TABS.HOME) {
       return isFocused ? ICONS.HOME : ICONS.HOME_OUTLINE;
-    } else if (routeName === ROUTES.TABS.FAVOURITES) {
+    } else if(routeName === ROUTES.TABS.SEARCH){
+      return isFocused ? ICONS.SEARCH : ICONS.SEARCH_OUTLINE;
+
+    }
+    
+    else if (routeName === ROUTES.TABS.FAVOURITES) {
       return isFocused ? ICONS.HEART : ICONS.HEART_OUTLINE;
     } else {
       return isFocused ? ICONS.ACCOUNT : ICONS.ACCOUNT_OUTLINE;

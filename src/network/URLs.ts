@@ -10,6 +10,7 @@ export const ENDPOINTS = {
 
   MOVIES: {
     DISCOVER: '/discover/movie',
+    SEARCH: 'https://api.themoviedb.org/3/search/movie',
   },
 
   FAVOURITES: {

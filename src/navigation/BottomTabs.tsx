@@ -5,6 +5,7 @@ import { ROUTES } from '@constants/routes';
 import Favourites from '@screens/favourites/Favourites';
 import Home from '@screens/home/Home';
 import Profile from '@screens/profile/Profile';
+import Search from '@screens/search/Search';
 
 const Tab = createBottomTabNavigator<BottomTabNavTypes>();
 
@@ -17,6 +18,7 @@ export const MyTabs = () => {
       tabBar={props => <CustomBottomTab {...props} />}
     >
       <Tab.Screen name={ROUTES.TABS.HOME} component={Home} />
+      <Tab.Screen name={ROUTES.TABS.SEARCH} component={Search} />
       <Tab.Screen name={ROUTES.TABS.FAVOURITES} component={Favourites} />
       <Tab.Screen name={ROUTES.TABS.PROFILE} component={Profile} />
     </Tab.Navigator>

@@ -53,3 +53,15 @@ export const fetchRecommendedMovies = async (
   );
   return response.data;
 };
+
+export const searchMovies = async (movieKeyword: string) => {
+  const movieParams = {
+    query: movieKeyword,
+    include_adult: false,
+    language: 'en-US',
+    page: '1',
+  };
+  const response = await axiosInstance.get(ENDPOINTS.MOVIES.SEARCH, {params: movieParams});
+  console.log("SEARCH response>>", response)
+  return response.data;
+};

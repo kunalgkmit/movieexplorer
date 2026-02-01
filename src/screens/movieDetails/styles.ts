@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   backDrop: {
     width: '100%',
-    height: 350,
+    height: 400,
     opacity: 0.8,
   },
   poster: {

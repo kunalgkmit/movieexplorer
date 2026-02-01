@@ -1,27 +1,22 @@
-import { ActivityIndicator, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
+import CustomActivityIndicator from '@components/customActivityIndicator';
 import { useUserSession } from '@store/userSession';
 import LoginScreen from '@screens/login/Login';
 import StackNavigator from './StackNavigation';
-import { styles } from './styles';
+import { COLORS } from '@constants/colors';
 
 export default function Routes() {
-
   const isLoggedIn = useUserSession(state => state.isLoggedIn);
   const isSessionHydrated = useUserSession(state => state.isSessionHydrated);
 
   if (!isSessionHydrated) {
-    return (
-      <View style={styles.activityIndicator}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
+    return <CustomActivityIndicator color={COLORS.SHADOW} />;
   }
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <StackNavigator/> : <LoginScreen />}
+      {isLoggedIn ? <StackNavigator /> : <LoginScreen />}
     </NavigationContainer>
   );
 }

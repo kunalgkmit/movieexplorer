@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
+import { Alert, FlatList } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import CustomAppBar from '@components/customAppBar';
@@ -7,6 +7,7 @@ import SortByOptions from '@components/sortByOptions';
 import FilterByOptions from '@components/filterByOptions/FilterByOptions';
 import CustomModal from '@components/customModal';
 import EmptyContainer from '@components/emptyContainer';
+import CustomActivityIndicator from '@components/customActivityIndicator';
 import { SORT_OPTIONS } from '@constants/constants';
 import { useMovies } from '@hooks/useMovies';
 import { fetchFavourites } from '@hooks/useFavourites';
@@ -14,6 +15,7 @@ import { useFavMoviesStore } from '@store/favourites';
 import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
+import { COLORS } from '@constants/colors';
 
 export default function Home() {
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -66,13 +68,6 @@ export default function Home() {
     Alert.alert('Error while getting movies!', error.message, [{ text: 'OK' }]);
   }
 
-  if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" />
-      </View>
-    );
-  }
   const toggleSort = () => {
     setIsSortOpen(prev => !prev);
     setIsFilterOpen(false);
@@ -91,8 +86,9 @@ export default function Home() {
         setSort={toggleSort}
         setFilter={toggleFilter}
       />
+      {/* {isLoading ? <CustomActivityIndicator color={COLORS.SHADOW} /> : null} */}
       <CustomModal
-        modalName={'Sort '}
+        modalName={'Sort: '}
         visible={toggleSort}
         isVisible={isSortOpen}
       >
@@ -118,7 +114,13 @@ export default function Home() {
         />
       </CustomModal>
       <FlatList
-        ListEmptyComponent={<EmptyContainer />}
+        ListEmptyComponent={
+          !isLoading ? (
+            <EmptyContainer />
+          ) : (
+            <CustomActivityIndicator color={COLORS.SHADOW} />
+          )
+        }
         data={movies}
         numColumns={2}
         contentContainerStyle={styles.listContent}
@@ -128,7 +130,9 @@ export default function Home() {
         onEndReached={loadMore}
         onEndReachedThreshold={0.5}
         ListFooterComponent={
-          isFetchingNextPage ? <ActivityIndicator size="small" /> : null
+          isFetchingNextPage ? (
+            <CustomActivityIndicator color={COLORS.SHADOW} />
+          ) : null
         }
       />
     </>

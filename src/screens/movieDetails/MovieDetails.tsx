@@ -1,6 +1,5 @@
 import { useMemo } from 'react';
 import {
-  ActivityIndicator,
   Image,
   Text,
   View,
@@ -21,9 +20,11 @@ import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import FavouriteButton from '@components/favouriteButton';
+import CustomActivityIndicator from '@components/customActivityIndicator';
 
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
 import { styles } from './styles';
+import { COLORS } from '@constants/colors';
 
 export default function MovieDetailsScreen() {
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
@@ -51,7 +52,7 @@ export default function MovieDetailsScreen() {
   };
 
   if (isLoading) {
-    return <ActivityIndicator style={styles.activityIndicator} />;
+    return <CustomActivityIndicator color={COLORS.SHADOW} />;
   }
 
   const formattedRating = formatMovieRating(data.vote_average);
@@ -60,7 +61,7 @@ export default function MovieDetailsScreen() {
 
   return (
     <>
-      <CustomAppBar title={data.title} isMovieDetailsScreen={true}/>
+      <CustomAppBar title={data.title} isMovieDetailsScreen={true} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Image
@@ -69,12 +70,12 @@ export default function MovieDetailsScreen() {
             resizeMode="cover"
           />
 
-        <FavouriteButton
-          isPending={isPending}
-          isFavourite={isMovieFavourited}
-          handleFavourite={handleFavourite}
-          customStyle={styles.favouriteWrapper}
-        />
+          <FavouriteButton
+            isPending={isPending}
+            isFavourite={isMovieFavourited}
+            handleFavourite={handleFavourite}
+            customStyle={styles.favouriteWrapper}
+          />
 
           <View style={styles.posterWrapper}>
             <Image
@@ -97,22 +98,28 @@ export default function MovieDetailsScreen() {
               <Text style={styles.subtitle}>Recommended Movies</Text>
             </View>
 
-          <FlatList
-            ListEmptyComponent={<Text>Recommended Movies not found</Text>}
-            data={movies}
-            horizontal={true}
-            contentContainerStyle={styles.contentContainer}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <View style={styles.movieCardWrapper}>
-                <MovieCard movieDetails={item} height={340} width={150} />
-              </View>
-            )}
-            keyExtractor={item => item.movieId}
-          />
+            <FlatList
+              ListEmptyComponent={
+                isLoading ? (
+                  <CustomActivityIndicator color={COLORS.SHADOW} />
+                ) : (
+                  <Text>No Recommended Movies</Text>
+                )
+              }
+              data={movies}
+              horizontal={true}
+              contentContainerStyle={styles.contentContainer}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <View style={styles.movieCardWrapper}>
+                  <MovieCard movieDetails={item} height={340} width={150} />
+                </View>
+              )}
+              keyExtractor={item => item.movieId}
+            />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
     </>
   );
 }

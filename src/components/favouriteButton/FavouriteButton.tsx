@@ -1,7 +1,9 @@
-import { ActivityIndicator, TouchableOpacity, View } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import Ionicons from '@react-native-vector-icons/ionicons';
 
+import CustomActivityIndicator from '@components/customActivityIndicator';
 import { COLORS } from '@constants/colors';
+
 import { styles } from './styles';
 
 export default function FavouriteButton({
@@ -13,7 +15,7 @@ export default function FavouriteButton({
   return (
     <View style={!customStyle ? styles.favouriteWrapper : customStyle}>
       {isPending ? (
-        <ActivityIndicator color={COLORS.RED} />
+        <CustomActivityIndicator color={COLORS.RED}/>
       ) : (
         <TouchableOpacity onPress={handleFavourite}>
           <Ionicons

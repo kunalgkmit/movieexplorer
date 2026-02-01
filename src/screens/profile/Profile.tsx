@@ -1,11 +1,13 @@
-import { ActivityIndicator, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 import CustomAppBar from '@components/customAppBar/CustomAppBar';
 import CustomButton from '@components/button';
+import CustomActivityIndicator from '@components/customActivityIndicator';
 import { useUserDetails } from '@hooks/useUserDetails';
 import { useUserSession } from '@store/userSession';
 
 import { styles } from './styles';
+import { COLORS } from '@constants/colors';
 
 export default function Profile() {
   const { data, isLoading } = useUserDetails();
@@ -18,7 +20,7 @@ export default function Profile() {
   };
 
   if (isLoading) {
-    return <ActivityIndicator style={styles.activityIndicator} size={20} />;
+    return <CustomActivityIndicator color={COLORS.SHADOW} />;
   }
 
   return (

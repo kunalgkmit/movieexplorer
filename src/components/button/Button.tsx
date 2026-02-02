@@ -2,6 +2,7 @@ import { Text, TouchableOpacity } from 'react-native';
 
 import CustomActivityIndicator from '@components/customActivityIndicator';
 import { COLORS } from '@constants/colors';
+
 import { styles } from './styles';
 
 export default function CustomButton({
@@ -9,17 +10,26 @@ export default function CustomButton({
   onPress,
   isPending,
   isLogout,
+  isClearFilter,
 }: ButtonProps) {
   return (
     <TouchableOpacity
-      style={[styles.button, isLogout && { backgroundColor: COLORS.RED }]}
+      style={[
+        styles.button,
+        isLogout && styles.logout,
+        isClearFilter && styles.clearFilter,
+      ]}
       onPress={onPress}
       disabled={isPending}
     >
       {isPending ? (
-        <CustomActivityIndicator color={COLORS.BG_SURFACE}/>
+        <CustomActivityIndicator color={COLORS.BG_SURFACE} />
       ) : (
-        <Text style={styles.buttonText}>{title}</Text>
+        <Text
+          style={[styles.buttonText, isClearFilter && styles.clearFilterText]}
+        >
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );

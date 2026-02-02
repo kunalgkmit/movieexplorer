@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import Ionicons from '@react-native-vector-icons/ionicons';
 
 import CustomTextInput from '@components/textInput';
 import CustomButton from '@components/button';
 import { GENRE_SELECTION_ARRAY } from '@constants/constants';
-import { COLORS } from '@constants/colors';
 import {
   movieRatingValidator,
   movieReleaseYearValidator,
 } from '@utils/helpers';
+
 import { styles } from './styles';
 
 export default function FilterByOptions({
@@ -72,7 +71,7 @@ export default function FilterByOptions({
   };
 
   const handleGenreSelection = (genreId: string) => {
-    setMovieFilterByGenre(genreId);
+    setMovieFilterByGenre(prev => (prev === genreId ? '' : genreId));
   };
 
   const handleGenreClose = () => {
@@ -116,22 +115,17 @@ export default function FilterByOptions({
               >
                 {item.genreName}
               </Text>
-              {movieFilterByGenre === item.genreId ? (
-                <TouchableOpacity onPress={handleGenreClose}>
-                  <Ionicons
-                    name="close-outline"
-                    size={20}
-                    color={COLORS.BG_SURFACE}
-                  />
-                </TouchableOpacity>
-              ) : null}
             </TouchableOpacity>
           );
         })}
       </View>
-      <View style={styles.filterButton}>
-        <CustomButton title="Apply Filters" onPress={handleFilterSubmit} />
-        <CustomButton title="Clear Filters" onPress={clearFilters} />
+      <View style={styles.filterButtonsWrapper}>
+        <CustomButton title="Apply" onPress={handleFilterSubmit} />
+        <CustomButton
+          title="Clear"
+          onPress={clearFilters}
+          isClearFilter={true}
+        />
       </View>
     </View>
   );

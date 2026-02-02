@@ -8,6 +8,7 @@ interface ButtonProps {
   onPress: () => void;
   isPending?: boolean;
   isLogout?: boolean;
+  isClearFilter?: boolean;
 }
 
 interface CustomTextInputProps {

@@ -10,33 +10,37 @@ export const styles = StyleSheet.create({
   },
 
   genreButton: {
-    padding: 10,
+    padding: 15,
     borderRadius: 10,
     backgroundColor: COLORS.BG_SURFACE,
   },
   selectedGenreButton: {
-    padding: 10,
+    padding: 15,
     borderRadius: 10,
     borderColor: COLORS.PRIMARY,
-    borderWidth: 1.5,
-    backgroundColor: COLORS.PRIMARY_LIGHT,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    gap: 10,
+    borderWidth: 1,
   },
 
-  filterButton: { width: '100%', gap: 8 },
+  filterButtonsWrapper: {
+    width: '40%',
+    gap: 8,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
 
   title: {
     fontSize: 25,
   },
 
-  genreWrapper: { flexDirection: 'row', gap: 10, marginBottom: 20 },
+  genreWrapper: { 
+    flexDirection: 'row', 
+    gap: 10,
+     marginBottom: 20
+   },
 
   selectedOptionText: {
     fontSize: 15,
-    color: COLORS.TEXT_INVERSE,
+    color: COLORS.PRIMARY,
   },
 
   text: {

@@ -21,6 +21,9 @@ export default function Home() {
   const [isSortOpen, setIsSortOpen] = useState(false);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
+  const [sortHighlight, setSortHighlight] = useState(false);
+  const [filterHighlight, setFilterHighlight] = useState(false);
+
   const [votes, setVotes] = useState(0);
   const [releaseYear, setReleaseYear] = useState(0);
   const [movieGenre, setMovieGenre] = useState('');
@@ -85,8 +88,9 @@ export default function Home() {
         isHomeScreen={true}
         setSort={toggleSort}
         setFilter={toggleFilter}
+        sortHightlight={sortHighlight}
+        filterHighlight={filterHighlight}
       />
-      {/* {isLoading ? <CustomActivityIndicator color={COLORS.SHADOW} /> : null} */}
       <CustomModal
         modalName={'Sort: '}
         visible={toggleSort}
@@ -96,6 +100,7 @@ export default function Home() {
           sortBy={sortBy}
           setSortBy={setSortBy}
           toggleSort={toggleSort}
+          setSortHighlight={setSortHighlight}
         />
       </CustomModal>
       <CustomModal
@@ -111,6 +116,7 @@ export default function Home() {
           setReleaseYear={setReleaseYear}
           setMovieGenre={setMovieGenre}
           toggleFilter={toggleFilter}
+          setFilterHighlight={setFilterHighlight}
         />
       </CustomModal>
       <FlatList

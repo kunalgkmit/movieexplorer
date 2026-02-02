@@ -19,6 +19,7 @@ export default function FilterByOptions({
   setReleaseYear,
   toggleFilter,
   setMovieGenre,
+  setFilterHighlight,
 }: FilterOptionsProps) {
   const [voteGreaterThan, setVoteGreaterThan] = useState('');
   const [movieReleaseYear, setMovieReleaseYear] = useState('');
@@ -54,7 +55,12 @@ export default function FilterByOptions({
       setVotes(votesNum);
       setReleaseYear(yearNum);
       setMovieGenre(movieFilterByGenre);
+      setFilterHighlight?.(true);
       toggleFilter();
+    }
+
+    if(!voteGreaterThan && !releaseYear && !movieFilterByGenre){
+      setFilterHighlight?.(false);
     }
   };
 
@@ -67,16 +73,13 @@ export default function FilterByOptions({
     setReleaseYear(0);
     setMovieGenre('');
 
+    setFilterHighlight?.(false);
+
     toggleFilter();
   };
 
   const handleGenreSelection = (genreId: string) => {
     setMovieFilterByGenre(prev => (prev === genreId ? '' : genreId));
-  };
-
-  const handleGenreClose = () => {
-    setMovieFilterByGenre('');
-    setMovieGenre('');
   };
 
   return (

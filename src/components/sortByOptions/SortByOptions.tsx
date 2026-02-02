@@ -9,14 +9,17 @@ export default function SortByOptions({
   sortBy,
   setSortBy,
   toggleSort,
+  setSortHighlight
 }: SortByProps) {
   const handleSortSelection = (sortOption: string) => {
     setSortBy(sortOption);
+    setSortHighlight?.(true);
     toggleSort();
   };
 
   const handleClose = () => {
     toggleSort();
+    setSortHighlight?.(false);
     setSortBy(SORT_OPTIONS.POPULARITY_DESC);
   };
 

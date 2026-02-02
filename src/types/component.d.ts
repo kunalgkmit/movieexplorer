@@ -41,6 +41,8 @@ interface CustomAppBarProps {
   isHomeScreen?: boolean;
   setSort?: () => void;
   setFilter?: () => void;
+  sortHightlight?: boolean;
+  filterHighlight?: boolean;
 }
 
 interface CustomModalProps {
@@ -54,6 +56,7 @@ interface SortByProps {
   sortBy: string;
   setSortBy: (params: string) => void;
   toggleSort: () => void;
+  setSortHighlight?: (params: boolean) => void;
 }
 
 interface SortType {
@@ -74,4 +77,5 @@ interface FilterOptionsProps {
   setReleaseYear: (releaseYear: number) => void;
   setMovieGenre: (genreId: string) => void;
   toggleFilter: () => void;
+  setFilterHighlight?: (param: boolean) => void;
 }

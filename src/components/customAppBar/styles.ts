@@ -27,4 +27,18 @@ export const styles = StyleSheet.create({
     width: '25%',
     justifyContent: 'space-around',
   },
+
+  contentWrapper: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  selectedOption: {
+    borderWidth: 1,
+    padding: 2,
+    borderRadius: 5,
+    borderColor: COLORS.PRIMARY,
+  },
 });

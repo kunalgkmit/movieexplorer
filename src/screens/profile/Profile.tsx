@@ -5,7 +5,7 @@ import CustomAppBar from '@components/customAppBar/CustomAppBar';
 import CustomButton from '@components/button';
 import CustomActivityIndicator from '@components/customActivityIndicator';
 import { useUserDetails } from '@hooks/useUserDetails';
-import { useLogout } from '@hooks/useLogin';
+import { useLogout } from '@hooks/useLogout';
 import { useUserSession } from '@store/userSession';
 
 import { styles } from './styles';

@@ -84,7 +84,7 @@ export const styles = StyleSheet.create({
   buttonWrapper: {
     width: '100%',
     position: 'absolute',
-    top: 30,
+    top: 40,
     padding: 20,
     justifyContent: 'center',
   },

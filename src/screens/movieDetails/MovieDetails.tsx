@@ -72,11 +72,20 @@ export default function MovieDetailsScreen() {
             resizeMode="cover"
           />
           <View style={styles.buttonWrapper}>
-            <TouchableOpacity onPress={() => navigation.pop()}>
+            <TouchableOpacity
+              onPress={() => navigation.pop()}
+              style={{
+                backgroundColor: COLORS.BG_SURFACE,
+                position: 'absolute',
+                left: 20,
+                padding: 8,
+                borderRadius: 20,
+              }}
+            >
               <Ionicons
                 name="arrow-back-outline"
                 size={25}
-                color={COLORS.BG_SURFACE}
+                color={COLORS.SHADOW}
               />
             </TouchableOpacity>
 

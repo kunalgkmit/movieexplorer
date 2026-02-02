@@ -5,6 +5,8 @@ export const styles = StyleSheet.create({
   container: {
     gap: 10,
     padding: 20,
+    justifyContent:'center',
+    flex:0.5
   },
 
   text: {

@@ -75,7 +75,7 @@ export default function MovieDetailsScreen() {
 
   return (
     <>
-      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <Image
             source={{ uri: backDropUrl }}

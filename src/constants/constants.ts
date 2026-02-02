@@ -67,6 +67,7 @@ export const GENRE_SELECTION_ARRAY: GenreType[] = [
 ];
 
 export const sampleImgUrl =
-  'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Chromium_T-Rex-error-offline.svg/2560px-Chromium_T-Rex-error-offline.svg.png?20210319220015';
+  'https://images.steamusercontent.com/ugc/1613934288762909786/049D1992EB339B8BC6687937E06042EBEBE332E2/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';
 
-export const sampleBackdrop = 'https://wallpapercave.com/wp/wp5248939.png';
+export const sampleBackdrop =
+  'https://images.steamusercontent.com/ugc/1756948115632536033/AA2E2A427FA79E5C210B2FE0767324E0597FE196/?imw=5000&imh=5000&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=false';

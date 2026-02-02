@@ -67,6 +67,8 @@ export default function FilterByOptions({
     setVotes(0);
     setReleaseYear(0);
     setMovieGenre('');
+
+    toggleFilter();
   };
 
   const handleGenreSelection = (genreId: string) => {

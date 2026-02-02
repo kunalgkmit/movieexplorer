@@ -5,6 +5,8 @@ export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     width: '70%',
+    flex: 0.5,
+    justifyContent: 'center',
   },
 
   genreButton: {

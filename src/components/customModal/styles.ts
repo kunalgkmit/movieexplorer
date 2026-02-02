@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.BG_CARD,
     borderRadius: 30,
-    gap: 10,
+    gap: 30,
   },
 
   closeButton: { position: 'absolute', top: 20, right: 20 },
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
 
   modalWrapper: {
     height: height,
-    marginTop: height / 4,
+    marginTop: height / 3,
   },
 
   blurBackground: {
@@ -34,6 +34,4 @@ export const styles = StyleSheet.create({
     left: 0,
     right: 0,
   },
-
-  contentWrapper: { height: '5%' },
 });

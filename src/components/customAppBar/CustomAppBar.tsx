@@ -21,7 +21,7 @@ export default function CustomAppBar({
 
   return (
     <View style={[styles.container, getSafeAreaPadding()]}>
-      <StatusBar barStyle={'dark-content'} translucent={true} />
+      <StatusBar barStyle={'dark-content'} />
       <View style={styles.contentWrapper}>
         <Text style={styles.title}>{title}</Text>
         {isHomeScreen && (

@@ -21,7 +21,7 @@ export default function CustomAppBar({
 
   return (
     <View style={[styles.container, getSafeAreaPadding()]}>
-      <StatusBar barStyle={'dark-content'} />
+      <StatusBar barStyle={'dark-content'} translucent={true} />
       <View style={styles.contentWrapper}>
         <Text style={styles.title}>{title}</Text>
         {isHomeScreen && (
@@ -31,16 +31,12 @@ export default function CustomAppBar({
                 name="filter-outline"
                 size={24}
                 color={sortHightlight ? COLORS.PRIMARY : COLORS.SHADOW}
-                style={
-                  sortHightlight && styles.selectedOption
-                }
+                style={sortHightlight && styles.selectedOption}
               />
             </TouchableOpacity>
             <TouchableOpacity
               onPress={setFilter}
-              style={
-                filterHighlight && styles.selectedOption
-              }
+              style={filterHighlight && styles.selectedOption}
             >
               <Ionicons
                 name="funnel-outline"

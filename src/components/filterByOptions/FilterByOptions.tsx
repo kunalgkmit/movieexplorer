@@ -45,7 +45,7 @@ export default function FilterByOptions({
       movieReleaseYearError: releaseYearError,
     });
 
-    if (!ratingError || !releaseYearError) {
+    if (!ratingError && !releaseYearError) {
       const votesNum = isNaN(parseInt(voteGreaterThan))
         ? 0
         : parseInt(voteGreaterThan);

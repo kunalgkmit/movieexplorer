@@ -6,6 +6,7 @@ import {
   FlatList,
   ScrollView,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Ionicons from '@react-native-vector-icons/ionicons';
@@ -76,6 +77,8 @@ export default function MovieDetailsScreen() {
   return (
     <>
       <ScrollView showsVerticalScrollIndicator={false}>
+        <StatusBar barStyle={'dark-content'} translucent={true} />
+
         <View style={styles.container}>
           <Image
             source={{ uri: backDropUrl }}

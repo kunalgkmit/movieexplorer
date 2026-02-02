@@ -10,16 +10,6 @@ export default async function fetchMovies({
   releaseYear,
   withGenres,
 }: DefaultMovieParams) {
-  console.log('MOVIES RESPONSE>>>>>>', {
-    pageParam,
-    sortBy,
-    includeVideo,
-    language,
-    votesGreaterThan,
-    releaseYear,
-    withGenres,
-  });
-
   const response = await axiosInstance.get(ENDPOINTS.MOVIES.DISCOVER, {
     params: {
       page: pageParam,
@@ -32,7 +22,6 @@ export default async function fetchMovies({
       with_genres: withGenres,
     },
   });
-  // console.log("MOVIES RESPONSE>>>>>>", response)
   return response.data;
 }
 
@@ -61,7 +50,8 @@ export const searchMovies = async (movieKeyword: string) => {
     language: 'en-US',
     page: '1',
   };
-  const response = await axiosInstance.get(ENDPOINTS.MOVIES.SEARCH, {params: movieParams});
-  console.log("SEARCH response>>", response)
+  const response = await axiosInstance.get(ENDPOINTS.MOVIES.SEARCH, {
+    params: movieParams,
+  });
   return response.data;
 };

@@ -53,13 +53,11 @@ export default function Home() {
     releaseYear: releaseYear,
     withGenres: movieGenre,
   });
-  console.log('WITH GENRE>>', movieGenre);
 
   const movies = useMemo(() => {
     if (data?.length === 0) return [];
     return formatMovieData(data ?? [], isFavourite);
   }, [data, favMovieIds]);
-  console.log(sortBy, movies);
 
   const loadMore = () => {
     if (hasNextPage && !isFetchingNextPage) {

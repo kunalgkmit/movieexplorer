@@ -21,14 +21,11 @@ export default function Search() {
 
   const { data, isLoading } = useSearchMovies(movieKeyword);
 
-  console.log('SEARCH DATA>>', data);
-
   const movies = useMemo(
     () => formatMovieData(data ?? [], isFavourite),
     [data, favMovieIds],
   );
 
-  console.log('SEARHED DATA>>', data);
   return (
     <View style={styles.container}>
       <CustomAppBar title="Search" />

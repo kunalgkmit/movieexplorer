@@ -13,5 +13,5 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
 
-  textInputWrapper: { paddingTop: 10, paddingHorizontal: 10 },
+  textInputWrapper: { paddingTop: 15, paddingHorizontal: 10 },
 });

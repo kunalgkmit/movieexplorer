@@ -26,7 +26,7 @@ export default function MovieCard({
     state => state.removeFavouriteFromStore,
   );
 
-  const formattedRating = formatMovieRating(rating);
+  const formattedRating = rating ? formatMovieRating(rating) : '0';
 
   const formattedReleaseDate = releaseDate
     ? formatDateToReadableDate(releaseDate)

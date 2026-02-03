@@ -20,6 +20,8 @@ export default function MovieCard({
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } =
     movieDetails;
 
+  const navigation = useNavigation<StackNavProp>();
+
   const addFavourite = useFavMoviesStore(state => state.addFavouriteToStore);
   const removeFavourite = useFavMoviesStore(
     state => state.removeFavouriteFromStore,
@@ -32,8 +34,6 @@ export default function MovieCard({
     : 'Date not found';
 
   const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
-
-  const navigation = useNavigation<StackNavProp>();
 
   // Add/ remove favourites when mutation of favourites is success
   useEffect(() => {

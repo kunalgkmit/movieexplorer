@@ -35,4 +35,10 @@ declare global {
     handleFavourite: () => void;
     customStyle?: ViewStyle;
   }
+
+  interface ButtonWrapperTypes {
+    isPending: boolean;
+    isMovieFavourited: boolean;
+    handleFavourite: () => void;
+  }
 }

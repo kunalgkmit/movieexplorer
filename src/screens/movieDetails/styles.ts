@@ -1,6 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 
 import { COLORS } from '@constants/colors';
+
+const {height, width} = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,14 +11,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   backDrop: {
-    width: '100%',
-    height: 400,
+    width: width,
+    height: height/2,
     opacity: 0.8,
   },
   poster: {
-    width: 200,
-    height: 300,
-    borderRadius: 25,
+    width: width,
+    height: height/3,
   },
   posterWrapper: {
     marginTop: '-50%',
@@ -27,16 +28,17 @@ export const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
   },
-  star: {
-    fontSize: 25,
-    fontWeight: 'bold',
+  starColor: {
     color: COLORS.ACCENT_YELLOW,
   },
 
-  rating: {
+  ratingColor: {
+    color: COLORS.TEXT_PRIMARY,
+  },
+
+  ratingContent: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: COLORS.TEXT_PRIMARY,
   },
 
   releaseDate: {
@@ -51,8 +53,6 @@ export const styles = StyleSheet.create({
   },
 
   title: { fontWeight: 'bold', fontSize: 24, lineHeight: 25, flexShrink: 1 },
-
-  subtitle: { fontWeight: 'bold', fontSize: 24 },
 
   detailsWrapper: { padding: 13, width: '100%' },
 

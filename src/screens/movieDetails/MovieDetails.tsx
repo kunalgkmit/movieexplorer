@@ -47,8 +47,8 @@ export default function MovieDetailsScreen() {
   const { mutate: toggleFavourite, isPending } = useFavourites();
 
   const isMovieFavourited = useFavMoviesStore(state =>
-  movieId ? state.isFavourite(movieId) : false
-);
+    movieId ? state.isFavourite(movieId) : false,
+  );
 
   const { data, isLoading } = useMovieDetails(movieId);
 
@@ -95,8 +95,10 @@ export default function MovieDetailsScreen() {
           <View style={styles.titleWrapper}>
             <Text style={styles.title}>{data.title}</Text>
             <View style={styles.ratingWrapper}>
-              <Text style={styles.star}>★ </Text>
-              <Text style={styles.rating}>{formattedRating}</Text>
+              <Text style={[styles.starColor, styles.ratingContent]}>★ </Text>
+              <Text style={[styles.ratingColor, styles.ratingContent]}>
+                {formattedRating}
+              </Text>
             </View>
           </View>
 
@@ -108,7 +110,7 @@ export default function MovieDetailsScreen() {
         </View>
         <View style={styles.listWrapper}>
           <View style={styles.recommendedText}>
-            <Text style={styles.subtitle}>Recommended Movies</Text>
+            <Text style={styles.title}>Recommended Movies</Text>
           </View>
           <RecommendedMovies movieId={movieId} />
         </View>

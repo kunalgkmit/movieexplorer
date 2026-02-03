@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
   favouriteWrapper: {
     position: 'absolute',
     backgroundColor: COLORS.BG_SURFACE,
-    right: -0.3,
+    right: -2,
     padding: 8,
     borderBottomStartRadius: 20,
     justifyContent: 'center',

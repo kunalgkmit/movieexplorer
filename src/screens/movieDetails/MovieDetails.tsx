@@ -23,20 +23,21 @@ import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import FavouriteButton from '@components/favouriteButton';
+import CustomActivityIndicator from '@components/customActivityIndicator';
 import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
 
 export default function MovieDetailsScreen() {
-  const isFavourite = useFavMoviesStore(state => state.isFavourite);
-  const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
-
-  const { mutate: toggleFavourite, isPending } = useFavourites();
-
   const navigation = useNavigation<StackNavProp>();
 
   const route = useRoute<MovieDetailsProps>();
   const movieId = route.params?.movieId;
+
+  const isFavourite = useFavMoviesStore(state => state.isFavourite);
+  const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
+
+  const { mutate: toggleFavourite, isPending } = useFavourites();
 
   const isMovieFavourited = movieId ? isFavourite(movieId) : false;
 
@@ -54,91 +55,89 @@ export default function MovieDetailsScreen() {
       toggleFavourite({ movieId, isFavourite: !isFavourite(movieId) });
   };
 
-  if (isLoading) {
-    return <ActivityIndicator style={styles.activityIndicator} />;
-  }
-
   const formattedRating = formatMovieRating(data.vote_average);
 
   const formattedReleaseDate = formatDateToReadableDate(data.release_date);
 
+  if (isLoading) {
+    return <CustomActivityIndicator color={COLORS.SHADOW} />;
+  }
+
   return (
-    <>
-      <ScrollView showsVerticalScrollIndicator={false} >
-        <View style={styles.container}>
-          <Image
-            source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
-            style={styles.backDrop}
-            resizeMode="cover"
+    <ScrollView showsVerticalScrollIndicator={false}>
+      <View style={styles.container}>
+        <Image
+          source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
+          style={styles.backDrop}
+          resizeMode="cover"
+        />
+        <View style={styles.buttonWrapper}>
+          <TouchableOpacity
+            onPress={() => navigation.pop()}
+            style={styles.backButton}
+          >
+            <Ionicons
+              name="arrow-back-outline"
+              size={25}
+              color={COLORS.SHADOW}
+            />
+          </TouchableOpacity>
+
+          <FavouriteButton
+            isPending={isPending}
+            isFavourite={isMovieFavourited}
+            handleFavourite={handleFavourite}
+            customStyle={styles.favouriteWrapper}
           />
-          <View style={styles.buttonWrapper}>
-            <TouchableOpacity
-              onPress={() => navigation.pop()}
-              style={styles.backButton}
-            >
-              <Ionicons
-                name="arrow-back-outline"
-                size={25}
-                color={COLORS.SHADOW}
-              />
-            </TouchableOpacity>
+        </View>
 
-            <FavouriteButton
-              isPending={isPending}
-              isFavourite={isMovieFavourited}
-              handleFavourite={handleFavourite}
-              customStyle={styles.favouriteWrapper}
-            />
-          </View>
+        <View style={styles.posterWrapper}>
+          <Image
+            source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
+            style={styles.poster}
+            resizeMode="contain"
+          />
+        </View>
 
-          <View style={styles.posterWrapper}>
-            <Image
-              source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
-              style={styles.poster}
-              resizeMode="contain"
-            />
-          </View>
-
-          <View style={styles.detailsWrapper}>
-            <View style={styles.titleWrapper}>
-              <Text style={styles.title}>{data.title}</Text>
-              <View style={styles.ratingWrapper}>
-                <Text style={styles.star}>★ </Text>
-                <Text style={styles.rating}>{formattedRating}</Text>
-              </View>
-            </View>
-
-            <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
-
-            <View style={styles.overviewWrapper}>
-              <Text style={styles.overview}>{data.overview}</Text>
+        <View style={styles.detailsWrapper}>
+          <View style={styles.titleWrapper}>
+            <Text style={styles.title}>{data.title}</Text>
+            <View style={styles.ratingWrapper}>
+              <Text style={styles.star}>★ </Text>
+              <Text style={styles.rating}>{formattedRating}</Text>
             </View>
           </View>
-          <View style={styles.listWrapper}>
-            <View style={styles.recommendedText}>
-              <Text style={styles.subtitle}>Recommended Movies</Text>
-            </View>
-            <FlatList
-              ListEmptyComponent={<Text>No Recommended Movies</Text>}
-              data={movies}
-              horizontal={true}
-              contentContainerStyle={styles.contentContainer}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item }) => (
-                <View style={styles.movieCardWrapper}>
-                  <MovieCard
-                    movieDetails={item}
-                    height={320}
-                    width={150}
-                    posterHeight={230}
-                  />
-                </View>
-              )}
-              keyExtractor={item => item.movieId}
-            />
+
+          <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
+
+          <View style={styles.overviewWrapper}>
+            <Text style={styles.overview}>{data.overview}</Text>
           </View>
         </View>
-      </ScrollView>
-    </>
+        <View style={styles.listWrapper}>
+          <View style={styles.recommendedText}>
+            <Text style={styles.subtitle}>Recommended Movies</Text>
+          </View>
+          <FlatList
+            ListEmptyComponent={<Text>No Recommended Movies</Text>}
+            data={movies}
+            horizontal={true}
+            contentContainerStyle={styles.contentContainer}
+            showsHorizontalScrollIndicator={false}
+            renderItem={({ item }) => (
+              <View style={styles.movieCardWrapper}>
+                <MovieCard
+                  movieDetails={item}
+                  height={320}
+                  width={150}
+                  posterHeight={230}
+                />
+              </View>
+            )}
+            keyExtractor={item => item.movieId}
+          />
+        </View>
+      </View>
+    </ScrollView>
   );
 }

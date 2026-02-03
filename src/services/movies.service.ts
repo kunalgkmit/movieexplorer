@@ -28,11 +28,10 @@ export const fetchMovieDetails = async (movieId?: number) => {
 
 export const fetchRecommendedMovies = async (
   movieId: number | undefined,
-  pageParam: number,
 ) => {
   const response = await axiosInstance.get(
     `/movie/${movieId}/recommendations`,
-    { params: { language: 'en-US', page: pageParam } },
+    { params: { language: 'en-US' } },
   );
   return response.data;
 };

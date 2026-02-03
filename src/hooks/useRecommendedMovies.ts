@@ -5,7 +5,7 @@ import { fetchRecommendedMovies } from '@services/movies.service';
 export const useRecommendedMovies = (movieId?: number) => {
   return useQuery({
     queryKey: ['RecommendedMovies', movieId],
-    queryFn: () => fetchRecommendedMovies(movieId, 1),
+    queryFn: () => fetchRecommendedMovies(movieId),
     select: data => data?.results ?? [],
   });
 };

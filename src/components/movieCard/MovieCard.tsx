@@ -59,7 +59,7 @@ export default function MovieCard({
               width: width,
               height: height,
             }
-          : null,
+          : ({}),
       ]}
       onPress={() => {
         navigation.push(ROUTES.STACK.MOVIE_DETAILS, { movieId });

@@ -64,6 +64,7 @@ export const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
+    borderTopEndRadius: 20,
   },
 
   overviewWrapper: { justifyContent: 'flex-start', paddingTop: 10, gap: 10 },

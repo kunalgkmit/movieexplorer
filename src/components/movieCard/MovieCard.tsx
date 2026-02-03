@@ -50,6 +50,10 @@ export default function MovieCard({
     toggleFavourite({ movieId, isFavourite: !isFavourite });
   };
 
+  const handleMovieDetailsNavigation = () => {
+    navigation.push(ROUTES.STACK.MOVIE_DETAILS, { movieId });
+  };
+
   return (
     <TouchableOpacity
       style={[
@@ -59,11 +63,9 @@ export default function MovieCard({
               width: width,
               height: height,
             }
-          : ({}),
+          : {},
       ]}
-      onPress={() => {
-        navigation.push(ROUTES.STACK.MOVIE_DETAILS, { movieId });
-      }}
+      onPress={handleMovieDetailsNavigation}
       activeOpacity={0.85}
     >
       <Image

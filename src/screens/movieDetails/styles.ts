@@ -2,7 +2,7 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 import { COLORS } from '@constants/colors';
 
-const {height, width} = Dimensions.get('screen');
+const { height, width } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
   container: {
@@ -12,12 +12,12 @@ export const styles = StyleSheet.create({
   },
   backDrop: {
     width: width,
-    height: height/2,
+    height: height / 2,
     opacity: 0.8,
   },
   poster: {
     width: width,
-    height: height/3,
+    height: height / 3,
   },
   posterWrapper: {
     marginTop: '-50%',
@@ -102,7 +102,7 @@ export const styles = StyleSheet.create({
     marginTop: 10,
   },
 
-  ratingWrapper: { flexDirection: 'row' },
+  ratingWrapper: { flexDirection: 'row', alignItems: 'center', gap: 4 },
 
   backButton: {
     backgroundColor: COLORS.BG_SURFACE,

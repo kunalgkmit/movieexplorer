@@ -95,7 +95,7 @@ export default function MovieDetailsScreen() {
           <View style={styles.titleWrapper}>
             <Text style={styles.title}>{data.title}</Text>
             <View style={styles.ratingWrapper}>
-              <Text style={[styles.starColor, styles.ratingContent]}>★ </Text>
+              <Ionicons name='star' size={25} color={COLORS.ACCENT_YELLOW}/>
               <Text style={[styles.ratingColor, styles.ratingContent]}>
                 {formattedRating}
               </Text>

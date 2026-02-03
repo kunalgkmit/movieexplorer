@@ -29,9 +29,7 @@ export default function MovieCard({
 
   const formattedRating = formatMovieRating(rating);
 
-  const formattedReleaseDate = releaseDate
-    ? formatDateToReadableDate(releaseDate)
-    : 'Date not found';
+  const formattedReleaseDate = formatDateToReadableDate(releaseDate);
 
   const { mutate: toggleFavourite, isSuccess, isPending } = useFavourites();
 

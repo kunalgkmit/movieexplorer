@@ -1,6 +1,8 @@
 import { useEffect } from 'react';
 import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from '@react-native-vector-icons/ionicons';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 import { IMAGE_BASE_URL } from '@env';
 import FavouriteButton from '@components/favouriteButton/FavouriteButton';
@@ -8,15 +10,11 @@ import { formatMovieRating, formatDateToReadableDate } from '@utils/helpers';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 import { ROUTES } from '@constants/routes';
+import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
 
-export default function MovieCard({
-  movieDetails,
-  width,
-  height,
-  posterHeight,
-}: MovieCardProps) {
+export default function MovieCard({ movieDetails }: MovieCardProps) {
   const { movieId, title, rating, posterPath, releaseDate, isFavourite } =
     movieDetails;
 
@@ -54,35 +52,31 @@ export default function MovieCard({
 
   return (
     <TouchableOpacity
-      style={[
-        styles.card,
-        width
-          ? {
-              width: width,
-              height: height,
-            }
-          : {},
-      ]}
+      style={styles.card}
       onPress={handleMovieDetailsNavigation}
       activeOpacity={0.85}
     >
       <Image
         source={{ uri: `${IMAGE_BASE_URL}${posterPath}` }}
-        style={[styles.poster, posterHeight ? { height: posterHeight } : null]}
+        style={styles.poster}
         resizeMode="cover"
       />
 
       <FavouriteButton {...{ isPending, isFavourite, handleFavourite }} />
 
       <View style={styles.infoContainer}>
-        <Text style={styles.title} numberOfLines={2}>
+        <Text style={styles.title} numberOfLines={1}>
           {title}
         </Text>
 
         <View style={styles.metaRow}>
           <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
           <View style={styles.ratingWrapper}>
-            <Text style={styles.star}>★ </Text>
+            <Ionicons
+              name="star"
+              color={COLORS.ACCENT_YELLOW}
+              size={widthPercentageToDP('3.3')}
+            />
             <Text style={styles.rating}>{formattedRating}</Text>
           </View>
         </View>

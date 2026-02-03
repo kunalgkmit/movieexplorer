@@ -1,11 +1,15 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   card: {
-    width: '45%',
-    marginBottom: 20,
+    width: wp('43.5%'),
+    marginBottom: 15,
     borderRadius: 12,
     backgroundColor: COLORS.BG_CARD,
     shadowColor: COLORS.SHADOW,
@@ -16,8 +20,8 @@ export const styles = StyleSheet.create({
   },
 
   poster: {
-    width: '100%',
-    height: 260,
+    width: wp('44%'),
+    height: hp('30%'),
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
   },
@@ -27,7 +31,7 @@ export const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 16,
+    fontSize: wp('4%'),
     fontWeight: '600',
     color: COLORS.TEXT_PRIMARY,
     marginBottom: 6,
@@ -40,14 +44,8 @@ export const styles = StyleSheet.create({
   },
 
   releaseDate: {
-    fontSize: 13,
+    fontSize: wp('3.3%'),
     color: COLORS.TEXT_SECONDARY,
-  },
-
-  star: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: COLORS.ACCENT_YELLOW,
   },
 
   favouriteWrapper: {
@@ -61,10 +59,10 @@ export const styles = StyleSheet.create({
     borderTopEndRadius: 12,
   },
 
-  ratingWrapper: { flexDirection: 'row' },
+  ratingWrapper: { flexDirection: 'row', alignItems: 'center', gap: 4 },
 
   rating: {
-    fontSize: 14,
+    fontSize: wp('3.3%'),
     fontWeight: 'bold',
     color: COLORS.TEXT_PRIMARY,
   },

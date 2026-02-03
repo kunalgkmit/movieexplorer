@@ -1,8 +1,10 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
 import { COLORS } from '@constants/colors';
-
-const { height, width } = Dimensions.get('screen');
 
 export const styles = StyleSheet.create({
   container: {
@@ -11,13 +13,13 @@ export const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   backDrop: {
-    width: width,
-    height: height / 2,
+    width: wp('100%'),
+    height: hp('45%'),
     opacity: 0.8,
   },
   poster: {
-    width: width,
-    height: height / 3,
+    width: wp('100%'),
+    height: hp('35%'),
   },
   posterWrapper: {
     marginTop: '-50%',
@@ -37,22 +39,22 @@ export const styles = StyleSheet.create({
   },
 
   ratingContent: {
-    fontSize: 25,
+    fontSize: wp('7%'),
     fontWeight: 'bold',
   },
 
   releaseDate: {
-    fontSize: 20,
+    fontSize: wp('5%'),
     color: COLORS.TEXT_SECONDARY,
   },
 
   overview: {
-    fontSize: 16,
+    fontSize: wp('4%'),
     color: COLORS.TEXT_PRIMARY,
     fontStyle: 'italic',
   },
 
-  title: { fontWeight: 'bold', fontSize: 24, lineHeight: 25, flexShrink: 1 },
+  title: { fontWeight: 'bold', fontSize: wp('7%') },
 
   detailsWrapper: { padding: 13, width: '100%' },
 
@@ -90,7 +92,7 @@ export const styles = StyleSheet.create({
   buttonWrapper: {
     width: '100%',
     position: 'absolute',
-    top: 40,
+    top: hp('5.5%'),
     padding: 20,
     justifyContent: 'center',
   },
@@ -99,7 +101,7 @@ export const styles = StyleSheet.create({
 
   listWrapper: {
     width: '100%',
-    marginTop: 10,
+    marginTop: 7,
   },
 
   ratingWrapper: { flexDirection: 'row', alignItems: 'center', gap: 4 },

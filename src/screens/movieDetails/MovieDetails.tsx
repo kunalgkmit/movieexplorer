@@ -27,7 +27,7 @@ export function ButtonWrapper({
         onPress={() => navigation.pop()}
         style={styles.backButton}
       >
-        <Ionicons name="arrow-back-outline" size={25} color={COLORS.SHADOW} />
+        <Ionicons name="arrow-back-outline" size={22} color={COLORS.SHADOW} />
       </TouchableOpacity>
 
       <FavouriteButton
@@ -109,9 +109,6 @@ export default function MovieDetailsScreen() {
           </View>
         </View>
         <View style={styles.listWrapper}>
-          <View style={styles.recommendedText}>
-            <Text style={styles.title}>Recommended Movies</Text>
-          </View>
           <RecommendedMovies movieId={movieId} />
         </View>
       </View>

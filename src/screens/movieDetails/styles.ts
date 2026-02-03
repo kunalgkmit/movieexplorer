@@ -67,7 +67,11 @@ export const styles = StyleSheet.create({
 
   overviewWrapper: { justifyContent: 'flex-start', paddingTop: 10, gap: 10 },
 
-  activityIndicator: { flex: 1, alignItems: 'center', justifyContent: 'center' },
+  activityIndicator: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 
   titleWrapper: {
     flexDirection: 'row',
@@ -97,4 +101,12 @@ export const styles = StyleSheet.create({
   },
 
   ratingWrapper: { flexDirection: 'row' },
+
+  backButton: {
+    backgroundColor: COLORS.BG_SURFACE,
+    position: 'absolute',
+    left: 20,
+    padding: 8,
+    borderRadius: 20,
+  },
 });

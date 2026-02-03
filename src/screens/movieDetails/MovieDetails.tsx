@@ -46,7 +46,7 @@ export default function MovieDetailsScreen() {
 
   const movies = useMemo(
     () => formatMovieData(recommendedMovies ?? [], isFavourite),
-    [data, favMovieIds],
+    [recommendedMovies, favMovieIds],
   );
 
   const handleFavourite = () => {
@@ -64,7 +64,7 @@ export default function MovieDetailsScreen() {
 
   return (
     <>
-      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+      <ScrollView showsVerticalScrollIndicator={false} >
         <View style={styles.container}>
           <Image
             source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
@@ -74,13 +74,7 @@ export default function MovieDetailsScreen() {
           <View style={styles.buttonWrapper}>
             <TouchableOpacity
               onPress={() => navigation.pop()}
-              style={{
-                backgroundColor: COLORS.BG_SURFACE,
-                position: 'absolute',
-                left: 20,
-                padding: 8,
-                borderRadius: 20,
-              }}
+              style={styles.backButton}
             >
               <Ionicons
                 name="arrow-back-outline"

@@ -19,7 +19,7 @@ export default async function fetchMovies({
   return response.data;
 }
 
-export const fetchMovieDetails = async (movieId: number | undefined) => {
+export const fetchMovieDetails = async (movieId?: number) => {
   const response = await axiosInstance.get(`/movie/${movieId}`, {
     params: { language: 'en-US' },
   });

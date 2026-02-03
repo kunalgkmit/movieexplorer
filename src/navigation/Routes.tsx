@@ -3,8 +3,8 @@ import { NavigationContainer } from '@react-navigation/native';
 
 import { useUserSession } from '@store/userSession';
 import LoginScreen from '@screens/login/Login';
-import { styles } from './styles';
 import StackNavigator from './StackNavigation';
+import { styles } from './styles';
 
 export default function Routes() {
 

@@ -2,8 +2,8 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { ROUTES } from '@constants/routes';
-import { MyTabs } from './BottomTabs';
 import MovieDetailsScreen from '@screens/movieDetails/MovieDetails';
+import { MyTabs } from './BottomTabs';
 
 const Stack = createNativeStackNavigator<StackNavTypes>();
 

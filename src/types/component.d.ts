@@ -23,11 +23,12 @@ interface MovieCardProps {
   movieDetails: Movie;
   height?: number;
   width?: number;
+  posterHeight?: number;
 }
 
 interface FavButtonProps {
   isPending: boolean;
   isFavourite: boolean | undefined;
   handleFavourite: () => void;
-  customStyle: any;
+  customStyle?: any;
 }

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   },
   backDrop: {
     width: '100%',
-    height: 300,
+    height: 400,
     opacity: 0.8,
   },
   poster: {
@@ -26,10 +26,16 @@ export const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
   },
-  rating: {
+  star: {
     fontSize: 25,
     fontWeight: 'bold',
     color: COLORS.ACCENT_YELLOW,
+  },
+
+  rating: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: COLORS.TEXT_PRIMARY,
   },
 
   releaseDate: {
@@ -52,8 +58,7 @@ export const styles = StyleSheet.create({
   favouriteWrapper: {
     position: 'absolute',
     backgroundColor: COLORS.BG_SURFACE,
-    right: 10,
-    top: 10,
+    right: 20,
     padding: 8,
     borderRadius: 20,
     justifyContent: 'center',
@@ -73,6 +78,23 @@ export const styles = StyleSheet.create({
   movieCardWrapper: { flex: 1, padding: 7 },
 
   contentContainer: {
-    paddingTop: 4
-  }
+    padding: 5,
+  },
+
+  buttonWrapper: {
+    width: '100%',
+    position: 'absolute',
+    top: 30,
+    padding: 20,
+    justifyContent: 'center',
+  },
+
+  recommendedText: { paddingLeft: 13 },
+
+  listWrapper: {
+    width: '100%',
+    marginTop: 10,
+  },
+
+  ratingWrapper: { flexDirection: 'row' },
 });

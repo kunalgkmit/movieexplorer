@@ -6,8 +6,10 @@ import {
   View,
   FlatList,
   ScrollView,
+  TouchableOpacity,
 } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import Ionicons from '@react-native-vector-icons/ionicons';
 
 import { IMAGE_BASE_URL } from '@env';
 import {
@@ -21,6 +23,7 @@ import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';
 import FavouriteButton from '@components/favouriteButton';
+import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
 
@@ -29,6 +32,8 @@ export default function MovieDetailsScreen() {
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
 
   const { mutate: toggleFavourite, isPending } = useFavourites();
+
+  const navigation = useNavigation<StackNavProp>();
 
   const route = useRoute<MovieDetailsProps>();
   const movieId = route.params?.movieId;
@@ -58,57 +63,79 @@ export default function MovieDetailsScreen() {
   const formattedReleaseDate = formatDateToReadableDate(data.release_date);
 
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <View style={styles.container}>
-        <Image
-          source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
-          style={styles.backDrop}
-          resizeMode="cover"
-        />
-
-        <FavouriteButton
-          isPending={isPending}
-          isFavourite={isMovieFavourited}
-          handleFavourite={handleFavourite}
-          customStyle={styles.favouriteWrapper}
-        />
-
-        <View style={styles.posterWrapper}>
+    <>
+      <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
+        <View style={styles.container}>
           <Image
-            source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
-            style={styles.poster}
-            resizeMode="contain"
+            source={{ uri: `${IMAGE_BASE_URL}${data.backdrop_path}` }}
+            style={styles.backDrop}
+            resizeMode="cover"
           />
-        </View>
+          <View style={styles.buttonWrapper}>
+            <TouchableOpacity onPress={() => navigation.pop()}>
+              <Ionicons
+                name="arrow-back-outline"
+                size={25}
+                color={COLORS.BG_SURFACE}
+              />
+            </TouchableOpacity>
 
-        <View style={styles.detailsWrapper}>
-          <View style={styles.titleWrapper}>
-            <Text style={styles.title}>{data.title}</Text>
-            <Text style={styles.rating}>★ {formattedRating}</Text>
+            <FavouriteButton
+              isPending={isPending}
+              isFavourite={isMovieFavourited}
+              handleFavourite={handleFavourite}
+              customStyle={styles.favouriteWrapper}
+            />
           </View>
 
-          <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
-
-          <View style={styles.overviewWrapper}>
-            <Text style={styles.overview}>{data.overview}</Text>
-            <Text style={styles.subtitle}>Recommended Movies</Text>
+          <View style={styles.posterWrapper}>
+            <Image
+              source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
+              style={styles.poster}
+              resizeMode="contain"
+            />
           </View>
 
-          <FlatList
-            ListEmptyComponent={<Text>Recommended Movies not found</Text>}
-            data={movies}
-            horizontal={true}
-            contentContainerStyle={styles.contentContainer}
-            showsHorizontalScrollIndicator={false}
-            renderItem={({ item }) => (
-              <View style={styles.movieCardWrapper}>
-                <MovieCard movieDetails={item} height={340} width={150} />
+          <View style={styles.detailsWrapper}>
+            <View style={styles.titleWrapper}>
+              <Text style={styles.title}>{data.title}</Text>
+              <View style={styles.ratingWrapper}>
+                <Text style={styles.star}>★ </Text>
+                <Text style={styles.rating}>{formattedRating}</Text>
               </View>
-            )}
-            keyExtractor={item => item.movieId}
-          />
+            </View>
+
+            <Text style={styles.releaseDate}>{formattedReleaseDate}</Text>
+
+            <View style={styles.overviewWrapper}>
+              <Text style={styles.overview}>{data.overview}</Text>
+            </View>
+          </View>
+          <View style={styles.listWrapper}>
+            <View style={styles.recommendedText}>
+              <Text style={styles.subtitle}>Recommended Movies</Text>
+            </View>
+            <FlatList
+              ListEmptyComponent={<Text>No Recommended Movies</Text>}
+              data={movies}
+              horizontal={true}
+              contentContainerStyle={styles.contentContainer}
+              showsHorizontalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <View style={styles.movieCardWrapper}>
+                  <MovieCard
+                    movieDetails={item}
+                    height={320}
+                    width={150}
+                    posterHeight={230}
+                  />
+                </View>
+              )}
+              keyExtractor={item => item.movieId}
+            />
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </>
   );
 }

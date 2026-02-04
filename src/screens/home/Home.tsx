@@ -1,17 +1,33 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
+import CustomAppBar from '@components/customAppBar';
 import { useMovies } from '@hooks/useMovies';
 import { fetchFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
+import { SORT_OPTIONS } from '@constants/constants';
+import SortByOptions from '@components/sortByOptions';
+import CustomModal from '@components/customModal';
 import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
 
 export default function Home() {
+  const [isSortOpen, setIsSortOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+
+  const [sortHighlight, setSortHighlight] = useState(false);
+  const [filterHighlight, setFilterHighlight] = useState(false);
+
+  const [votes, setVotes] = useState(0);
+  const [releaseYear, setReleaseYear] = useState(0);
+  const [movieGenre, setMovieGenre] = useState('');
+
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
+
+  const [sortBy, setSortBy] = useState(SORT_OPTIONS.POPULARITY_DESC);
 
   useEffect(() => {
     fetchFavourites();
@@ -26,9 +42,12 @@ export default function Home() {
     isError,
     error,
   } = useMovies({
-    sortBy: 'popularity.desc',
+    sortBy: sortBy,
     includeVideo: false,
     language: 'en-US',
+    votesGreaterThan: votes,
+    releaseYear: releaseYear,
+    withGenres: movieGenre,
   });
 
   const movies = useMemo(
@@ -46,6 +65,16 @@ export default function Home() {
     Alert.alert('Error while getting movies!', error.message, [{ text: 'OK' }]);
   }
 
+  const toggleSort = () => {
+    setIsSortOpen(prev => !prev);
+    setIsFilterOpen(false);
+  };
+
+  const toggleFilter = () => {
+    setIsFilterOpen(prev => !prev);
+    setIsSortOpen(false);
+  };
+
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
@@ -55,18 +84,40 @@ export default function Home() {
   }
 
   return (
-    <FlatList
-      data={movies}
-      numColumns={2}
-      contentContainerStyle={styles.listContent}
-      columnWrapperStyle={styles.columnWrapper}
-      renderItem={({ item }) => <MovieCard movieDetails={item} />}
-      keyExtractor={item => item.movieId}
-      onEndReached={loadMore}
-      onEndReachedThreshold={0.5}
-      ListFooterComponent={
-        isFetchingNextPage ? <ActivityIndicator size="small" /> : null
-      }
-    />
+    <>
+      <CustomAppBar
+        title="Home"
+        isHomeScreen={true}
+        setSort={toggleSort}
+        setFilter={toggleFilter}
+        sortHightlight={sortHighlight}
+        filterHighlight={filterHighlight}
+      />
+      <CustomModal
+        modalName={'Sort: '}
+        visible={toggleSort}
+        isVisible={isSortOpen}
+      >
+        <SortByOptions
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          toggleSort={toggleSort}
+          setSortHighlight={setSortHighlight}
+        />
+      </CustomModal>
+      <FlatList
+        data={movies}
+        numColumns={2}
+        contentContainerStyle={styles.listContent}
+        columnWrapperStyle={styles.columnWrapper}
+        renderItem={({ item }) => <MovieCard movieDetails={item} />}
+        keyExtractor={item => item.movieId}
+        onEndReached={loadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={
+          isFetchingNextPage ? <ActivityIndicator size="small" /> : null
+        }
+      />
+    </>
   );
 }

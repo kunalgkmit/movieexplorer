@@ -3,9 +3,12 @@ interface DefaultMovieParams {
   sortBy?: string;
   includeVideo?: boolean;
   language?: string;
+  votesGreaterThan?: number;
+  releaseYear?: number;
+  withGenres?: string;
 }
 
-interface Movie{
+interface Movie {
   movieId: number;
   title: string;
   posterPath: string;

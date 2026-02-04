@@ -38,4 +38,11 @@ declare global {
     isMovieFavourited: boolean;
     handleFavourite: () => void;
   }
+
+  interface CustomModalProps {
+    modalName;
+    isVisible: boolean;
+    visible: () => void;
+    children: ReactNode;
+  }
 }

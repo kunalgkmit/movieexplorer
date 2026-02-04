@@ -49,6 +49,8 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
     navigation.push(ROUTES.STACK.MOVIE_DETAILS, { movieId });
   };
 
+  const starIconSize = widthPercentageToDP('3.3');
+
   return (
     <TouchableOpacity
       style={styles.card}
@@ -74,7 +76,7 @@ export default function MovieCard({ movieDetails }: MovieCardProps) {
             <Ionicons
               name="star"
               color={COLORS.ACCENT_YELLOW}
-              size={widthPercentageToDP('3.3')}
+              size={starIconSize}
             />
             <Text style={styles.rating}>{formattedRating}</Text>
           </View>

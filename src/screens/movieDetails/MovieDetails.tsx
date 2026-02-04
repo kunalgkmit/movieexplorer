@@ -21,10 +21,14 @@ export function ButtonWrapper({
 }: ButtonWrapperTypes) {
   const navigation = useNavigation<StackNavProp>();
 
+  const handleBackNavigation = () => {
+    navigation.pop();
+  };
+
   return (
     <View style={styles.buttonWrapper}>
       <TouchableOpacity
-        onPress={() => navigation.pop()}
+        onPress={handleBackNavigation}
         style={styles.backButton}
       >
         <Ionicons name="arrow-back-outline" size={22} color={COLORS.SHADOW} />

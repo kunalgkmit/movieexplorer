@@ -18,7 +18,6 @@ export default function CustomModal({
       <View style={styles.blurBackground}></View>
       <View style={styles.modalWrapper}>
         <View style={styles.modalContainer}>
-          <View />
           <Text style={styles.modalTitle}>{modalName}</Text>
           <TouchableOpacity
             onPress={handleModalClose}

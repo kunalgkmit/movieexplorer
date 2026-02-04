@@ -1,7 +1,10 @@
-import { Dimensions, StyleSheet } from 'react-native';
-import { COLORS } from '@constants/colors';
+import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
-const { height, width } = Dimensions.get('window');
+import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   modalContainer: {
@@ -10,18 +13,20 @@ export const styles = StyleSheet.create({
     backgroundColor: COLORS.BG_CARD,
     borderRadius: 30,
     gap: 30,
+    justifyContent: 'center',
   },
 
   closeButton: { position: 'absolute', top: 20, right: 20 },
 
   modalTitle: {
-    fontSize: 25,
+    fontSize: wp('6%'),
     fontWeight: 'bold',
   },
 
   modalWrapper: {
-    height: height,
-    marginTop: height / 3,
+    height: hp('40%'),
+    marginVertical: wp('60%'),
+    paddingHorizontal: 20,
   },
 
   blurBackground: {

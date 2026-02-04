@@ -8,10 +8,10 @@ export const styles = StyleSheet.create({
   },
 
   listContent: {
-    padding: 15,
+    padding: 20,
   },
 
   columnWrapper: {
-    justifyContent:'space-around',
+    justifyContent:'space-between',
   },
 });

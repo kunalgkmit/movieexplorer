@@ -1,30 +1,41 @@
-interface LoginFormProps {
-  title: string;
-  subtitle?: string;
-}
+import { ViewStyle } from 'react-native';
 
-interface ButtonProps {
-  title: string;
-  onPress: () => void;
-  isPending?: boolean;
-}
+declare global {
+  interface LoginFormProps {
+    title: string;
+    subtitle?: string;
+  }
 
-interface CustomTextInputProps {
-  placeholder: string;
-  value: string;
-  onChangeText: (data: string) => void;
-  error?: string;
-  editable?: boolean;
-  autoCapitalize?: 'none';
-  secureTextEntry?: boolean;
-}
+  interface ButtonProps {
+    title: string;
+    onPress: () => void;
+    isPending?: boolean;
+  }
 
-interface MovieCardProps {
-  movieDetails: Movie;
-}
+  interface CustomTextInputProps {
+    placeholder: string;
+    value: string;
+    onChangeText: (data: string) => void;
+    error?: string;
+    editable?: boolean;
+    autoCapitalize?: 'none';
+    secureTextEntry?: boolean;
+  }
 
-interface FavButtonProps {
-  isPending: boolean;
-  isFavourite: boolean;
-  handleFavourite: () => void;
+  interface MovieCardProps {
+    movieDetails: Movie;
+  }
+
+  interface FavButtonProps {
+    isPending: boolean;
+    isFavourite: boolean | undefined;
+    handleFavourite: () => void;
+    customStyle?: ViewStyle;
+  }
+
+  interface ButtonWrapperTypes {
+    isPending: boolean;
+    isMovieFavourited: boolean;
+    handleFavourite: () => void;
+  }
 }

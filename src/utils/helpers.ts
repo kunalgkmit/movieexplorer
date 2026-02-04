@@ -1,16 +1,24 @@
 import { monthNames } from '@constants/constants';
 
 export const formatDateToReadableDate = (releaseDate: string) => {
-  const releaseDateParts = releaseDate.split('-');
-  const year = releaseDateParts[0];
-  const monthIndex = parseInt(releaseDateParts[1]) - 1;
-  const day = releaseDateParts[2];
-  const formattedDate = `${monthNames[monthIndex]} ${day}, ${year}`;
-  return formattedDate;
+  if (releaseDate) {
+    const releaseDateParts = releaseDate.split('-');
+    const year = releaseDateParts[0];
+    const monthIndex = parseInt(releaseDateParts[1]) - 1;
+    const day = releaseDateParts[2];
+    const formattedDate = `${monthNames[monthIndex]} ${day}, ${year}`;
+    return formattedDate;
+  } else {
+    ('');
+  }
 };
 
 export const formatMovieRating = (rating: number) => {
-  return parseFloat(rating.toFixed(1));
+  if (rating) {
+    return parseFloat(rating.toFixed(1));
+  } else {
+    return '';
+  }
 };
 
 export const validatePassword = (pwd: string) => {

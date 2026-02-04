@@ -6,11 +6,10 @@ import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 import { IMAGE_BASE_URL } from '@env';
 import FavouriteButton from '@components/favouriteButton/FavouriteButton';
+import { COLORS, ROUTES,  } from '@constants/index';
 import { formatMovieRating, formatDateToReadableDate } from '@utils/helpers';
 import { useFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
-import { ROUTES } from '@constants/routes';
-import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
 

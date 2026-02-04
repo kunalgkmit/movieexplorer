@@ -1,9 +1,14 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
 import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    width: '100%',
+    width: wp('100%'),
     paddingHorizontal: 20,
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -13,26 +18,26 @@ export const styles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 5,
     backgroundColor: COLORS.BG_PRIMARY,
-    paddingVertical: 15,
+    paddingBottom: wp('3%'),
   },
 
   title: {
-    fontSize: 24,
+    fontSize: wp('6%'),
     fontWeight: '600',
   },
 
   sortFilterWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '25%',
+    width: wp('23%'),
     justifyContent: 'space-around',
   },
 
   contentWrapper: {
-    width: '100%',
+    width: wp('90%'),
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    paddingTop:10
   },
 
   selectedOption: {

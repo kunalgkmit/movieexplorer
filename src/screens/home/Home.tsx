@@ -5,6 +5,7 @@ import MovieCard from '@components/movieCard';
 import CustomAppBar from '@components/customAppBar';
 import SortByOptions from '@components/sortByOptions';
 import CustomModal from '@components/customModal';
+import FilterByOptions from '@components/filterByOptions';
 import { useMovies } from '@hooks/useMovies';
 import { fetchFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
@@ -104,6 +105,22 @@ export default function Home() {
           setSortBy={setSortBy}
           toggleSort={toggleSort}
           setSortHighlight={setSortHighlight}
+        />
+      </CustomModal>
+      <CustomModal
+        modalName={'Filter: '}
+        visible={toggleFilter}
+        isVisible={isFilterOpen}
+      >
+        <FilterByOptions
+          votes={votes}
+          releaseYear={releaseYear}
+          genre={movieGenre}
+          setVotes={setVotes}
+          setReleaseYear={setReleaseYear}
+          setMovieGenre={setMovieGenre}
+          toggleFilter={toggleFilter}
+          setFilterHighlight={setFilterHighlight}
         />
       </CustomModal>
       <FlatList

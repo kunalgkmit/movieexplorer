@@ -66,7 +66,7 @@ export default function MovieDetailsScreen() {
   const formattedReleaseDate = formatDateToReadableDate(data?.release_date);
 
   if (isLoading) {
-    return <CustomActivityIndicator color={COLORS.SHADOW} />;
+    return <CustomActivityIndicator />;
   }
 
   return (

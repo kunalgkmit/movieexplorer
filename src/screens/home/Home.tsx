@@ -3,12 +3,13 @@ import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import CustomAppBar from '@components/customAppBar';
+import SortByOptions from '@components/sortByOptions';
+import CustomModal from '@components/customModal';
 import { useMovies } from '@hooks/useMovies';
 import { fetchFavourites } from '@hooks/useFavourites';
 import { useFavMoviesStore } from '@store/favourites';
 import { SORT_OPTIONS } from '@constants/constants';
-import SortByOptions from '@components/sortByOptions';
-import CustomModal from '@components/customModal';
+
 import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';

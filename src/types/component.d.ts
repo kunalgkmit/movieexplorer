@@ -54,4 +54,16 @@ declare global {
     sortHightlight?: boolean;
     filterHighlight?: boolean;
   }
+
+  interface SortByProps {
+    sortBy: string;
+    setSortBy: (params: string) => void;
+    toggleSort: () => void;
+    setSortHighlight?: (params: boolean) => void;
+  }
+
+  interface SortType {
+    sortName: string;
+    sortOption: string;
+  }
 }

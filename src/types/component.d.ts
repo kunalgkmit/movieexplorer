@@ -10,6 +10,7 @@ declare global {
     title: string;
     onPress: () => void;
     isPending?: boolean;
+    isClearFilter?: boolean;
   }
 
   interface CustomTextInputProps {
@@ -65,5 +66,21 @@ declare global {
   interface SortType {
     sortName: string;
     sortOption: string;
+  }
+
+  interface GenreType {
+    genreId: string;
+    genreName: string;
+  }
+
+  interface FilterOptionsProps {
+    votes: number;
+    releaseYear: number;
+    genre: string;
+    setVotes: (votes: number) => void;
+    setReleaseYear: (releaseYear: number) => void;
+    setMovieGenre: (genreId: string) => void;
+    toggleFilter: () => void;
+    setFilterHighlight?: (param: boolean) => void;
   }
 }

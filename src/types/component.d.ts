@@ -45,4 +45,13 @@ declare global {
     visible: () => void;
     children: ReactNode;
   }
+
+  interface CustomAppBarProps {
+    title: string;
+    isHomeScreen?: boolean;
+    setSort?: () => void;
+    setFilter?: () => void;
+    sortHightlight?: boolean;
+    filterHighlight?: boolean;
+  }
 }

@@ -1,23 +1,30 @@
-import { ActivityIndicator, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+
+import CustomActivityIndicator from '@components/customActivityIndicator';
+import { COLORS } from '@constants/colors';
 
 import { styles } from './styles';
-import { COLORS } from '@constants/colors';
 
 export default function CustomButton({
   title,
   onPress,
   isPending,
+  isClearFilter,
 }: ButtonProps) {
   return (
     <TouchableOpacity
-      style={styles.button}
+      style={[styles.button, isClearFilter && styles.clearFilter]}
       onPress={onPress}
       disabled={isPending}
     >
       {isPending ? (
-        <ActivityIndicator size="small" color={COLORS.BG_SURFACE} />
+        <CustomActivityIndicator color={COLORS.BG_SURFACE} />
       ) : (
-        <Text style={styles.buttonText}>{title}</Text>
+        <Text
+          style={[styles.buttonText, isClearFilter && styles.clearFilterText]}
+        >
+          {title}
+        </Text>
       )}
     </TouchableOpacity>
   );

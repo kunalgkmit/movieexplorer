@@ -1,11 +1,15 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
 import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
-    width: '70%',
-    flex: 0.5,
+    width: wp('70%'),
     justifyContent: 'center',
   },
 
@@ -22,14 +26,10 @@ export const styles = StyleSheet.create({
   },
 
   filterButtonsWrapper: {
-    width: '40%',
+    width: wp('30%'),
     gap: 8,
     flexDirection: 'row',
     justifyContent: 'center',
-  },
-
-  title: {
-    fontSize: 25,
   },
 
   genreWrapper: {
@@ -39,11 +39,11 @@ export const styles = StyleSheet.create({
   },
 
   selectedOptionText: {
-    fontSize: 15,
+    fontSize: wp('3%'),
     color: COLORS.PRIMARY,
   },
 
   text: {
-    fontSize: 15,
+    fontSize: wp('3%'),
   },
 });

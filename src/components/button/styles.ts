@@ -16,4 +16,14 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: '600',
   },
+
+  clearFilter: {
+    backgroundColor: COLORS.BG_SURFACE,
+    borderWidth: 1,
+    borderColor: COLORS.PRIMARY,
+  },
+
+  logout: { backgroundColor: COLORS.RED },
+
+  clearFilterText: { color: COLORS.PRIMARY },
 });

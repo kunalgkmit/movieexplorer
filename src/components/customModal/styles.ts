@@ -24,8 +24,8 @@ export const styles = StyleSheet.create({
   },
 
   modalWrapper: {
-    height: hp('40%'),
-    marginVertical: wp('60%'),
+    height: hp('60%'),
+    marginVertical: wp('40%'),
     paddingHorizontal: 20,
   },
 

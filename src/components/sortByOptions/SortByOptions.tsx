@@ -3,6 +3,7 @@ import Ionicons from '@react-native-vector-icons/ionicons';
 
 import { SORT_OPTIONS, SORT_SELECTION_ARRAY } from '@constants/constants';
 import { COLORS } from '@constants/colors';
+
 import { styles } from './styles';
 
 export default function SortByOptions({
@@ -11,6 +12,7 @@ export default function SortByOptions({
   toggleSort,
   setSortHighlight,
 }: SortByProps) {
+
   const handleSortSelection = (sortOption: string) => {
     setSortBy(sortOption);
     setSortHighlight?.(true);

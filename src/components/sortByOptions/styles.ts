@@ -1,20 +1,24 @@
 import { StyleSheet } from 'react-native';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+
 import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
     gap: 10,
-    padding: 20,
     justifyContent: 'center',
     flex: 0.5,
   },
 
   text: {
-    fontSize: 15,
+    fontSize: wp('4%'),
   },
 
   selectedOptionText: {
-    fontSize: 15,
+    fontSize: wp('4%'),
     color: COLORS.TEXT_INVERSE,
   },
 
@@ -34,9 +38,5 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     gap: 10,
-  },
-
-  title: {
-    fontSize: 25,
   },
 });

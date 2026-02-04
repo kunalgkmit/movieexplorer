@@ -9,7 +9,7 @@ export const formatDateToReadableDate = (releaseDate: string) => {
     const formattedDate = `${monthNames[monthIndex]} ${day}, ${year}`;
     return formattedDate;
   } else {
-    ('No Date Found');
+    ('');
   }
 };
 
@@ -17,7 +17,7 @@ export const formatMovieRating = (rating: number) => {
   if (rating) {
     return parseFloat(rating.toFixed(1));
   } else {
-    return '0';
+    return '';
   }
 };
 

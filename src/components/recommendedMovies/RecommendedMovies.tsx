@@ -8,6 +8,10 @@ import { styles } from './styles';
 export default function RecommendedMovies({ movieId }: { movieId: number }) {
   const { data: recommendedMovies } = useRecommendedMovies(movieId);
 
+  if (!recommendedMovies?.length) {
+    return <></>;
+  }
+
   return (
     <>
       <View style={styles.recommendedText}>
@@ -15,16 +19,13 @@ export default function RecommendedMovies({ movieId }: { movieId: number }) {
       </View>
 
       <FlatList
-        ListEmptyComponent={<Text>No Recommended Movies</Text>}
         data={recommendedMovies}
         horizontal={true}
         contentContainerStyle={styles.contentContainer}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
           <View style={styles.movieCardWrapper}>
-            <MovieCard
-              movieDetails={item}
-            />
+            <MovieCard movieDetails={item} />
           </View>
         )}
         keyExtractor={item => item.movieId}

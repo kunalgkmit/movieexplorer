@@ -46,3 +46,25 @@ export const formatMovieData = (
     isFavourite: isFavourite(movieItem.id),
   }));
 };
+
+export const movieRatingValidator = (rating: string) => {
+  if (rating.length === 0) {
+    return '';
+  }
+  const ratingInNum = parseFloat(rating);
+  if (ratingInNum <= 0 || ratingInNum > 10 || isNaN(ratingInNum)) {
+    return 'Please Enter Valid Rating';
+  }
+  return '';
+};
+
+export const movieReleaseYearValidator = (releaseYear: string) => {
+  if (releaseYear.length === 0) {
+    return '';
+  }
+  const releaseYearInNum = parseInt(releaseYear);
+  if (isNaN(releaseYearInNum) || releaseYear.length > 4) {
+    return 'Please Enter Valid Release Year';
+  }
+  return '';
+};

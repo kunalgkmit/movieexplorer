@@ -48,3 +48,18 @@ export const SORT_SELECTION_ARRAY: SortType[] = [
     sortOption: SORT_OPTIONS.RELEASE_DATE_ASC,
   },
 ];
+
+export const GENRE_SELECTION_ARRAY: GenreType[] = [
+  {
+    genreId: '28',
+    genreName: 'Action',
+  },
+  {
+    genreId: '16',
+    genreName: 'Animation',
+  },
+  {
+    genreId: '18',
+    genreName: 'Drama',
+  },
+];

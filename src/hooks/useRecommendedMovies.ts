@@ -4,7 +4,7 @@ import { fetchRecommendedMovies } from '@services/movies.service';
 import { formatMovieData } from '@utils/helpers';
 import { useFavMoviesStore } from '@store/favourites';
 
-export const useRecommendedMovies = (movieId?: number) => {
+export const useRecommendedMovies = (movieId: number) => {
   const favMovieIds = useFavMoviesStore(state => state.favMoviesIds);
   const isFavourite = useFavMoviesStore(state => state.isFavourite);
   return useQuery({

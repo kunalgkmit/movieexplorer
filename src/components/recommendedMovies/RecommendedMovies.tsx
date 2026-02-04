@@ -5,7 +5,7 @@ import MovieCard from '@components/movieCard';
 
 import { styles } from './styles';
 
-export default function RecommendedMovies({ movieId }: { movieId?: number }) {
+export default function RecommendedMovies({ movieId }: { movieId: number }) {
   const { data: recommendedMovies } = useRecommendedMovies(movieId);
 
   return (

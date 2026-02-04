@@ -42,7 +42,7 @@ export function ButtonWrapper({
 
 export default function MovieDetailsScreen() {
   const route = useRoute<MovieDetailsProps>();
-  const movieId = route.params?.movieId;
+  const movieId = route.params.movieId;
 
   const { mutate: toggleFavourite, isPending } = useFavourites();
 

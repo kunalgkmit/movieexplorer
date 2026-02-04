@@ -11,11 +11,11 @@ declare global {
 
   type StackNavTypes = {
     [ROUTES.STACK.BOTTOM_TABS]: undefined;
-    [ROUTES.STACK.MOVIE_DETAILS]: { movieId: number } | undefined;
+    [ROUTES.STACK.MOVIE_DETAILS]: { movieId: number };
   };
 
   type TabNavigationProp = BottomTabNavigationProp<BottomTabNavTypes>;
   type StackNavProp = NativeStackNavigationProp<StackNavTypes>;
 
-  type MovieDetailsProps = RouteProp<StackNavTypes, ROUTES.STACK.MOVIE_DETAILS>;
+  type MovieDetailsProps = RouteProp<ROUTES.STACK.MOVIE_DETAILS>;
 }

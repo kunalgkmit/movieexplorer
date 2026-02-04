@@ -27,7 +27,7 @@ export const fetchMovieDetails = async (movieId: number) => {
 };
 
 export const fetchRecommendedMovies = async (
-  movieId: number | undefined,
+  movieId: number,
 ) => {
   const response = await axiosInstance.get(
     `/movie/${movieId}/recommendations`,

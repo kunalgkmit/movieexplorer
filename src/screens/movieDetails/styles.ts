@@ -18,14 +18,14 @@ export const styles = StyleSheet.create({
     opacity: 0.8,
   },
   poster: {
-    width: wp('100%'),
+    width: wp('50%'),
     height: hp('35%'),
+    marginTop: hp('-30%'),
+    borderRadius:20,
   },
   posterWrapper: {
-    marginTop: '-50%',
-    paddingBottom: 10,
     shadowColor: COLORS.SHADOW,
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 5 },
     shadowOpacity: 0.5,
     shadowRadius: 8,
     elevation: 5,
@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
   },
 
   ratingContent: {
-    fontSize: wp('7%'),
+    fontSize: wp('4%'),
     fontWeight: 'bold',
   },
 
@@ -54,9 +54,17 @@ export const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
 
-  title: { fontWeight: 'bold', fontSize: wp('7%') },
+  title: {
+    flex: 1,
+    fontWeight: 'bold',
+    fontSize: wp('7%'),
+    paddingRight:15
+  },
 
-  detailsWrapper: { padding: 13, width: '100%' },
+  detailsWrapper: {
+    padding: 13,
+    width: wp('100%'),
+  },
 
   favouriteWrapper: {
     position: 'absolute',
@@ -79,7 +87,6 @@ export const styles = StyleSheet.create({
 
   titleWrapper: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
 
@@ -104,7 +111,7 @@ export const styles = StyleSheet.create({
     marginTop: 7,
   },
 
-  ratingWrapper: { flexDirection: 'row', alignItems: 'center', gap: 4 },
+  ratingWrapper: { alignItems: 'center', gap: 4 },
 
   backButton: {
     backgroundColor: COLORS.BG_SURFACE,

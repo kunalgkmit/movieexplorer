@@ -87,15 +87,16 @@ export default function MovieDetailsScreen() {
           <Image
             source={{ uri: `${IMAGE_BASE_URL}${data.poster_path}` }}
             style={styles.poster}
-            resizeMode="contain"
+            resizeMode="cover"
           />
         </View>
 
         <View style={styles.detailsWrapper}>
           <View style={styles.titleWrapper}>
             <Text style={styles.title}>{data.title}</Text>
+
             <View style={styles.ratingWrapper}>
-              <Ionicons name="star" size={25} color={COLORS.ACCENT_YELLOW} />
+              <Ionicons name="star" size={22} color={COLORS.ACCENT_YELLOW} />
               <Text style={[styles.ratingColor, styles.ratingContent]}>
                 {formattedRating}
               </Text>

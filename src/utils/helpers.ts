@@ -9,7 +9,7 @@ export const formatDateToReadableDate = (releaseDate: string) => {
     const formattedDate = `${monthNames[monthIndex]} ${day}, ${year}`;
     return formattedDate;
   } else {
-    ('');
+    return '';
   }
 };
 

@@ -38,4 +38,32 @@ declare global {
     isMovieFavourited: boolean;
     handleFavourite: () => void;
   }
+
+  interface CustomModalProps {
+    modalName;
+    isVisible: boolean;
+    visible: () => void;
+    children: ReactNode;
+  }
+
+  interface CustomAppBarProps {
+    title: string;
+    isHomeScreen?: boolean;
+    setSort?: () => void;
+    setFilter?: () => void;
+    sortHightlight?: boolean;
+    filterHighlight?: boolean;
+  }
+
+  interface SortByProps {
+    sortBy: string;
+    setSortBy: (params: string) => void;
+    toggleSort: () => void;
+    setSortHighlight?: (params: boolean) => void;
+  }
+
+  interface SortType {
+    sortName: string;
+    sortOption: string;
+  }
 }

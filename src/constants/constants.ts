@@ -48,3 +48,16 @@ export const SORT_SELECTION_ARRAY: SortType[] = [
     sortOption: SORT_OPTIONS.RELEASE_DATE_ASC,
   },
 ];
+
+export const MIN_DOB = '1925-01-01';
+
+export const GENDER_SELECTION_ARRAY: GenderType[] = [
+  {
+    genderId: 1,
+    genderName: 'MALE',
+  },
+  {
+    genderId: 2,
+    genderName: 'FEMALE',
+  },
+];

@@ -1,4 +1,10 @@
-import { Modal, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Modal,
+  Text,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import Ionicons from '@react-native-vector-icons/ionicons';
 
 import { styles } from './styles';
@@ -15,7 +21,9 @@ export default function CustomModal({
 
   return (
     <Modal transparent={true} visible={isVisible} animationType="fade">
-      <View style={styles.blurBackground}></View>
+      <TouchableWithoutFeedback onPress={handleModalClose}>
+        <View style={styles.blurBackground}></View>
+      </TouchableWithoutFeedback>
       <View style={styles.modalWrapper}>
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>{modalName}</Text>

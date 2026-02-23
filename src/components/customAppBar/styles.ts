@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Platform } from 'react-native';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -8,7 +8,7 @@ import { COLORS } from '@constants/colors';
 
 export const styles = StyleSheet.create({
   container: {
-    width: wp('100%'),
+    width: '100%',
     paddingHorizontal: 20,
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -17,13 +17,29 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 5,
-    backgroundColor: COLORS.BG_PRIMARY,
-    paddingBottom: wp('3%'),
+    ...Platform.select({
+      ios: {
+        backgroundColor: COLORS.BORDER,
+      },
+      android: {
+        backgroundColor: COLORS.SHADOW,
+      },
+    }),
+    // paddingBottom: wp('3%'),
   },
 
   title: {
-    fontSize: wp('6%'),
+    fontSize: wp('7%'),
     fontWeight: '600',
+    ...Platform.select({
+      ios: {
+        color: COLORS.TEXT_PRIMARY
+      },
+      android: {
+        color: COLORS.TEXT_INVERSE
+      }
+    }),
+    fontFamily: 'KodeMono-Bold',
   },
 
   sortFilterWrapper: {
@@ -37,7 +53,7 @@ export const styles = StyleSheet.create({
     width: wp('90%'),
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingTop:10
+    paddingTop: 10,
   },
 
   selectedOption: {

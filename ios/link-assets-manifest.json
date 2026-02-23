@@ -1,0 +1,21 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/KodeMono-Regular.ttf",
+      "sha1": "b0205597a64cdd911906691f17fa67c7fe472fd4"
+    },
+    {
+      "path": "src/assets/fonts/KodeMono-SemiBold.ttf",
+      "sha1": "206302149b4bc6e611ec37483fda0804bbc546b3"
+    },
+    {
+      "path": "src/assets/fonts/KodeMono-Medium.ttf",
+      "sha1": "c7879fe1ab51f1de8be561b105eb383f65eaf3da"
+    },
+    {
+      "path": "src/assets/fonts/KodeMono-Bold.ttf",
+      "sha1": "eef7a03b6d69d62b3a0ddc7e0bc9a9cabd5dc2a1"
+    }
+  ]
+}

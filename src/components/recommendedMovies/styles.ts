@@ -18,5 +18,6 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: wp('7%'),
     fontWeight: 'bold',
+    fontFamily: 'KodeMono-Bold'
   },
 });

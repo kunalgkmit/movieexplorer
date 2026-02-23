@@ -1,4 +1,4 @@
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 
 import { useFavMoviesStore } from '@store/favourites';
 import MovieCard from '@components/movieCard';

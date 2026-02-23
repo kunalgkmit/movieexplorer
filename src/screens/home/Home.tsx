@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Alert, FlatList, View } from 'react-native';
+import { ActivityIndicator, Alert, FlatList, Text, View } from 'react-native';
 
 import MovieCard from '@components/movieCard';
 import CustomAppBar from '@components/customAppBar';
@@ -12,6 +12,8 @@ import CustomModal from '@components/customModal';
 import { formatMovieData } from '@utils/helpers';
 
 import { styles } from './styles';
+import { useSelector } from 'react-redux';
+import { store } from 'reduxStore/store';
 
 export default function Home() {
   const [isSortOpen, setIsSortOpen] = useState(false);
@@ -29,6 +31,13 @@ export default function Home() {
 
   const [sortBy, setSortBy] = useState(SORT_OPTIONS.POPULARITY_DESC);
 
+  const fullName = useSelector(state=>state.profile.fullName);
+
+  const unsubscribe = store.subscribe(()=>{
+    console.log("DYAUMMMMMMM>>>>>", store.getState());
+  })
+  unsubscribe();
+
   useEffect(() => {
     fetchFavourites();
   }, []);
@@ -36,11 +45,14 @@ export default function Home() {
   const {
     data,
     isLoading,
-    isFetchingNextPage,
-    hasNextPage,
-    fetchNextPage,
+    getNextPageData,
+    // isFetchingNextPage,
+    // hasNextPage,
+    // fetchNextPage,
+    isFetching,
     isError,
     error,
+    page,
   } = useMovies({
     sortBy: sortBy,
     includeVideo: false,
@@ -50,19 +62,17 @@ export default function Home() {
     withGenres: movieGenre,
   });
 
+  // console.log('CHECK FINAL ARRAY>>', data);
+
   const movies = useMemo(
     () => formatMovieData(data ?? [], isFavourite),
     [data, favMovieIds],
   );
 
-  const loadMore = () => {
-    if (hasNextPage && !isFetchingNextPage) {
-      fetchNextPage();
-    }
-  };
-
   if (isError) {
-    Alert.alert('Error while getting movies!', error.message, [{ text: 'OK' }]);
+    Alert.alert('Error while getting movies!', error?.message, [
+      { text: 'OK' },
+    ]);
   }
 
   const toggleSort = () => {
@@ -75,7 +85,7 @@ export default function Home() {
     setIsSortOpen(false);
   };
 
-  if (isLoading) {
+  if (isLoading && data.length === 0 && page === 1) {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" />
@@ -83,10 +93,14 @@ export default function Home() {
     );
   }
 
+  const onEndReached = () => {
+    getNextPageData()
+  };
+
   return (
     <>
       <CustomAppBar
-        title="Home"
+        title={fullName}
         isHomeScreen={true}
         setSort={toggleSort}
         setFilter={toggleFilter}
@@ -107,15 +121,16 @@ export default function Home() {
       </CustomModal>
       <FlatList
         data={movies}
+        ListEmptyComponent={<Text>NO DATA</Text>}
         numColumns={2}
         contentContainerStyle={styles.listContent}
         columnWrapperStyle={styles.columnWrapper}
         renderItem={({ item }) => <MovieCard movieDetails={item} />}
         keyExtractor={item => item.movieId}
-        onEndReached={loadMore}
+        onEndReached={onEndReached}
         onEndReachedThreshold={0.5}
         ListFooterComponent={
-          isFetchingNextPage ? <ActivityIndicator size="small" /> : null
+          isFetching ? <ActivityIndicator size="small" /> : null
         }
       />
     </>

@@ -21,6 +21,6 @@ export const styles = StyleSheet.create({
     gap: '5%',
   },
   title: {
-    fontWeight: 'bold',
+    fontFamily: 'KodeMono-Bold'
   },
 });

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 
 import { useLogin } from '@hooks/useLogin';
@@ -32,6 +32,14 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
     }
   };
 
+  const checkPassword = (pwd: string) => {
+    setPassword(pwd);
+    setErrors(prev => ({
+      ...prev,
+      password: validatePassword(pwd),
+    }));
+  };
+
   return (
     <View style={styles.card}>
       <Text style={styles.title}>{title}</Text>
@@ -48,7 +56,7 @@ export default function LoginForm({ title, subtitle }: LoginFormProps) {
       <CustomTextInput
         placeholder="Password"
         value={password}
-        onChangeText={setPassword}
+        onChangeText={checkPassword}
         error={errors.password}
         editable={!isPending}
         secureTextEntry={true}

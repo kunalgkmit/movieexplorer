@@ -29,7 +29,7 @@ export default function CustomBottomTab({
 
         const iconName = getIconName(item.name, isFocused);
 
-        const color = isFocused ? COLORS.PRIMARY : COLORS.TEXT_SECONDARY;
+        const color = isFocused ? COLORS.SHADOW : COLORS.TEXT_SECONDARY;
 
         return (
           <TouchableOpacity

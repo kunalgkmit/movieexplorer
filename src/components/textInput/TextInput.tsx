@@ -10,13 +10,23 @@ export default function CustomTextInput({
   onChangeText,
   error,
   editable,
-  autoCapitalize="none",
-  secureTextEntry
+  autoCapitalize = 'none',
+  secureTextEntry,
+  onPress,
+  readOnly,
+  keyboardType,
+  maxLength,
+  multiLine,
 }: CustomTextInputProps) {
   return (
     <View style={styles.inputContainer}>
       <TextInput
-        style={[styles.input, error && styles.inputError]}
+        onPressIn={onPress}
+        style={[
+          styles.input,
+          error && styles.inputError,
+          multiLine && styles.multiLine
+        ]}
         placeholder={placeholder}
         placeholderTextColor={COLORS.TEXT_TERTIARY}
         value={value}
@@ -24,8 +34,12 @@ export default function CustomTextInput({
         autoCapitalize={autoCapitalize}
         editable={editable}
         secureTextEntry={secureTextEntry}
+        readOnly={readOnly}
+        keyboardType={keyboardType}
+        maxLength={maxLength}
+        multiline={multiLine}
       />
-      
+
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
     </View>
   );

@@ -17,6 +17,6 @@
       "@hooks/*": ["hooks/*"],
     }
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx", "__tests__/LoginForm.test.js"],
   "exclude": ["**/node_modules", "**/Pods"]
 }

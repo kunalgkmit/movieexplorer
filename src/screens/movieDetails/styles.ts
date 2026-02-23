@@ -36,6 +36,7 @@ export const styles = StyleSheet.create({
 
   ratingColor: {
     color: COLORS.TEXT_PRIMARY,
+    fontFamily: 'KodeMono-Bold'
   },
 
   ratingContent: {
@@ -46,19 +47,21 @@ export const styles = StyleSheet.create({
   releaseDate: {
     fontSize: wp('5%'),
     color: COLORS.TEXT_SECONDARY,
+    fontFamily: 'KodeMono-Bold'
   },
 
   overview: {
     fontSize: wp('4%'),
     color: COLORS.TEXT_PRIMARY,
-    fontStyle: 'italic',
+    fontFamily: 'KodeMono-Medium'
   },
 
   title: {
     flex: 1,
     fontWeight: 'bold',
     fontSize: wp('7%'),
-    paddingRight:15
+    paddingRight:15,
+    fontFamily: 'KodeMono-Bold'
   },
 
   detailsWrapper: {

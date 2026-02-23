@@ -1,4 +1,4 @@
-import { ViewStyle } from 'react-native';
+import { KeyboardTypeOptions, ViewStyle } from 'react-native';
 
 declare global {
   interface LoginFormProps {
@@ -7,6 +7,7 @@ declare global {
   }
 
   interface ButtonProps {
+    testId?: string;
     title: string;
     onPress: () => void;
     isPending?: boolean;
@@ -15,11 +16,16 @@ declare global {
   interface CustomTextInputProps {
     placeholder: string;
     value: string;
-    onChangeText: (data: string) => void;
+    onChangeText?: (data: string) => void;
     error?: string;
     editable?: boolean;
     autoCapitalize?: 'none';
     secureTextEntry?: boolean;
+    onPress?: () => void;
+    readOnly?: boolean;
+    keyboardType?: KeyboardTypeOptions;
+    maxLength?: number;
+    multiLine?: boolean;
   }
 
   interface MovieCardProps {
@@ -65,5 +71,10 @@ declare global {
   interface SortType {
     sortName: string;
     sortOption: string;
+  }
+
+  interface GenderType {
+    genderId: number;
+    genderName: string;
   }
 }

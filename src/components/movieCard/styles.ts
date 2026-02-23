@@ -35,6 +35,7 @@ export const styles = StyleSheet.create({
     fontWeight: '600',
     color: COLORS.TEXT_PRIMARY,
     marginBottom: 6,
+    fontFamily: 'KodeMono-Bold'
   },
 
   metaRow: {
@@ -46,6 +47,7 @@ export const styles = StyleSheet.create({
   releaseDate: {
     fontSize: wp('3.3%'),
     color: COLORS.TEXT_SECONDARY,
+    fontFamily: 'KodeMono-Bold'
   },
 
   favouriteWrapper: {
@@ -65,5 +67,6 @@ export const styles = StyleSheet.create({
     fontSize: wp('3.3%'),
     fontWeight: 'bold',
     color: COLORS.TEXT_PRIMARY,
+    fontFamily: 'KodeMono-Bold'
   },
 });

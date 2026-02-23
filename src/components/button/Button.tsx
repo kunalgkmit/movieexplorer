@@ -4,6 +4,7 @@ import { styles } from './styles';
 import { COLORS } from '@constants/colors';
 
 export default function CustomButton({
+  testId,
   title,
   onPress,
   isPending,
@@ -13,9 +14,11 @@ export default function CustomButton({
       style={styles.button}
       onPress={onPress}
       disabled={isPending}
+      testID={testId}
     >
       {isPending ? (
-        <ActivityIndicator size="small" color={COLORS.BG_SURFACE} />
+        // <ActivityIndicator size="small" color={COLORS.BG_SURFACE} />
+        <Text style={styles.buttonText}>{title}</Text>
       ) : (
         <Text style={styles.buttonText}>{title}</Text>
       )}

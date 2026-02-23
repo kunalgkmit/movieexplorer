@@ -2,10 +2,11 @@ import { useMutation } from '@tanstack/react-query';
 
 import { getFavourites, updateFavourites } from '@services/favourites.service';
 import { useFavMoviesStore } from '@store/favourites';
+import { store } from 'reduxStore/store';
 
 export const fetchFavourites = async () => {
   const data = await getFavourites();
-  const {setFavourites} = useFavMoviesStore.getState();
+  const { setFavourites } = useFavMoviesStore.getState();
 
   const favMovies = data.results.map((movie: any) => {
     const {
@@ -24,6 +25,8 @@ export const fetchFavourites = async () => {
       isFavourite: true,
     };
   });
+
+  store.dispatch({ type: 'todos/setTodos', payload: favMovies });
 
   setFavourites(favMovies);
 };

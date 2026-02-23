@@ -16,6 +16,7 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     borderWidth: 1,
     borderColor: COLORS.BORDER,
+    fontFamily: 'KodeMono-Bold',
   },
 
   inputError: {
@@ -28,5 +29,11 @@ export const styles = StyleSheet.create({
     fontSize: 12,
     marginTop: 6,
     paddingLeft: 4,
+  },
+
+  multiLine: {
+    height: 120,
+    textAlignVertical: 'top',
+    paddingTop: 12,
   },
 });

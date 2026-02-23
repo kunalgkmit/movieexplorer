@@ -16,6 +16,7 @@ export default async function fetchMovies({
       language: language,
     },
   });
+  // console.log("PAGE NUMBER>>>", pageParam)
   return response.data;
 }
 

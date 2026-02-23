@@ -1,4 +1,10 @@
-import { View, Text, TouchableOpacity, StatusBar } from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StatusBar,
+  useWindowDimensions,
+} from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Ionicons from '@react-native-vector-icons/ionicons';
 import { COLORS } from '@constants/colors';
@@ -19,18 +25,23 @@ export default function CustomAppBar({
     paddingTop: insets.top,
   });
 
+  const { width, height } = useWindowDimensions();
+  const isLandscape = width > height;
+
   return (
     <View style={[styles.container, getSafeAreaPadding()]}>
       <StatusBar barStyle={'dark-content'} />
       <View style={styles.contentWrapper}>
-        <Text style={styles.title}>{title}</Text>
+        <Text style={[styles.title, { fontSize: isLandscape ? 20 : 26 }]}>
+          {title}
+        </Text>
         {isHomeScreen && (
           <View style={styles.sortFilterWrapper}>
             <TouchableOpacity onPress={setSort}>
               <Ionicons
                 name="filter-outline"
                 size={24}
-                color={sortHightlight ? COLORS.PRIMARY : COLORS.SHADOW}
+                color={sortHightlight ? COLORS.PRIMARY : COLORS.BG_CARD}
                 style={sortHightlight && styles.selectedOption}
               />
             </TouchableOpacity>
@@ -41,7 +52,7 @@ export default function CustomAppBar({
               <Ionicons
                 name="funnel-outline"
                 size={24}
-                color={filterHighlight ? COLORS.PRIMARY : COLORS.SHADOW}
+                color={filterHighlight ? COLORS.PRIMARY : COLORS.BG_CARD}
               />
             </TouchableOpacity>
           </View>

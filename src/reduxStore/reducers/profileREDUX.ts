@@ -1,4 +1,4 @@
-import * as types from '../actionTypes/profileActions';
+import * as types from '../actionTypes/profileActions'; 
 
 const initialState = {
   fullName: '',

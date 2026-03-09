@@ -8,7 +8,7 @@ import { todoReducer } from './sampleAPIreducer';
 const profilePersistConfig = {
   key: 'profile',
   storage: AsyncStorage,
-  blacklist: ['error'],
+  blacklist: ['error']
 };
 
 export const rootReducer = combineReducers({

@@ -12,8 +12,6 @@
 import { combineReducers, applyMiddleware, createStore } from 'redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistStore, persistReducer } from 'redux-persist';
-import counterReducer from '../features/countSlice';
-import { profileReducer } from './reducers/profileREDUX';
 import { logger } from './middleware/logger';
 import { rootReducer } from './reducers/rootReducer';
 import { thunk } from 'redux-thunk';

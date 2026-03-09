@@ -1,0 +1,72 @@
+import React, { useEffect, useState } from 'react';
+import { Text, View } from 'react-native';
+
+import { useLogin } from '@hooks/useLogin';
+import { validatePassword } from '@utils/helpers';
+import CustomButton from '@components/button';
+import CustomTextInput from '@components/textInput/TextInput';
+import { styles } from './styles';
+
+export default function LoginForm({ title, subtitle }: LoginFormProps) {
+  const [userName, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({
+    userName: '',
+    password: '',
+  });
+
+  const { mutate, isPending } = useLogin();
+
+  const handleSubmit = () => {
+    const userNameError =
+      userName.trim() === '' ? 'Please enter a valid username' : '';
+    const passwordError = validatePassword(password);
+
+    setErrors({
+      userName: userNameError,
+      password: passwordError,
+    });
+
+    if (!userNameError && !passwordError) {
+      mutate({ userName, password });
+    }
+  };
+
+  const checkPassword = (pwd: string) => {
+    setPassword(pwd);
+    setErrors(prev => ({
+      ...prev,
+      password: validatePassword(pwd),
+    }));
+  };
+
+  return (
+    <View style={styles.card}>
+      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.subtitle}>{subtitle}</Text>
+
+      <CustomTextInput
+        placeholder="Username"
+        value={userName}
+        onChangeText={setUserName}
+        error={errors.userName}
+        editable={!isPending}
+      />
+
+      <CustomTextInput
+        placeholder="Password"
+        value={password}
+        onChangeText={checkPassword}
+        error={errors.password}
+        editable={!isPending}
+        secureTextEntry={true}
+      />
+
+      <CustomButton
+        title="Login"
+        onPress={handleSubmit}
+        isPending={isPending}
+      />
+    </View>
+  );
+}
